@@ -136,47 +136,42 @@ Una vez comprendido el sistema, a través de la fase de modelado y análisis del
 Tener lineamientos sobre qué se debe especificar en una SRS ayudará a conseguir completitud.
 Una SRS debe especificar requerimientos sobre:
 
-- Funcionalidad.
-- Desempeño (performance).
-- Restricciones de diseño.
-- Interfaces externas.
+1. Funcionalidad.
+2. Desempeño (performance).
+3. Restricciones de diseño.
+4. Interfaces externas.
 
-__Requerimientos de funcionalidad__:
+- __Requerimientos de funcionalidad__:
+  - Conforma la mayor parte de la especificación.
+  - Especifica toda la funcionalidad que el sistema debe proveer.
+  - Especifica qué salidas se deben producir para cada entrada dada y las relaciones entre   ellas.
+  - Describe todas las operaciones que el sistema debe realizar.
+  - Describe las entradas válidas y las verificaciones de validez de la entrada y salida.
+  - Describe el comportamiento del sistema en caso de entradas inválidas, errores de cálculo u   otras situaciones anormales, o en el caso de situaciones normales pero con imposibilidad de   operar.
 
-- Conforma la mayor parte de la especificación.
-- Especifica toda la funcionalidad que el sistema debe proveer.
-- Especifica qué salidas se deben producir para cada entrada dada y las relaciones entre ellas.
-- Describe todas las operaciones que el sistema debe realizar.
-- Describe las entradas válidas y las verificaciones de validez de la entrada y salida.
-- Describe el comportamiento del sistema en caso de entradas inválidas, errores de cálculo u otras situaciones anormales, o en el caso de situaciones normales pero con imposibilidad de operar.
+- __Requerimientos de desempeño__:
+  - Todas las restricciones en el desempeño del sistema de software.
+  - Requerimientos Dinámicos (especifican restricciones sobre la ejecución):
+    - Tiempo de respuesta.
+    - Tiempo esperado de terminación de una operación dada.
+    - Tasa de transferencia o rendimiento.
+    - Cantidad de operaciones realizadas por unidad de tiempo.
+    - En general se especifican los rangos aceptables de los distintos parámetros, en casos   normales y extremos.
+  - Requerimientos Estáticos o de capacidad (no imponen restricción en la ejecución):
+    - Cantidad de terminales admitidas.
+    - Cantidad de usuarios admitidos simultáneamente.
+    - Cantidad de archivos a procesar y sus tamaños.
+  - Todos los requisitos se especifican en términos medibles => verificable.
 
-__Requerimientos de desempeño__:
+- __Restricciones de diseño__:
+  Ejemplos:
+  - Ajustarse a estándares y compatibilidad con otros sistemas, limitaciones de hardware y   otros recursos.
+  - Requerimientos de confiabilidad, tolerancia a falla, o respaldo, seguridad.
 
-- Todas las restricciones en el desempeño del sistema de software.
-- Requerimientos Dinámicos (especifican restricciones sobre la ejecución):
-  - Tiempo de respuesta.
-  - Tiempo esperado de terminación de una operación dada.
-  - Tasa de transferencia o rendimiento.
-  - Cantidad de operaciones realizadas por unidad de tiempo.
-  - En general se especifican los rangos aceptables de los distintos parámetros, en casos normales y extremos.
-- Requerimientos Estáticos o de capacidad (no imponen restricción en la ejecución):
-  - Cantidad de terminales admitidas.
-  - Cantidad de usuarios admitidos simultáneamente.
-  - Cantidad de archivos a procesar y sus tamaños.
-- Todos los requisitos se especifican en términos medibles => verificable.
-
-__Restricciones de diseño__:
-
-Ejemplos:
-
-- Ajustarse a estándares y compatibilidad con otros sistemas, limitaciones de hardware y otros recursos.
-- Requerimientos de confiabilidad, tolerancia a falla, o respaldo, seguridad.
-
-__Requerimientos de interfaces externas__:
-
-- Todas las interacciones del software con gente, hardware, y otros software deben especificarse claramente.
-- La interfaz con el usuario debe recibir atención adecuada. Crear un manual preliminar indicando los comandos del usuario, los formatos de las pantallas, etcétera.
-- Estos requerimientos también deben ser precisos para asegurar verificabilidad. Evitar cosas como “la interfaz debe ser amigable”.
+- __Requerimientos de interfaces externas__:
+  - Todas las interacciones del software con gente, hardware, y otros software deben   especificarse claramente.
+  - La interfaz con el usuario debe recibir atención adecuada. Crear un manual preliminar   indicando los comandos del usuario, los formatos de las pantallas, etcétera.
+  - Estos requerimientos también deben ser precisos para asegurar verificabilidad. Evitar   cosas como “la interfaz debe ser amigable”.
 
 #### Lenguajes de especificación
 
