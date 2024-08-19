@@ -5,42 +5,30 @@ Libro: An Integrated Approach to Software Engineering de Jalote
 
 ## Análisis y especificación de los requisitos del software
 
-__Entrada:__ Las necesidades y deseos que se encuentran en la cabeza de alguien (ideas abstractas).
+Tiene como objetivo producir el documento con la especificación de los __requerimientos del software (SRS)__ a través del __proceso de requerimientos__: Proceso de análisis y especificación a partir de la __Entrada:__ _Las necesidades y deseos que se encuentran en la cabeza de alguien (ideas abstractas)_ terminando con la __Salida:__ _Un detalle preciso de lo que será el sistema futuro_: la SRS.
+Este proceso involucra interacción con la gente y no puede automatizarse.
 
-__Salida:__ Un detalle preciso de lo que será el sistema futuro.
+La SRS establece las bases para el __acuerdo__, entre el cliente/usuario y el desarrollador, sobre __que__ (y __No como__ se resolverán) necesidades tiene el cliente/usuario.
 
-- Involucra interacción con la gente.
-- No puede automatizarse.
-
-Esta fase finaliza produciendo el documento con la especificación de los __requerimientos del software (SRS)__.
+__Los errores de SRS salen caro__: son más caros de corregir a medida que progresa el proyecto y muchas veces se manifestarán en el software final. Una buena SRS contribuye a minimizar cambios y errores.
 
 > __Requerimientos (IEEE):__ Una condición o capacidad necesaria que debe poseer o cumplir un sistema.
-
-La SRS establece las bases para el __acuerdo__, entre el cliente/usuario y el desarrollador, sobre __que__ necesidades tiene el cliente/usuario.
-
->__Obs:__ Existe una __brecha comunicacional__ entre las partes
->Cliente: no comprende el proceso de desarrollo de software.
->Desarrollador: no conoce el problema del cliente ni su área de aplicación.
-
-__Los errores de SRS salen caro__: son más caros de corregir a medida que progresa el proyecto y muchas veces se manifestarán en el software final.
-Una buena SRS contribuye a minimizar cambios y errores.
-
-La SRS se obtiene a través del __proceso de requerimientos:__ Secuencia de pasos que se necesita realizar para convertir las necesidades del usuario en la SRS.
+>__Obs:__ Existe una __brecha comunicacional__ entre las partes: El cliente/usuario no comprende el proceso de desarrollo de software mientras que el desarrollador no conoce el problema del cliente ni su área de aplicación.
 
 <div style="display: flex; align-items: left;">
     <img src="PNGs/image-0.png" width="250" style="margin-right: 20px;">
-    <p>El proceso no es lineal; es iterativo, paralelo y consta de: <br> 1) Análisis y modelado del problema o requerimientos. <br> 2) Especificación de los requerimientos. <br> 3) Validación.</p>
+    <p> <b>Proceso de requerimientos:</b> <br> Es la secuencia de pasos que se necesita realizar para convertir las necesidades del usuario en la SRS. <br> Es un proceso no lineal; es iterativo, paralelo y consta de: <br> 1) Análisis y modelado del problema o requerimientos. <br> 2) Especificación de los requerimientos (SRS preliminar). <br> 3) Validación (SRS finalizada).</p>
 </div>
 
 ### Proceso de requerimientos: 1) Análisis y modelado del problema
 
 Se enfoca en la comprensión de la estructura del problema (necesidades, requerimientos, y
 restricciones del sistema deseado) y su dominio (componentes, entrada, salida).
-En el se __recolecta información__, mas (o distinta) de la necesaria para la especificación, luego se __identifica y descompone el problema__ (divide y conquista) y __comprende informalmente sus partes y relaciones__ a través de técnicas como diagramas de flujo de datos, diagramas de objetos, etc. Con el fin de __plasmar las conclusiones en la SRS__, la cual sera el objeto de revisión con el cliente.
+Principalmente __recolecta información__, mas (o distinta) de la necesaria para la especificación; __identifica y descompone el problema__ (divide y conquista) y __comprende informalmente sus partes y relaciones__ a través de técnicas como diagramas de flujo de datos, diagramas de objetos, etc. Con el fin de poder plasmar en la _especificación de los requerimientos_ las conclusiones en la SRS, la cual sera el objeto de revisión con el cliente en la _verificación_.
 
 > __Obs:__ Los métodos de análisis son similares a los de diseño, pero con objetivos y alcances distintos. El análisis trata con el dominio del problema mientras que el diseño trata con el dominio de la solución.
 
-No se construye un modelo formal del sistema; la información se obtiene a través de análisis, observación, interacción, discusión, etc.
+No se construye un modelo formal del sistema.
 
 Recolectar y organizar la información (rol pasivo) incluye interactuar con el cliente y usuarios, leer los manuales, estudiar del sistema actual, comprender el funcionamiento de la organización, el cliente, y los usuarios.
 
@@ -50,7 +38,7 @@ Al descomponer el problema y comprender informalmente sus partes y relaciones se
 
 - Funciones: análisis estructural o Modelado de flujo de datos (DFD)
 - Objetos: análisis OO o Modelado orientado a objetos (modelos OO)
-- Eventos del sistema: particionado de eventos 'o Especificación funcional con Casos de uso' <-- __corregir__, vimos esto sino?
+- Eventos del sistema: particionado de eventos 'o Especificación funcional con Casos de uso' <!-- <-- __corregir__, vimos esto sino? FIXME: -->
 - Prototipo: construcción de sistema parcial (Prototipado)
 
 > __Obs:__ Los elementos de esta fase como los DFD, modelos OO, o prototipado __no son SRS__.
@@ -119,7 +107,7 @@ Una vez comprendido el sistema, a través de la fase de modelado y análisis del
   Ej.: conflictos lógicos, temporales, de dependencias.
 - __Modificable__ (Extensibilidad)
   Si la estructura y estilo de la SRS es tal que <u>_permite incorporar cambios fácilmente preservando completitud y consistencia_</u>.
-  <u>_La redundancia es un gran estorbo para modificabilidad, puede resultar en inconsistencia_</u>.
+  La redundancia es un gran estorbo para modificabilidad, puede resultar en inconsistencia.
 - __Rastreable__ (Traceable)
   Se debe poder determinar el origen de cada requerimiento y cómo éste se relaciona a los elementos del software.
   - _Hacia adelante:_ dado un requerimiento se debe poder detectar en qué elementos de diseño o código tiene impacto.
@@ -175,9 +163,7 @@ Una SRS debe especificar requerimientos sobre:
 
 #### Lenguajes de especificación
 
-
 ------------------------------ A partir de aca hay que resumir mejor.
-
 
 Los lenguajes de especificación deben facilitar escribir SRS con las características deseadas: modificabilidad, no ambigüedad, etcétera.
 
@@ -189,12 +175,12 @@ Los lenguajes de especificación deben facilitar escribir SRS con las caracterí
 
 #### Alcance
 
-• Qué cosas entran en / abarca el proyecto?
-• Qué cosas no entran en / no abarca el proyecto?
-• Objetivos, entregables y requerimientos. Tiempos de entrega.
-• Cúales son las prioridades para saber qué hacer primero.
-• Criterio de aceptación (¿qué tipo de usuario lo aceptará?).
-• Limitantes presupuestarios.
+- Qué cosas entran en / abarca el proyecto?
+- Qué cosas no entran en / no abarca el proyecto?
+- Objetivos, entregables y requerimientos. Tiempos de entrega.
+- Cúales son las prioridades para saber qué hacer primero.
+- Criterio de aceptación (¿qué tipo de usuario lo aceptará?).
+- Limitantes presupuestarios.
 
 #### Especificación funcional con Casos de uso
 
@@ -338,4 +324,4 @@ valor de los atributos de calidad de la SRS.
 • Métricas de calidad indirecta: evalúan la efectividad de las métricas del
 control de calidad usadas en el proceso en la fase de requerimientos.
 Ej.: Número de errores encontrados.
-Frecuencia de cambios de requerimientos. 
+Frecuencia de cambios de requerimientos.
