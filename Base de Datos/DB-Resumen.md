@@ -14,7 +14,10 @@ Objetivo: subsecuente __traducción__ del modelo de entidad-relación a esquemas
 __Entidad__: objeto distinguible de otros objetos. Descrito por medio de atributos.
 __Atributo__: propiedad de una entidad; esa propiedad tiene un valor en un __dominio__:_conjunto de valores permitidos para cada atributo_.
 Tipos de atributos:
-![alt text](PNGs/image-4.png)
+
+<div style="text-align: center;">
+    <img src="PNGs/image-4.png" width="600">
+</div>
 
 - Atributos __Simples__: atributos hoja, no se siguen descomponiendo.
 - Atributos __compuestos__: atributos rama, se siguen descomponiendo.
@@ -22,16 +25,78 @@ Tipos de atributos:
 - Atributos __multi-valorados__: pueden tomar varios valores.
 - Atributos __derivados__: pueden computarse de otros atributos.
 
-__Relación__: asociación entre entidades.
 __Conjunto de entidades (CE)__: conjunto de entidades del mismo tipo (i.e. Con los mismos atributos) que comparte las mismas propiedades.
+__Relación__: asociación entre varias entidades.
+__Conjunto de relaciones (CR)__: es una relación matemática entre n ≥ 2 conjuntos de entidades,
+__{(e₁, e₂, … eₙ) | e₁ ∈ E₁, e₂ ∈ E₂, …, eₙ ∈ Eₙ}__ donde (e₁, e₂, …, eₙ) es una relación. Un atributo puede ser también una propiedad de un conjunto de relaciones.
+
 __Superclave de un CE__: conjunto de uno o más atributos cuyos valores unívocamente determinan cada entidad.
 __Clave candidata (CC) de un CE__: superclave minimal
 (i.e. si se quita atributo dejamos de tener superclave). Una clave candidata no necesariamente tiene cardinalidad mínima.
 __Clave primaria__: Aunque varias claves candidatas pueden existir, una de las claves candidatas es seleccionada para ser la clave primaria. No necesariamente es la de menor cantidad de atributos
 
-![alt text](PNGs/image-0.png)
+<div style="text-align: center;">
+    <img src="PNGs/image-0.png" width="600">
+</div>
 
 ## Reducción a Esquemas Relacionales
+
+- __Regla CEF-1__: Un CE fuerte que no involucra atributos compuestos ni atributos multi-valorados se mapea a un esquema relacional con los mismos atributos. 
+  <div style="text-align: center;">
+    <img src="PNGs/image-6.png" width="600">
+  </div>
+  - La clave primaria del CE se convierte en la clave primaria del esquema relacional.
+- __Regla CEF-2__: Un CE fuerte que no involucra atributos/subatributos multivalorados se mapea a un esquema relacional con los mismos atributos simples y los subatributos hoja de los atributos compuestos. Cada valor del atributo multivalorado mapea a una tupla separada en la tabla del esquema EM.
+  <div style="text-align: center;">
+    <img src="PNGs/image-5.png" width="600">
+  </div>
+  - Solo nos quedamos con los atributos simples/hojas y eliminamos los compuestos/ramas.
+- __Regla CEF-3__: un atributo multivalorado M simple de un CE E es representado por un esquema separado EM.
+  <div style="text-align: center;">
+    <img src="PNGs/image-7.png" width="600">
+  </div>
+  - EM tiene atributos correspondientes a la clave primaria de E y un atributo correspondiente al atributo multivalorado M.
+  - Todos los atributos de EM forman su clave primaria.
+  - Se pone una restricción de clave foránea desde EM que referencia a la clave primaria de E.
+- Los __atributos derivados__ no son explícitamente representados en el modelo de datos relacional. Si se los necesita, una forma de computarlos es por medio de consultas.
+
+## Correspondencias de Cardinalidades
+
+Propósito: Diagramar conjuntos de relaciones binarios.
+Sea R un conjunto de relaciones de conjuntos de entidades E1 a conjunto de entidades E2:
+
+- Conjuntos de relaciones __uno-uno__: Todas las entidades de E1 están asociadas con a lo sumo una entidad de E2 via R. Y viceversa.
+- Conjuntos de relaciones __uno-varios__: Existe alguna entidad de E1 asociada con al menos dos entidades de E2 via R. Todas las entidades de E2 están asociadas con a lo sumo una entidad de E1 via R.
+- Conjuntos de relaciones __varios-uno__:  Todas las entidades de E1 están asociadas con a lo sumo una entidad de E2 via R. Existe alguna entidad de E2 asociada con al menos dos entidades de E1 via R.
+- Conjuntos de relaciones __varios-varios__: Existe alguna entidad de E1 asociada con al menos dos entidades de E2 via R. Y viceversa.
+
+> __Obs:__ En todos los casos pueden existir elementos pertenecientes a E1 que no están mapeados con elementos de E2 y viceversa.
+>
+> __Notación__: 
+> <div style="text-align: center;">
+>   <img src="PNGs/image-8.png" width="600">
+> </div>
+>
+> __Notación de intervalos o de cardinalidades__: \[a..b] o \[a..*] 
+> <div style="text-align: center;">
+>   <img src="PNGs/image-11.png" width="600">
+> </div>
+> Notar que el lugar donde se pone la información es al revés (o sea, del otro lado) que en correspondencia de cardinalidades.
+
+
+
+## Formas de participación de CE en CR
+
+__Participación total__: (indicada por línea doble) toda entidad en el conjunto de entidades participa en al menos una relación en el conjunto de relaciones.
+<div style="text-align: center;">
+    <img src="PNGs/image-9.png" width="600">
+</div>
+
+__Participación parcial__: algunas entidades no participan en alguna relación en el conjunto de relaciones.
+
+<div style="text-align: center;">
+    <img src="PNGs/image-10.png" width="600">
+</div>
 
 ## Diseño relacional
 
@@ -40,7 +105,9 @@ __Esquema relacional__: lista de nombres de atributos (Nombre esquema = lista de
 __Instancia__: Datos que se almacenan en tablas para los esquemas de la misma.
 Las columnas representan atributos (o propiedades) para los elementos de la tabla (tuplas).
 
-![alt text](PNGs/image-1.png)
+<div style="text-align: center;">
+    <img src="PNGs/image-1.png" width="600">
+</div>
 
 > __Notación__: __r(R)__ significa r es una relación con esquema de relación R. O sea, las columnas de r tienen como nombres los atributos de R.
 
@@ -57,7 +124,9 @@ __Clave primaria__: La clave candidata elegida.
 
 __Restricción de clave foránea (o de integridad referencial)__: Los valores de uno o más atributos en una tupla de la __relación referenciante__ aparecen en uno o más atributos de una tupla en la __relación referenciada__. Los atributos referenciados de la relación referenciada suelen formar una __clave candidata__ del esquema de la relación referenciada.
 
-![alt text](PNGs/image-2.png)
+<div style="text-align: center;">
+    <img src="PNGs/image-2.png" width="600">
+</div>
 
 __Redundancia de datos__: Repetición/duplicación de datos que son el mismo y por lo tanto mantenerse iguales. Debemos diseñar un esquema de la BD que no contenga redundancia de
 datos. __Una solución__: Obtener un buen diseño descomponiendo el esquema que contiene todos los atributos en esquemas más chicos. La __teoría de normalización__ trabaja con esta idea y trata con cómo diseñar buenos esquemas de BD relacionales.
@@ -102,7 +171,9 @@ El sistema gestor de BD procesa consultas para el modelo relacional.
 1. Parseo de la consulta y su traducción (p.ej. a álgebra relacional o álgebra de tablas)
 2. Optimización: Encontrar la manera “más eficiente” (o plan) para obtener la información descrita por la consulta.
 3. Evaluación (siguiendo el plan optimizado)
-![alt text](PNGs/image-3.png)
+<div style="text-align: center;">
+    <img src="PNGs/image-3.png" width="600">
+</div>
 
 ## Transacciones
 
