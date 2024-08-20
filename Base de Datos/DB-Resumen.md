@@ -59,6 +59,25 @@ __Clave primaria__: Aunque varias claves candidatas pueden existir, una de las c
   - Todos los atributos de EM forman su clave primaria.
   - Se pone una restricción de clave foránea desde EM que referencia a la clave primaria de E.
 - Los __atributos derivados__ no son explícitamente representados en el modelo de datos relacional. Si se los necesita, una forma de computarlos es por medio de consultas.
+- __Regla CR1__: un CR varios-varios es representado con un esquema con atributos para las claves primarias de los dos CE participantes y todos los atributos descriptivos del CR (que no son multivalorados).
+  <div style="text-align: center;">
+    <img src="PNGs/image-13.png" width="600">
+  </div>
+  - La clave primaria del esquema del CR es la unión de las claves primarias de los CEs que participan en el CR.
+  - Para cada CE que participa en el CR se crea restricción de clave foránea que referencia clave primaria de CE.
+- __Regla CR2__: un CR varios a uno o uno a varios que es total en el lado varios puede ser representado agregando atributos extra en el CE del lado varios, conteniendo la clave primaria del lado uno.
+  <div style="text-align: center;">
+    <img src="PNGs/image-14.png" width="600">
+  </div>
+  - La clave primaria del CR es la clave primaria del CE del lado varios.
+  - Se crea restricción de clave foránea de CR que referencia a clave primaria de CE de lado varios.
+  - Si la participación es parcial en el lado varios, aplicar la regla anterior puede resultar en valores nulos. Esto sucede cuando a una entidad del CE del lado varios no le corresponde ninguna entidad del CE del lado uno.
+- __Regla CR3__: Un CR uno a uno con participación total en ambos lados puede ser mapeado agregando al esquema resultante de traducir uno de los CE participantes los atributos de la clave primaria del otro CE.
+  <div style="text-align: center;">
+    <img src="PNGs/image-15.png" width="600">
+  </div>
+  - La clave primaria de cualquier CE puede ser elegida como la clave primaria del CR.
+  - Se crea restricción de clave foránea de esquema relacional asociado al CR que referencia clave primaria de otro CE (el que no se tomo de base para hallar el esquema asociado al CR).
 
 ## Correspondencias de Cardinalidades
 
@@ -77,13 +96,22 @@ Sea R un conjunto de relaciones de conjuntos de entidades E1 a conjunto de entid
 >   <img src="PNGs/image-8.png" width="600">
 > </div>
 >
-> __Notación de intervalos o de cardinalidades__: \[a..b] o \[a..*] 
+> __Notación de intervalos o de cardinalidades__: [a..b] o [a..*] 
 > <div style="text-align: center;">
 >   <img src="PNGs/image-11.png" width="600">
 > </div>
-> Notar que el lugar donde se pone la información es al revés (o sea, del otro lado) que en correspondencia de cardinalidades.
+> A <--[a..b]--> R <--[c..d]--> B
+> A relacionado con [a..b] B's  
+> B relacionado con [c..d] A's  
+> Notar que el lugar donde se pone la información es al revés (o sea, del otro lado) que en correspondencia de cardinalidades.  
 
+## Roles
 
+Los CE en un CR, no necesariamente son distintos.
+
+<div style="text-align: center;">
+  <img src="PNGs/image-12.png" width="600">
+</div>
 
 ## Formas de participación de CE en CR
 
