@@ -14,6 +14,7 @@
 
 ### IS - Teórico
 
+- [] Leer cap 6 y 7
 - [] Añadir al resumen cap1
 - [] Corregir resumen cap3
 - [] Añadir al resumen cap4
