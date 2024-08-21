@@ -76,9 +76,15 @@ Testear el producto durante mas tiempo. hacer mas tests.
 
 ## 9. Explique los tipos de calidad que presenta el estándar ISO
 
-- __Calidad en Uso:__ Evalúa, desde la perspectiva del usuario final, cómo el software les permite alcanzar sus objetivos en un contexto específico de uso; eficacia, productividad, seguridad, satisfacción.
-- __Calidad del Producto:__ Evalúa las propiedades internas del software que afectan su calidad y rendimiento; funcionalidad, fiabilidad, usabilidad, eficiencia, mantenibilidad, portabilidad.
-- __Calidad en el Proceso:__ Se centra en la calidad de los procesos de desarrollo, implementación y mantenimiento del software; cumplimiento, eficiencia, mejora continua.
+Funcionalidad: Capacidad de proveer funciones que cumplen las necesidades establecidas o
+implicadas.
+• Confiabilidad: Capacidad de realizar las funciones requeridas bajo las condiciones establecidas
+durante un tiempo específico.
+• Usabilidad: Capacidad de ser comprendido, aprendido y usado.
+• Eficiencia: Capacidad de proveer desempeño apropiado relativo a la cantidad de recursos usados.
+• Mantenibilidad: Capacidad de ser modificado con el propósito de corregir, mejorar, o adaptar.
+• Portabilidad: Capacidad de ser adaptado a distintos entornos sin aplicar otras acciones que las
+provistas a este propósito en el producto.
 
 ## 10. ¿Cuales son los desafíos de la Ingeniería del Software? Explique cada uno de ellos
 

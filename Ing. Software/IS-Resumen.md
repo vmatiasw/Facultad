@@ -38,10 +38,9 @@ Al descomponer el problema y comprender informalmente sus partes y relaciones se
 
 - Funciones: análisis estructural o Modelado de flujo de datos (DFD)
 - Objetos: análisis OO o Modelado orientado a objetos (modelos OO)
-- Eventos del sistema: particionado de eventos 'o Especificación funcional con Casos de uso' <!-- <-- __corregir__, vimos esto sino? FIXME: -->
-- Prototipo: construcción de sistema parcial (Prototipado)
+- Eventos del sistema: particionado de eventos
 
-> __Obs:__ Los elementos de esta fase como los DFD, modelos OO, o prototipado __no son SRS__.
+> __Obs:__ Los elementos de esta fase como los DFD o modelos OO __no son SRS__.
 > El modelado se enfoca en la estructura del problema para su análisis. La SRS se enfoca en el comportamiento externo del sistema.
 
 #### Modelado de flujo de datos (DFD)

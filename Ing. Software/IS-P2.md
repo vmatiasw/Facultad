@@ -81,7 +81,8 @@ El diagrama de contexto:
 ![alt text](PNGs/image-5.png)
 DFD del sistema existente:
 DFD del sistema propuesto:
- Diccionario de datos del DFD del sistema propuesto:
+![alt text](PNGs/image-6.png)
+Diccionario de datos del DFD del sistema propuesto:
 
 <!-- TODO: completar!! -->
 
