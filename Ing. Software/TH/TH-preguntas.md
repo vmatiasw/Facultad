@@ -12,4 +12,6 @@ Al terminar el juego se cierra la sala?
 
 Como hacer el alcance...
 
+El proyecto debe funcionar en pc, android, diferentes pantallas, ...?
+
 hay eventos con DFD? ej: fin de turno,... que simbolo?
