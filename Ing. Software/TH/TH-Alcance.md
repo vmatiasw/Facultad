@@ -44,9 +44,16 @@ Requerimientos de desempeño:
 
 ## Qué cosas entran y no entran en el proyecto
 
-## Qué cosas entran en / abarca el proyecto?
 
-## Qué cosas no entran en / no abarca el proyecto?
+### Qué cosas entran en / abarca el proyecto?
+
+- 
+- Identifocacion de usuarios
+
+### Qué cosas no entran en / no abarca el proyecto?
+
+- Chat entre los jugadores
+- Elección de nombre manual
 
 ## Requerimientos funcionales y no funcionales
 
