@@ -15,3 +15,16 @@ Como hacer el alcance...
 El proyecto debe funcionar en pc, android, diferentes pantallas, ...?
 
 hay eventos con DFD? ej: fin de turno,... que simbolo?
+
+puede haber una burbuja sin entrada? no conectada con entrada
+
+
+caracteristicas:
+Partidas publicas o privadas. (contraseña).
+Partida con nombre. El nombre lo elije el creador.
+Los usuarios se ponen sus nombres.
+No hay registro de usuario.
+Al crear una partida podes elegir el maximo entre 2,3,4 jugadores.
+Va a haber un chat.
+
+
