@@ -241,6 +241,11 @@ _Ejercicio 1_:
     <img src="PNGs/P1E8-1.png" width="700">
 </div>
 
+_Ejercicio 3_:
+<div style="text-align: center;">
+    <img src="PNGs/P1E8-2.png" width="700">
+</div>
+
 ### Ejercicio 9
 > Considerar el diagrama en la figura 2 que modela una librería en línea.
 > __a)__ La librería está expandiendo su colección con discos DVD, Blu-ray y videos descargables. Estos nuevos ítems son provistos por une proveedore, que tiene la misma información que la editorial. Igual que los libros, estos productos tienen autores, año, y titulo. Los DVD y los Blu-ray se distinguen por código de barras, y los videos por URL. El mismo ítem puede estar presente en uno o en ambos formatos, con diferentes precios. Extienda el modelo E-R para modelar esta adición. Notar que los DVD y los Blu-ray también se guardan en el depósito.
