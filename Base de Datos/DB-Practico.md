@@ -238,7 +238,7 @@ Mejor la fecha como atributo de la transaccion, mejor que una tabla solo para es
 
 _Ejercicio 1_:
 <div style="text-align: center;">
-    <img src="PNGs/P1E8.png" width="700">
+    <img src="PNGs/P1E8-1.png" width="700">
 </div>
 
 ### Ejercicio 9
