@@ -146,7 +146,7 @@
 > Además, la inscripción de los estudiantes en materias y las notas concedidas a estudiantes en cada materia en la que están inscriptos se deben modelar adecuadamente. Construir un diagrama E/R para la oficina de registro. Documentar todas las decisiones que se hagan acerca de restricciones de correspondencia.
 
 <div style="text-align: center;">
-    <img src="PNGs/P1E1.png" width="600">
+    <img src="PNGs/P1E1.png" width="1000">
 </div>
 
 ### Ejercicio 2
@@ -157,7 +157,7 @@
 > Cada pago tiene un monto, es por un período particular de tiempo y tiene asociado una fecha de vencimiento y la fecha cuando el pago fue recibido.
 
 <div style="text-align: center;">
-    <img src="PNGs/P1E2.png" width="600">
+    <img src="PNGs/P1E2.png" width="800">
 </div>
 
 
@@ -175,7 +175,7 @@ Lugar, fecha, dueño, otros implicados, daños al auto, causas_judiciales,... ot
 - ¿De qué manera se debería adecuar el diseño?
 
 <div style="text-align: center;">
-    <img src="PNGs/P1E3.png" width="600">
+    <img src="PNGs/P1E3.png" width="800">
 </div>
 
 ### Ejercicio 4
@@ -230,13 +230,16 @@ Mejor la fecha como atributo de la transaccion, mejor que una tabla solo para es
 >La verdad que este ejercicio es muy confuso. Se pueden agregar atributos?, Se quiere guardar los accesos de un cliente a su cuenta aunque no haga transacciones? muchos clientes pueden usar muchas cuentas y viceversa? se pueden tener dos relaciones entre dos entidades?... que se debe poder identificar fuertemente? que se pide?...
 
 <div style="text-align: center;">
-    <img src="PNGs/P1E7-2.png" width="700">
+    <img src="PNGs/P1E7-2.png" width="1000">
 </div>
 
 ### Ejercicio 8
 > Construir tablas apropiadas para cada uno de los diagramas E-R de los ejercicios 1 y 3.
 
-Lo hice asi directamente asi que hago lo contrario:
+_Ejercicio 1_:
+<div style="text-align: center;">
+    <img src="PNGs/P1E8.png" width="700">
+</div>
 
 ### Ejercicio 9
 > Considerar el diagrama en la figura 2 que modela una librería en línea.
@@ -248,12 +251,16 @@ Lo hice asi directamente asi que hago lo contrario:
 </div>
 
 <div style="text-align: center;">
-    <img src="PNGs/P1E9-1.png" width="700">
+    <img src="PNGs/P1E9-1.png" width="800">
 </div>
 
 Cosas que preguntaria:
 El codigo de barras entre DVD y Blue-ray se puede repetir?
 Puedo marcar a la editorial como proveedor?
+
+<div style="text-align: center;">
+    <img src="PNGs/P1E9-2.png" width="900">
+</div>
 
 ### Ejercicio 10
 > Diseñar una jerarquía de especialización-generalización para las ventas de una compañía de vehículos a motor. Un vehículo a motor tiene un número de patente, marca, modelo, antigüedad, cantidad de cilindros, kilometraje y precio. La compañía vende motocicletas, autos, furgonetas y ómnibus (con tamaño y cantidad de asientos). Los autos y las furgonetas tienen accesorios (p.ej. gps, apoya cabeza, aire acondicionado, etc.). Diseñe y justifique la colocación de los atributos en cada nivel de la jerarquía. Explicar por qué se deberían colocar en un nivel más alto o más bajo.
