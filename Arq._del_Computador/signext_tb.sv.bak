@@ -1,0 +1,51 @@
+`timescale 1ns / 10ps
+
+module signext_tb();
+	logic [31:0] a;
+	logic [63:0] y;
+	
+	logic clk;
+	logic [31:0] count;
+
+	 signext dut (
+        .a(a), 
+        .y(y), 
+    );
+	 
+	 initial begin
+		count = 0;
+	 end
+	 
+	 always begin // generación del reloj
+        clk = 1; #5ns; clk = 0; #5ns; // alterna entre 1 y 0 con periodo de 10 ns
+    end    
+
+    always @(posedge clk) begin // bloque de prueba
+		case (count)
+			30'b000: begin 
+							a = {20'b10, 111_1100_0010}; // LDUR
+							#1ns;
+							assert (y[63:55] === 9'b1 && y[54:0] === 55'0) else $error("Error test 0 LDUR");
+						end
+			30'b001: begin 
+							a = {20'b10, 111_1100_0000}; // STUR
+							#1ns;
+							assert (y[63:55] === 9'b1 && y[54:0] === 55'0) else $error("Error test 1 STUR");
+						end
+			30'b010: begin 
+							a = {23'b10, 101_1010_0}; //  CBZ 
+							#1ns;
+							assert (y[63:45] === 9'b1 && y[44:0] === 45'0) else $error("Error test 2 CBZ");
+						end
+			30'b011: begin 
+							a = {111_1100_0001,21'b1}; // caso error
+							#1ns;
+							assert (y !== '0) else $error("Error test 3 caso error");
+						end
+			30'b100: begin
+							a = {101_1110_0000,21'b1}; // caso error
+							#1ns;
+							assert (y !== '0) else $error("Error test 4 caso error");
+						end
+	 end
+	 

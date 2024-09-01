@@ -2,26 +2,15 @@
 
 ## Base de Datos
 
-### BD - Teórico
+- Practico 1
 
-- [] Añadir al resumen clase 3
+## Ingeniería en Software
 
-### BD - Practico
+- Leer cap 7
+- Terminar practico 2
+- Hacer TH v1
+- TH validado
 
-- [] Hacer practico 1 del lab
+## Arquitectura del computador
 
-### Ingeniería en Software
-
-### IS - Teórico
-
-- [] Leer cap 6 y 7
-- [] Añadir al resumen cap1
-- [] Corregir resumen cap3
-- [] Añadir al resumen cap4
-
-### IS - Practico
-
-- [] Terminar practico 2
-- [] Análisis del TH
-- [] Hacer TH v1
-- [] TH validado
+- Practico 1

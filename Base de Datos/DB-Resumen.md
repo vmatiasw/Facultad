@@ -6,125 +6,197 @@ __Instancia__: contenido actual de la BD en un momento del tiempo.
 __Restricción de integridad__: es una propiedad que las instancias de la BD deben satisfacer. Al modificar una instancia se debe chequear que las restricciones de
 integridad de la BD siguen siendo válidas.
 
-## Diseño de Entidad-Relación
+__Procesos de diseño que veremos__:
+  1. Proceso que hace un diseño de entidad-relación primero y luego traduce ese diseño de entidad-relación a un conjunto de esquemas de relación.
+  2. Proceso que comienza con esquema relacional con todos los atributos atómicos del problema y un conjunto de restricciones de integridad y calcula un esquema de la base de datos. A esto se le llama normalización.
 
-__Diseño de entidad-relación (ER)__: modelado de entidades y relaciones con toma de buenas decisiones de diseño. Representado diagramáticamente usado un _diagrama de entidad-relación_.
+## Diseño de Entidad-Relación (ER)
+
+Modelado de entidades y relaciones con toma de buenas decisiones de diseño. Representado diagramáticamente usado un _diagrama de entidad-relación_.
 Objetivo: subsecuente __traducción__ del modelo de entidad-relación a esquemas relacionales.
 
-__Entidad__: objeto distinguible de otros objetos. Descrito por medio de atributos.
-__Atributo__: propiedad de una entidad; esa propiedad tiene un valor en un __dominio__:_conjunto de valores permitidos para cada atributo_.
-Tipos de atributos:
+- __Entidad__: objeto distinguible de otros objetos. Descrito por medio de atributos.
+  - __Conjunto de entidades (CE)__: conjunto de entidades del mismo tipo (i.e. Con los mismos atributos) que comparte las mismas propiedades.
 
-<div style="text-align: center;">
-    <img src="PNGs/image-4.png" width="600">
-</div>
+- __Relación__: asociación entre varias entidades.
+  - __Conjunto de relaciones (CR)__: es una relación matemática entre n ≥ 2 CE, __{(e₁, e₂, … eₙ) | e₁ ∈ E₁, e₂ ∈ E₂, …, eₙ ∈ Eₙ}__ donde (e₁, e₂, …, eₙ) es una relación. Un atributo puede ser también una propiedad de un CR.
+  - __Roles__: Los CE en un CR, no necesariamente son distintos.
+  <div style="text-align: center;">
+    <img src="PNGs/image-12.png" width="500">
+  </div>
 
-- Atributos __Simples__: atributos hoja, no se siguen descomponiendo.
-- Atributos __compuestos__: atributos rama, se siguen descomponiendo.
-- Atributos __uni-valorados__: toman un valor.
-- Atributos __multi-valorados__: pueden tomar varios valores.
-- Atributos __derivados__: pueden computarse de otros atributos.
+- __Atributo__: propiedad de una entidad; esa propiedad tiene un valor en un __dominio__: _conjunto de valores permitidos para cada atributo_.
+  - Atributos __Simples__: atributos hoja, no se siguen descomponiendo.
+  - Atributos __compuestos__: atributos rama, se siguen descomponiendo.
+  - Atributos __uni-valorados__: toman un valor.
+  - Atributos __multi-valorados__: pueden tomar varios valores.
+  - Atributos __derivados__: pueden computarse de otros atributos.
 
-__Conjunto de entidades (CE)__: conjunto de entidades del mismo tipo (i.e. Con los mismos atributos) que comparte las mismas propiedades.
-__Relación__: asociación entre varias entidades.
-__Conjunto de relaciones (CR)__: es una relación matemática entre n ≥ 2 conjuntos de entidades,
-__{(e₁, e₂, … eₙ) | e₁ ∈ E₁, e₂ ∈ E₂, …, eₙ ∈ Eₙ}__ donde (e₁, e₂, …, eₙ) es una relación. Un atributo puede ser también una propiedad de un conjunto de relaciones.
-
-__Superclave de un CE__: conjunto de uno o más atributos cuyos valores unívocamente determinan cada entidad.
-__Clave candidata (CC) de un CE__: superclave minimal
-(i.e. si se quita atributo dejamos de tener superclave). Una clave candidata no necesariamente tiene cardinalidad mínima.
-__Clave primaria__: Aunque varias claves candidatas pueden existir, una de las claves candidatas es seleccionada para ser la clave primaria. No necesariamente es la de menor cantidad de atributos
+- __Clave__: Es un subconjunto del conjunto de atributos comunes en una colección de entidades, que permite identificar inequívocamente cada una de las entidades pertenecientes a dicha colección. Asimismo, permiten distinguir entre sí las relaciones de un conjunto de relaciones.
+Dentro de los conjuntos de entidades existen los siguientes tipos de claves:
+  - __Superclave de un CE__: conjunto de uno o más atributos cuyos valores unívocamente determinan cada entidad.
+  - __Clave candidata (CC) de un CE__: superclave minimal (i.e. si se quita atributo dejamos de tener superclave). Una clave candidata no necesariamente tiene cardinalidad mínima.
+  - __Clave primaria__: Aunque varias claves candidatas pueden existir, una de las claves candidatas es seleccionada para ser la clave primaria. No necesariamente es la de menor cantidad de atributos.
+  > __Notación__: Se indican los atributos de una clave primaria para un esquema de relación R __subrayando__ los atributos de R que forman la clave primaria.
 
 <div style="text-align: center;">
     <img src="PNGs/image-0.png" width="600">
 </div>
 
-## Reducción a Esquemas Relacionales
+## Restricciones en CR's
 
-- __Regla CEF-1__: Un CE fuerte que no involucra atributos compuestos ni atributos multi-valorados se mapea a un esquema relacional con los mismos atributos. 
-  <div style="text-align: center;">
-    <img src="PNGs/image-6.png" width="600">
-  </div>
-  - La clave primaria del CE se convierte en la clave primaria del esquema relacional.
-- __Regla CEF-2__: Un CE fuerte que no involucra atributos/subatributos multivalorados se mapea a un esquema relacional con los mismos atributos simples y los subatributos hoja de los atributos compuestos. Cada valor del atributo multivalorado mapea a una tupla separada en la tabla del esquema EM.
-  <div style="text-align: center;">
-    <img src="PNGs/image-5.png" width="600">
-  </div>
-  - Solo nos quedamos con los atributos simples/hojas y eliminamos los compuestos/ramas.
-- __Regla CEF-3__: un atributo multivalorado M simple de un CE E es representado por un esquema separado EM.
-  <div style="text-align: center;">
-    <img src="PNGs/image-7.png" width="600">
-  </div>
-  - EM tiene atributos correspondientes a la clave primaria de E y un atributo correspondiente al atributo multivalorado M.
-  - Todos los atributos de EM forman su clave primaria.
-  - Se pone una restricción de clave foránea desde EM que referencia a la clave primaria de E.
-- Los __atributos derivados__ no son explícitamente representados en el modelo de datos relacional. Si se los necesita, una forma de computarlos es por medio de consultas.
-- __Regla CR1__: un CR varios-varios es representado con un esquema con atributos para las claves primarias de los dos CE participantes y todos los atributos descriptivos del CR (que no son multivalorados).
-  <div style="text-align: center;">
-    <img src="PNGs/image-13.png" width="600">
-  </div>
-  - La clave primaria del esquema del CR es la unión de las claves primarias de los CEs que participan en el CR.
-  - Para cada CE que participa en el CR se crea restricción de clave foránea que referencia clave primaria de CE.
-- __Regla CR2__: un CR varios a uno o uno a varios que es total en el lado varios puede ser representado agregando atributos extra en el CE del lado varios, conteniendo la clave primaria del lado uno.
-  <div style="text-align: center;">
-    <img src="PNGs/image-14.png" width="600">
-  </div>
-  - La clave primaria del CR es la clave primaria del CE del lado varios.
-  - Se crea restricción de clave foránea de CR que referencia a clave primaria de CE de lado varios.
-  - Si la participación es parcial en el lado varios, aplicar la regla anterior puede resultar en valores nulos. Esto sucede cuando a una entidad del CE del lado varios no le corresponde ninguna entidad del CE del lado uno.
-- __Regla CR3__: Un CR uno a uno con participación total en ambos lados puede ser mapeado agregando al esquema resultante de traducir uno de los CE participantes los atributos de la clave primaria del otro CE.
-  <div style="text-align: center;">
-    <img src="PNGs/image-15.png" width="600">
-  </div>
-  - La clave primaria de cualquier CE puede ser elegida como la clave primaria del CR.
-  - Se crea restricción de clave foránea de esquema relacional asociado al CR que referencia clave primaria de otro CE (el que no se tomo de base para hallar el esquema asociado al CR).
-
-## Correspondencias de Cardinalidades
+### Correspondencias de Cardinalidades
 
 Propósito: Diagramar conjuntos de relaciones binarios.
-Sea R un conjunto de relaciones de conjuntos de entidades E1 a conjunto de entidades E2:
+Sea R un CR de CE's E1 a CE's E2:
 
-- Conjuntos de relaciones __uno-uno__: Todas las entidades de E1 están asociadas con a lo sumo una entidad de E2 via R. Y viceversa.
-- Conjuntos de relaciones __uno-varios__: Existe alguna entidad de E1 asociada con al menos dos entidades de E2 via R. Todas las entidades de E2 están asociadas con a lo sumo una entidad de E1 via R.
-- Conjuntos de relaciones __varios-uno__:  Todas las entidades de E1 están asociadas con a lo sumo una entidad de E2 via R. Existe alguna entidad de E2 asociada con al menos dos entidades de E1 via R.
-- Conjuntos de relaciones __varios-varios__: Existe alguna entidad de E1 asociada con al menos dos entidades de E2 via R. Y viceversa.
+- __CR uno-uno__: Todas las entidades de E1 están asociadas con a lo sumo una entidad de E2 via R. Y viceversa.
+- __CR uno-varios__: Existe alguna entidad de E1 asociada con al menos dos entidades de E2 via R. Todas las entidades de E2 están asociadas con a lo sumo una entidad de E1 via R.
+- __CR varios-uno__:  Todas las entidades de E1 están asociadas con a lo sumo una entidad de E2 via R. Existe alguna entidad de E2 asociada con al menos dos entidades de E1 via R.
+- __CR varios-varios__: Existe alguna entidad de E1 asociada con al menos dos entidades de E2 via R. Y viceversa.
 
 > __Obs:__ En todos los casos pueden existir elementos pertenecientes a E1 que no están mapeados con elementos de E2 y viceversa.
 >
 > __Notación__: 
 > <div style="text-align: center;">
->   <img src="PNGs/image-8.png" width="600">
+>   <img src="PNGs/image-8.png" width="500">
 > </div>
 >
 > __Notación de intervalos o de cardinalidades__: [a..b] o [a..*] 
 > <div style="text-align: center;">
->   <img src="PNGs/image-11.png" width="600">
+>   <img src="PNGs/image-11.png" width="700">
 > </div>
-> A <--[a..b]--> R <--[c..d]--> B
-> A relacionado con [a..b] B's  
-> B relacionado con [c..d] A's  
-> Notar que el lugar donde se pone la información es al revés (o sea, del otro lado) que en correspondencia de cardinalidades.  
+> Notar que el lugar donde se pone la información es al revés (o sea, del otro lado) que en correspondencia de cardinalidades.
 
-## Roles
+### Restricciones de participación
 
-Los CE en un CR, no necesariamente son distintos.
+Dado un conjunto de relaciones R en el cual participa un conjunto de entidades A, dicha participación puede ser de dos tipos:
 
-<div style="text-align: center;">
-  <img src="PNGs/image-12.png" width="600">
-</div>
-
-## Formas de participación de CE en CR
-
-__Participación total__: (indicada por línea doble) toda entidad en el conjunto de entidades participa en al menos una relación en el conjunto de relaciones.
-<div style="text-align: center;">
+- __Participación total__: (indicada por línea doble) toda entidad en el conjunto de entidades participa en al menos una relación en el conjunto de relaciones.
+  <div style="text-align: center;">
     <img src="PNGs/image-9.png" width="600">
-</div>
+  </div>
 
-__Participación parcial__: algunas entidades no participan en alguna relación en el conjunto de relaciones.
+- __Participación parcial__: (indicada por línea simple) algunas entidades no participan en alguna relación en el conjunto de relaciones.
+  <div style="text-align: center;">
+    <img src="PNGs/image-10.png" width="500">
+  </div>
 
-<div style="text-align: center;">
-    <img src="PNGs/image-10.png" width="600">
-</div>
+## Entidades fuertes y débiles
+Cuando una entidad participa en una relación puede adquirir un papel fuerte o débil. Una entidad débil es aquella que no puede existir sin participar en la relación; es decir, aquella que no puede ser unívocamente identificada solamente por sus atributos.
+
+Una entidad fuerte (también conocida como entidad regular) es aquella que sí puede ser identificada unívocamente. En los casos en que se requiera, se puede dar que una entidad fuerte "preste" algunos de sus atributos a una entidad débil para que esta última se pueda identificar.
+
+__Conjunto de Entidades Débiles__: Es un CE que no tiene una clave primaria en el conjunto de sus atributos.
+  Se representa con rectángulo de borde doble.
+  Su existencia depende de la existencia de al menos un CE fuerte llamado __CE identificador__.
+  Hay un CR varios-uno entre CE débil y CE identificador, donde el CE débil tiene participación total.
+  - A este CR se le llama CR de identificación.
+  - El mismo se representa con un diamante doble.
+  El __discriminador__ de un CE débiles es un conjunto de atributos que
+    - Permite distinguir entre todas las entidades de un CE débiles asociadas a la misma entidad fuerte.
+    - Los atributos del discriminador se subrayan con línea de guiones
+  La __clave primaria__ de un CE débiles se forma con la clave primaria del CE identificador más el discriminador del CE débiles.
+
+
+## Especialización-Generalización
+
+__Especialización__: hace referencia a un proceso de diseño descendiente (top-down) donde designamos __subgrupos__ dentro de un CE que son distintivos de otras entidades en el CE.
+
+Estos subgrupos son CE de más bajo nivel que
+  - tienen atributos específicos (adicionales a los atributos del CE del que se saca el subgrupo), o
+  - participan de CR que no aplican al CE de más alto nivel.
+
+Una especialización se denota con un triángulo etiquetado ISA o ES, se llama también relación de superclase – subclase.
+
+__Herencia de atributos__: un CE de más bajo nivel hereda:
+  - todos los atributos,
+  - la clave primaria, y
+  - participaciones en CR del CE de más alto nivel con el cual está relacionado.
+
+__Generalización__: hace referencia a un proceso de diseño ascendiente (bottom up) que generaliza unos cuantos CE que comparten las mismas propiedades en un CE de más alto nivel.
+
+__Restricciones de integridad__:
+  - Para indicar si una entidad pertenece o no a más de un CE de nivel más bajo dentro de la generalización.
+    - Disjunto: una entidad puede pertenecer a solo un CE de nivel más bajo. Usar palabra reservada disj.
+    - Solapado: una entidad puede pertenecer a más de un CE de nivel más bajo.
+  - __Restricción de completitud__: para indicar si una entidad en el CE de nivel más alto debe pertenecer a al menos uno de los CE de nivel más bajo en la generalización.
+    - Total: una entidad debe pertenecer a un CE de nivel más bajo (usar línea doble para indicarlo).
+    - Parcial: una entidad puede no pertenecer a un CE de nivel más bajo
+
+## Reglas de Reducción a Esquemas Relacionales
+
+- __Un CE fuerte que no involucra atributos compuestos ni atributos multi-valorados__ se mapea a un esquema relacional con los mismos atributos.
+  - La clave primaria del CE se convierte en la clave primaria del esquema relacional.
+  <div style="text-align: center;">
+    <img src="PNGs/image-6.png" width="400">
+  </div>
+
+- __Un CE fuerte que no involucra atributos/subatributos multivalorados__ se mapea a un esquema relacional con los mismos atributos simples y los subatributos hoja de los atributos compuestos. Cada valor del atributo multivalorado mapea a una tupla separada en la tabla del esquema EM.
+  - Solo nos quedamos con los atributos simples/hojas y eliminamos los compuestos/ramas.
+  <div style="text-align: center;">
+    <img src="PNGs/image-5.png" width="400">
+  </div>
+
+- __Un atributo multivalorado M simple de un CE__ E es representado por un esquema separado EM.
+  - EM tiene atributos correspondientes a la clave primaria de E y un atributo correspondiente al atributo multivalorado M.
+  - Todos los atributos de EM forman su clave primaria.
+  - Se pone una restricción de clave foránea desde EM que referencia a la clave primaria de E.
+  <div style="text-align: center;">
+    <img src="PNGs/image-7.png" width="400">
+  </div>
+
+- __Los atributos derivados__ no son explícitamente representados en el modelo de datos relacional. Si se los necesita, una forma de computarlos es por medio de consultas.
+
+- __Un CR varios-varios__ es representado con un esquema con atributos para las claves primarias de los dos CE participantes y todos los atributos descriptivos del CR (que no son multivalorados).
+  - La clave primaria del esquema del CR es la unión de las claves primarias de los CEs que participan en el CR.
+  - Para cada CE que participa en el CR se crea restricción de clave foránea que referencia clave primaria de CE.
+  <div style="text-align: center;">
+    <img src="PNGs/image-13.png" width="400">
+  </div>
+
+- __Un CR varios a uno o uno a varios que es total en el lado varios__ puede ser representado agregando atributos extra en el CE del lado varios, conteniendo la clave primaria del lado uno.
+  - La clave primaria del CR es la clave primaria del CE del lado varios.
+  - Se crea restricción de clave foránea de CR que referencia a clave primaria de CE de lado varios.
+  - Si la participación es parcial en el lado varios, aplicar la regla anterior puede resultar en valores nulos. Esto sucede cuando a una entidad del CE del lado varios no le corresponde ninguna entidad del CE del lado uno.
+  <div style="text-align: center;">
+    <img src="PNGs/image-14.png" width="500">
+  </div>
+
+- __Un CR uno a uno con participación total en ambos lados__ puede ser mapeado agregando al esquema resultante de traducir uno de los CE participantes los atributos de la clave primaria del otro CE.
+  - La clave primaria de cualquier CE puede ser elegida como la clave primaria del CR.
+  - Se crea restricción de clave foránea de esquema relacional asociado al CR que referencia clave primaria de otro CE (el que no se tomo de base para hallar el esquema asociado al CR).
+  <div style="text-align: center;">
+    <img src="PNGs/image-15.png" width="600">
+  </div>
+
+- __Un CE débiles__ se mapea a una tabla que incluye columnas para la clave primaria del CE identificador más los atributos (no multivalorados) del CE débiles (achatando jerarquías de atributos compuestos si es necesario).
+  - La clave primaria del CE identificador más el discriminador del CE débil forman la clave primaria del esquema relacional de la traducción.
+  - Para atributos de esquema de CE débil que provienen de CE identificadora se agrega restricción de clave foránea desde esquema de CE débil a CE identificador.
+  - El CR identificador no se mapea.
+  <div style="text-align: center;">
+    <img src="PNGs/image-16.png" width="500">
+  </div>
+
+- __Cuando el CE generalización no está relacionado con otros CE__ hay tres posibles guias:
+
+1. __Si es una generalización total y disjunta__: Formar una tabla para cada CE especialización con los atributos locales y heredados; no formar tabla para la generalización.
+  <div style="text-align: center;">
+    <img src="PNGs/image-17.png" width="700">
+  </div>
+
+2. __Si es una generalización no total y disjunta__: Formar una tabla para cada CE especialización con los atributos locales y heredados del CE generalización.
+    - No va a haber redundancia entre los CE especializaciones.
+    - No hay que consultar dos tablas para obtener toda la información de una especialización.
+  <div style="text-align: center;">
+    <img src="PNGs/image-18.png" width="700">
+  </div>
+
+3. __Si es una generalización no disjunta__: Formar una tabla para el CE de nivel más alto (la generalización); Formar una tabla para cada CE especialización que incluye la clave primaria del CE generalización y los atributos locales.
+  <div style="text-align: center;">
+    <img src="PNGs/image-19.png" width="700">
+  </div>
+
 
 ## Diseño relacional
 
@@ -134,7 +206,7 @@ __Instancia__: Datos que se almacenan en tablas para los esquemas de la misma.
 Las columnas representan atributos (o propiedades) para los elementos de la tabla (tuplas).
 
 <div style="text-align: center;">
-    <img src="PNGs/image-1.png" width="600">
+    <img src="PNGs/image-1.png" width="500">
 </div>
 
 > __Notación__: __r(R)__ significa r es una relación con esquema de relación R. O sea, las columnas de r tienen como nombres los atributos de R.
@@ -153,16 +225,18 @@ __Clave primaria__: La clave candidata elegida.
 __Restricción de clave foránea (o de integridad referencial)__: Los valores de uno o más atributos en una tupla de la __relación referenciante__ aparecen en uno o más atributos de una tupla en la __relación referenciada__. Los atributos referenciados de la relación referenciada suelen formar una __clave candidata__ del esquema de la relación referenciada.
 
 <div style="text-align: center;">
-    <img src="PNGs/image-2.png" width="600">
+    <img src="PNGs/image-2.png" width="500">
 </div>
 
 __Redundancia de datos__: Repetición/duplicación de datos que son el mismo y por lo tanto mantenerse iguales. Debemos diseñar un esquema de la BD que no contenga redundancia de
 datos. __Una solución__: Obtener un buen diseño descomponiendo el esquema que contiene todos los atributos en esquemas más chicos. La __teoría de normalización__ trabaja con esta idea y trata con cómo diseñar buenos esquemas de BD relacionales.
 
-## Procesos de diseño que veremos
+## Criterios al evaluar una Base de Datos
 
-1. Proceso que hace un diseño de entidad-relación primero y luego traduce ese diseño de entidad-relación a un conjunto de esquemas de relación.
-2. Proceso que comienza con esquema relacional con todos los atributos atómicos del problema y un conjunto de restricciones de integridad y calcula un esquema de la base de datos. A esto se le llama normalización.
+- Redundancia de datos
+- Comprensibilidad
+- Completitud (p.ej. en consideración de restricciones de integridad)
+- Facilidad de consultar información
 
 ## Lenguajes de Consultas
 
@@ -200,7 +274,7 @@ El sistema gestor de BD procesa consultas para el modelo relacional.
 2. Optimización: Encontrar la manera “más eficiente” (o plan) para obtener la información descrita por la consulta.
 3. Evaluación (siguiendo el plan optimizado)
 <div style="text-align: center;">
-    <img src="PNGs/image-3.png" width="600">
+    <img src="PNGs/image-3.png" width="400">
 </div>
 
 ## Transacciones
