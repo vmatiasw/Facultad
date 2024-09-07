@@ -12,14 +12,23 @@ __Procesos de diseño que veremos__:
 
 ## Diseño de Entidad-Relación (ER)
 
-Modelado de entidades y relaciones con toma de buenas decisiones de diseño. Representado diagramáticamente usado un _diagrama de entidad-relación_.
-Objetivo: subsecuente __traducción__ del modelo de entidad-relación a esquemas relacionales.
+Es un enfoque de _modelado conceptual de alto nivel_ que se utiliza para representar datos y sus relaciones a través de entidades, atributos y relaciones sin implementar un estructura real.
+
+Se construye diagramáticamente usado un _diagrama de entidad-relación_.
+
+Se utiliza para visualizar la estructura de una base de datos antes de su __traducción__ del modelo de entidad-relación a esquemas relacionales para su implementación. Sirve como un plano, mientras que el modelo relacional realiza este plano en forma de base de datos.
+
+
 
 - __Entidad__: objeto distinguible de otros objetos. Descrito por medio de atributos.
   - __Conjunto de entidades (CE)__: conjunto de entidades del mismo tipo (i.e. Con los mismos atributos) que comparte las mismas propiedades.
 
 - __Relación__: asociación entre varias entidades.
-  - __Conjunto de relaciones (CR)__: es una relación matemática entre n ≥ 2 CE, __{(e₁, e₂, … eₙ) | e₁ ∈ E₁, e₂ ∈ E₂, …, eₙ ∈ Eₙ}__ donde (e₁, e₂, …, eₙ) es una relación. Un atributo puede ser también una propiedad de un CR.
+  - __Conjunto de relaciones (CR)__: es una relación matemática entre \( n \geq 2 \) conjuntos de entidades (CE), definida como: 
+  \[
+  \{ (e_1, e_2, \ldots, e_n) \mid e_1 \in E_1, e_2 \in E_2, \ldots, e_n \in E_n \}
+  \] donde \( (e_1, e_2, \ldots, e_n) \) es una relación. Un atributo puede ser también una propiedad de un CR.
+
   - __Roles__: Los CE en un CR, no necesariamente son distintos.
   <div style="text-align: center;">
     <img src="PNGs/image-12.png" width="500">
@@ -89,7 +98,7 @@ Una entidad fuerte (también conocida como entidad regular) es aquella que sí p
 
 __Conjunto de Entidades Débiles__: Es un CE que no tiene una clave primaria en el conjunto de sus atributos.
   Se representa con rectángulo de borde doble.
-  Su existencia depende de la existencia de al menos un CE fuerte llamado __CE identificador__.
+  Su existencia depende de la existencia de al menos un CE (un CE puede ser débil de varios CE fuertes) fuerte llamado __CE identificador__.
   Hay un CR varios-uno entre CE débil y CE identificador, donde el CE débil tiene participación total.
   - A este CR se le llama CR de identificación.
   - El mismo se representa con un diamante doble.
@@ -200,7 +209,10 @@ __Restricciones de integridad__:
 
 ## Diseño relacional
 
-Tipo de esquema de base de datos que la modela como un conjunto de esquemas relacionales que sirven para describir su estructura.
+Es un método para estructurar una base de datos, a partir de un modelado E/R, utilizando relaciones (o tablas) que representan los datos y sus relaciones. 
+Cada tabla tiene un nombre único, filas (tuplas o registros) y columnas (atributos), y las tablas pueden estar vinculadas a través de claves (primarias y foráneas).
+Es una implementación lógica del modelo E/R, centrándose en el esquema real (tablas y relaciones) y aplicando restricciones. 
+
 __Esquema relacional__: lista de nombres de atributos (Nombre esquema = lista de atributos).
 __Instancia__: Datos que se almacenan en tablas para los esquemas de la misma.
 Las columnas representan atributos (o propiedades) para los elementos de la tabla (tuplas).
@@ -231,12 +243,132 @@ __Restricción de clave foránea (o de integridad referencial)__: Los valores de
 __Redundancia de datos__: Repetición/duplicación de datos que son el mismo y por lo tanto mantenerse iguales. Debemos diseñar un esquema de la BD que no contenga redundancia de
 datos. __Una solución__: Obtener un buen diseño descomponiendo el esquema que contiene todos los atributos en esquemas más chicos. La __teoría de normalización__ trabaja con esta idea y trata con cómo diseñar buenos esquemas de BD relacionales.
 
-## Criterios al evaluar una Base de Datos
+__Criterios para tener un diseño de calidad:__
 
-- Redundancia de datos
-- Comprensibilidad
-- Completitud (p.ej. en consideración de restricciones de integridad)
-- Facilidad de consultar información
+- Evitar problemas de redundancia de información.
+- Evitar problemas de comprensibilidad.
+- Evitar problemas de incompletitud como:
+  - Restricciones de integridad incompletas.
+  - Relaciones entre atributos no contempladas por esquemas de BD.
+- Evitar problemas de ineficiencia como:
+  - Chequeo ineficiente de restricciones de integridad.
+  - Consultas ineficientes por tener un esquema inadecuado de BD.
+
+### Proceso de diseño
+
+1. Identificar K = __esquema universal__: _el conjunto de todos los atributos (atómicos) del problema actual_.
+2. A partir de K y para el problema actual definir un conjunto de restricciones de integridad I, que servirán de guía para hacer un buen diseño.
+3. Se aplica un algoritmo llamado de normalización que calcula un esquema de BD relacional a partir de K y de I.
+<div style="text-align: center;">
+    <img src="PNGs/image-20.png" width="500">
+</div>
+
+#### 1) Identificamos el esquema universal
+
+El esquema universal usualmente tiene problemas de calidad, como redundancia de información. Por lo que se debe descomponer el esquema universal para eliminarlos.
+
+> La __teoría de normalización__ estudia cómo descomponer esquemas universales para eliminar sus problemas.
+> No hace falta ser bueno en modelado o diseño; pero hay que ser bueno encontrando las restricciones de integridad necesarias (i.e. dependencias funcionales) y el esquema universal.
+
+Sea \( R \) un esquema de relación. Un conjunto de esquemas de relación \( \{ R_1, \ldots, R_n \} \) es una __descomposición__ de \( R \) si y solo si \( R = R_1 \cup \ldots \cup R_n \).
+
+Sea \( R \)  una relacion con valores redundantes \( J \)  que se pueden inferir por un valor \( K \) , se dice que un valor de \( K \)  __determina unívocamente__ uno o mas valores de \( J \)  si se puede descomponer eliminando la redundancia y lo indicamos de la siguiente forma: A -> B, C, ... .
+
+A las propiedades del tipo α -> β, con α y β conjuntos de atributos se las llama __dependencias funcionales__.
+
+1. El esquema R tiene atributos redundantes J.
+2. Encontramos propiedad del tipo K -> J.
+3. Usamos K -> J para descomponer R en: K U J y R1 = R – J.
+
+#### 2) Definimos el conjunto de restricciones de integridad
+
+Hay que definir las restricciones de integridad para el conjunto de __tablas legales__: _tablas con las que la empresa quiere poder trabajar; donde las tuplas tienen un cierto significado y cumplen con ciertas propiedades obligatorias_.
+Las dependencias funcionales (DF) requieren que para las tablas legales, el valor de un cierto conjunto de atributos determine unívocamente el valor de otro conjunto de atributos.
+
+Sea \( R \) un esquema relacional, \( \alpha \subseteq R \) y \( \beta \subseteq R \). La dependencia funcional \( \alpha \to \beta \) se cumple en \( R \) si y solo si, para todas las relaciones legales \( r(R) \), cada vez que dos tuplas \( t_1 \) y \( t_2 \) de \( r \) coinciden en los atributos \( \alpha \), también coinciden en los atributos \( \beta \). Formalmente:
+
+\[
+t_1[\alpha] = t2[\alpha] \implies t_1[\beta] = t_2[\beta]
+\]
+
+> No necesito dar todas las DF que se cumplen en el problema del mundo real, __necesito un subconjunto de las DF lo menor posible tal que todas las demás DF se puedan derivar de ese subconjunto__.
+> Recordar que las dependencias funcionales son restricciones de integridad y las restricciones de integridad necesitan ser chequeadas cada vez que cambia la base de datos. Y esto tiene su costo computacional. Por lo tanto, __cuantas menos dependencias funcionales necesiten ser chequeadas, mejor__.
+
+__Proposicion__: \(\alpha \to \beta\) es __trivial__ si y solo si \( \beta \subseteq \alpha \).
+
+
+- __Axiomas de Armstrong__: _Conjunto de reglas de inferencia al derivar_. :
+
+  1. __Reflexividad__: Si \( \beta \subseteq \alpha \), entonces \( \alpha \to \beta \).
+  
+  2. __Aumentatividad__ (o Augmentación): Si \( \alpha \to \beta \), entonces \( \gamma\alpha \to \gamma\beta \) para cualquier conjunto de atributos \( \gamma \).
+  
+  3. __Transitividad__: Si \( \alpha \to \beta \) y \( \beta \to \gamma \), entonces \( \alpha \to \gamma \).
+
+  y se puede inferir de ellas las siguientes:
+  - __Unión__: Si \( \alpha \to \beta \) y \( \alpha \to \gamma \), entonces \( \alpha \to \beta \gamma \).
+
+  - __Descomposición__: Si \( \alpha \to \beta \gamma \), entonces \( \alpha \to \beta \) y \( \alpha \to \gamma \).
+
+  - __Pseudotransitividad__: Si \( \alpha \to \beta \) y \( \gamma \beta \to \delta \), entonces \( \alpha \gamma \to \delta \).
+
+
+Dado un esquema relacional \( R \), una dependencia funcional \( f \) con atributos en \( R \) se deduce de un conjunto de dependencias funcionales \( F \) con atributos en \( R \) si existe una lista de dependencias funcionales \( f_1, f_2, \ldots, f_n \) tales que \( f_n = f \) y para todo \( 1 \leq i \leq n \):
+
+1. \( f_i \in F \), o
+2. \( f_i \) se obtiene aplicando la regla de reflexividad, o
+3. \( f_i \) se obtiene aplicando las propiedades de aumentatividad o transitividad a pasos anteriores en la lista.
+
+__Notación__: Usaremos \( F \vdash f \) para indicar que \( f \) se deduce de \( F \).
+
+El __cierre (o clausura) de un conjunto__ de dependencias funcionales F (F+) son todas las dependencias que se deducen de F.
+
+Sirve para saber si vale la pena agregar una dependencia funcional f a F. De las siguentes formas:
+  - Calcular F+ y ver si f está en F+; Si f está en F+ entonces no se agrega a F; en caso contrario hay que agregarla.
+  En la práctica, calcular la clausura \( F^+ \) suele ser inviable debido al gran número de atributos en un esquema universal. Una razón es que para un conjunto de atributos \( \alpha \), existen \( 2^{|\alpha|} \) dependencias triviales. Además, si \( \alpha \to \beta \) está en \( F \), hay \( 2^{|R|} \) maneras de aplicar la aumentatividad a \( \alpha \to \beta \) (donde \( R \) es el esquema universal) y algunas de estas aplicaciones ni cambiarán el resultado.
+  - Intentar deducir f de F y si lo logramos: no se agrega f a F. Pero si no, no sabremos si no se puede o solo no pudimos.
+  - Para saber si \( \alpha \to \beta \) es deducible de \( F \). Si tenemos las dependencias de \( F^+ \) con el lado izquierdo \( \alpha \), este conjunto es mucho más pequeño que \( F^+ \) (porque hay \( 2^n \) tales \( \alpha \)).
+  Por lo tanto, para responder si \( F \vdash \alpha \to \beta \), podríamos contestar \( \alpha \to \beta \in \{ \alpha \to \phi \mid F \vdash \alpha \to \phi \} \).
+  - Para obtener solo el conjunto de dependencias funcionales \( \alpha \to A \) (deducibles de \( F \)) donde \( A \) es un atributo:
+    1. Primero, consideramos el conjunto \( \{ A \in R \mid F \vdash \alpha \to A \} \). Esto representa todos los atributos \( A \) que están relacionados con \( \alpha \) mediante una dependencia funcional deducida de \( F \).
+    2. Si se cumple que \( \beta \subseteq \{ A \in R \mid F \vdash \alpha \to A \} \), entonces, aplicando la regla de unión finitas veces a todos los atributos de \( \beta \), obtenemos que \( F \vdash \alpha \to \beta \).
+    - De esta manera, llegamos a un conjunto conocido como __cierre de un conjunto de atributos__, que es el conjunto a la derecha de la inclusión.
+
+Sea \( R \) el esquema universal y \( F \) el conjunto de dependencias funcionales del problema del mundo real (con atributos en el esquema universal). Sea \( \alpha \subseteq R \). El __cierre de \( \alpha \) bajo \( F \)__ (denotado por \( \alpha^+_F \)) se define como:
+
+\[ \alpha^+_F = \{ A \in R \mid F \vdash \alpha \to A \} \]
+
+- __Proposición__
+
+  1. \( F \vdash \alpha \to \alpha^+_F \)
+
+     - __Prueba__: Esta proposición se demuestra aplicando la regla de unión finitas veces.
+
+  2. \( F \vdash \alpha \to \beta \) si y solo si \( \beta \subseteq \alpha^+_F \)
+
+- __Problema__: Dado un conjunto de dependencias funcionales \( F \) para un problema del mundo real, queremos determinar si es útil agregar la dependencia funcional \( \alpha \to \beta \) a \( F \).
+
+- __Solución__: Para decidir si agregar \( \alpha \to \beta \) a \( F \), utilizamos la proposición anterior:
+  1. Si \( \beta \subseteq \alpha^+_F \): La respuesta es sí; por lo tanto, no es necesario agregar \( \alpha \to \beta \) a \( F \).
+  2. Si no, \( \alpha \to \beta \) no se deduce de \( F \), por lo tanto, agregamos \( \alpha \to \beta \) a \( F \).
+
+  - Entonces, Se necesita un algoritmo para calcular \( \alpha^+_F \).
+  <div style="text-align: center;">
+      <img src="PNGs/image-21.png" width="500">
+  </div>
+
+1. **Superclave**: Dado un esquema relacional \( R \) y un conjunto de dependencias funcionales \( F \), un conjunto de atributos \( \alpha \) es una superclave de \( R \) si y solo si \( \alpha \to R \) está en \( F^+ \).
+
+2. **Clave Candidata**: Un conjunto de atributos \( \alpha \) es una clave candidata de \( R \) si y solo si:
+   - \( \alpha \) es una superclave de \( R \).
+   - Para todo atributo \( A \) en \( \alpha \), el conjunto \( \alpha - \{A\} \) no es una superclave de \( R \).
+
+3. **Verificación de Superclave**:
+   - Para verificar que \( \alpha \) es una superclave de \( R \):
+     - Calcula \( \alpha^+ \) (el cierre de \( \alpha \) bajo \( F \)).
+     - Chequea si \( \alpha^+ \) contiene todos los atributos de \( R \).
+
+El algoritmo de normalización va descomponiendo un esquema universal hasta obtener un esquema de BD relacional de calidad.
 
 ## Lenguajes de Consultas
 
