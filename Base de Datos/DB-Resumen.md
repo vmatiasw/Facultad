@@ -256,34 +256,46 @@ __Criterios para tener un diseño de calidad:__
 
 ### Proceso de diseño
 
-1. Identificar K = __esquema universal__: _el conjunto de todos los atributos (atómicos) del problema actual_.
+__Fases__:
+1. Identificar el esquema universal K.
 2. A partir de K y para el problema actual definir un conjunto de restricciones de integridad I, que servirán de guía para hacer un buen diseño.
 3. Se aplica un algoritmo llamado de normalización que calcula un esquema de BD relacional a partir de K y de I.
 <div style="text-align: center;">
     <img src="PNGs/image-20.png" width="500">
 </div>
 
-#### 1) Identificamos el esquema universal
-
-El esquema universal usualmente tiene problemas de calidad, como redundancia de información. Por lo que se debe descomponer el esquema universal para eliminarlos.
-
 > La __teoría de normalización__ estudia cómo descomponer esquemas universales para eliminar sus problemas.
-> No hace falta ser bueno en modelado o diseño; pero hay que ser bueno encontrando las restricciones de integridad necesarias (i.e. dependencias funcionales) y el esquema universal.
+> No se enfoca principalmente en modelado o diseño; sino en encontrar las restricciones de integridad necesarias (i.e. dependencias funcionales) y el esquema universal.
 
-Sea \( R \) un esquema de relación. Un conjunto de esquemas de relación \( \{ R_1, \ldots, R_n \} \) es una __descomposición__ de \( R \) si y solo si \( R = R_1 \cup \ldots \cup R_n \).
+#### 1) Esquema universal
 
-Sea \( R \)  una relacion con valores redundantes \( J \)  que se pueden inferir por un valor \( K \) , se dice que un valor de \( K \)  __determina unívocamente__ uno o mas valores de \( J \)  si se puede descomponer eliminando la redundancia y lo indicamos de la siguiente forma: A -> B, C, ... .
+__Esquema universal__: Es el conjunto de todos los atributos (atómicos) del problema actual.
+Usualmente tiene problemas de calidad, como redundancia de información. Por lo que se debe descomponer el esquema universal para eliminarlos.
 
-A las propiedades del tipo α -> β, con α y β conjuntos de atributos se las llama __dependencias funcionales__.
+__Descomposición__: Sea \( R \) un esquema de relación. Un conjunto de esquemas de relación \( \{ R_1, \ldots, R_n \} \) es una descomposición de \( R \) si y solo si \( R = R_1 \cup \ldots \cup R_n \).
 
-1. El esquema R tiene atributos redundantes J.
-2. Encontramos propiedad del tipo K -> J.
-3. Usamos K -> J para descomponer R en: K U J y R1 = R – J.
+1. El esquema \( R \) tiene atributos redundantes \( J \).
+2. Encontramos la propiedad del tipo \( K \to J \).
+3. Usamos \( K \to J \) para descomponer \( R \) en: \( K \cup J \) y \( R_1 = R - J \).
 
-#### 2) Definimos el conjunto de restricciones de integridad
+__\( A \to B, C, ... \)__: Sea \( R \)  una relacion con valores redundantes \( J \)  que se pueden inferir por un valor \( K \) , se dice que un valor de \( K \)  __determina unívocamente__ uno o mas valores de \( J \)  si se puede descomponer eliminando la redundancia y lo indicamos de la siguiente forma: \( A \to B, C, ... \).
 
-Hay que definir las restricciones de integridad para el conjunto de __tablas legales__: _tablas con las que la empresa quiere poder trabajar; donde las tuplas tienen un cierto significado y cumplen con ciertas propiedades obligatorias_.
-Las dependencias funcionales (DF) requieren que para las tablas legales, el valor de un cierto conjunto de atributos determine unívocamente el valor de otro conjunto de atributos.
+__Dependencias funcionales__: Propiedades del tipo \( \alpha \to \beta \), con \( \alpha \) y \( \beta \) conjuntos de atributos.
+En otras palabras, \( \alpha \) es un determinante funcional de \( \beta \) si para cada valor de \( \alpha \) en una tabla, hay un único valor posible correspondiente de \( \beta \).
+
+#### 2) Conjunto de restricciones de integridad
+
+Una vez que tenemos el esquema universal \( K \), el siguiente paso es definir un conjunto de restricciones de integridad \( I \) para el conjunto de tablas legales.
+
+__Restricciones de integridad__: Reglas que el esquema de la base de datos debe cumplir para asegurar la consistencia y validez de los datos.
+- Pueden incluir:
+  - Dependencias Funcionales (DFs),
+  - Reglas de Integridad de Entidad: Cada entidad debe tener una clave primaria única;
+  - Reglas de Integridad Referencial: Las claves foráneas deben hacer referencia a claves primarias válidas en otras relaciones.
+
+- Necesitan ser chequeadas cada vez que cambia la base de datos. Y esto tiene su costo computacional. Cuantas menos restricciones de integridad necesiten ser chequeadas, mejor.
+
+__Tablas legales__: Tablas con las que la empresa quiere poder trabajar; donde las tuplas cumplen con ciertas propiedades obligatorias (reglas y restricciones definidas por el negocio o la aplicación)  y tienen significado dentro del contexto del problema que está modelando la base de datos.
 
 Sea \( R \) un esquema relacional, \( \alpha \subseteq R \) y \( \beta \subseteq R \). La dependencia funcional \( \alpha \to \beta \) se cumple en \( R \) si y solo si, para todas las relaciones legales \( r(R) \), cada vez que dos tuplas \( t_1 \) y \( t_2 \) de \( r \) coinciden en los atributos \( \alpha \), también coinciden en los atributos \( \beta \). Formalmente:
 
@@ -291,8 +303,7 @@ Sea \( R \) un esquema relacional, \( \alpha \subseteq R \) y \( \beta \subseteq
 t_1[\alpha] = t2[\alpha] \implies t_1[\beta] = t_2[\beta]
 \]
 
-> No necesito dar todas las DF que se cumplen en el problema del mundo real, __necesito un subconjunto de las DF lo menor posible tal que todas las demás DF se puedan derivar de ese subconjunto__.
-> Recordar que las dependencias funcionales son restricciones de integridad y las restricciones de integridad necesitan ser chequeadas cada vez que cambia la base de datos. Y esto tiene su costo computacional. Por lo tanto, __cuantas menos dependencias funcionales necesiten ser chequeadas, mejor__.
+> No necesito dar todas las DF que se cumplen en el problema del mundo real, debido al costo computacional de las restricciones de integridad, __necesito un subconjunto de las DF lo menor posible tal que todas las demás DF se puedan derivar de ese subconjunto__.
 
 __Proposicion__: \(\alpha \to \beta\) es __trivial__ si y solo si \( \beta \subseteq \alpha \).
 
@@ -368,7 +379,92 @@ Sea \( R \) el esquema universal y \( F \) el conjunto de dependencias funcional
      - Calcula \( \alpha^+ \) (el cierre de \( \alpha \) bajo \( F \)).
      - Chequea si \( \alpha^+ \) contiene todos los atributos de \( R \).
 
-El algoritmo de normalización va descomponiendo un esquema universal hasta obtener un esquema de BD relacional de calidad.
+Si \( R \) es un esquema con redundancia de información en un conjunto de atributos \( \beta \) y la dependencia funcional \( \alpha \rightarrow \beta \) (donde \( \alpha \) y \( \beta \) son disjuntos) se cumple en \( R \):
+
+- Si \( \alpha \) no determina todos los atributos de \( R \),
+  - La dependencia \( \alpha \rightarrow \beta \) puede ser usada para eliminar redundancia de información por medio de la descomposición de \( R \):
+  - Para eliminar la redundancia de información, se saca \( \beta \) de \( R \) y se crea un esquema con los atributos de \( \alpha \cup \beta \).
+  - Al hacer esto, desaparece la redundancia de información para los atributos de \( \beta \).
+- Si \( \alpha \rightarrow \beta \) es no trivial, y \( \alpha \) no determina todos los atributos de \( R \):
+  - Entonces existen 2 tuplas distintas de \( R \) que coinciden en \( \alpha \).
+  - Entonces para esas tuplas se van a repetir los valores de \( \beta \).
+  - Por lo tanto, tenemos redundancia de información en esas tuplas para los atributos de \( \beta \), a menos que \( \beta \) sea clave candidata para el conjunto de atributos de un concepto del problema.
+- Sea \( R \), \( F \) (conjunto de dependencias funcionales). Decir que \( \alpha \) no determina todos los atributos de \( R \) es lo mismo que decir:
+  - Que \( \alpha \rightarrow R \) no se deduce de \( F \).
+  - O, equivalentemente, que \( \alpha \) no es superclave de \( R \).
+- Juntando todo, consideramos las dependencias \( \alpha \rightarrow \beta \) que cumplen:
+  - \( \alpha \rightarrow \beta \) es no trivial, y
+  - \( \alpha \) no es superclave de \( R \).
+
+#### 3) Normalizacion
+
+Un esquema \( R \) está en __Forma Normal de Boyce-Codd (FNBC)__ con respecto a un conjunto \( F \) de dependencias funcionales (DFs) si para todas las DFs en \( F^+ \) de la forma \( \alpha \rightarrow \beta \), donde \( \alpha \subseteq R \) y \( \beta \subseteq R \), al menos una de las siguientes propiedades se cumple:
+
+- \( \alpha \rightarrow \beta \) es trivial (i.e., \( \beta \subseteq \alpha \)).
+- \( \alpha \) es una superclave de \( R \) (i.e., \( \alpha \rightarrow R \in F^+ \)).
+
+Es decir, cumple la propiedad de no tener redundancia de información proveniente de DFs. La propiedad expresa la negación de la existencia de DFs que cumplen: \( \alpha \rightarrow \beta \) es no trivial, y \( \alpha \) no es superclave de \( R \) .
+
+Sea \( R \) el esquema universal, \( F \) el conjunto de dependencias funcionales. Una descomposición \( \{ R_1, \dots, R_n \} \) de \( R \) está en FNBC con respecto a \( F \) si y solo si cada \( R_i \) está en FNBC con respecto a \( F \).
+
+__¿Cómo comprobar que un esquema \( R \) con respecto a \( F \) no está en FNBC?__
+
+- Una DF de \( F^+ \) que no cumple la condición de FNBC se llama __violación__ o __DF testigo__.
+  - Es una DF \( \alpha \rightarrow \beta \) no trivial en \( F^+ \) tal que \( \alpha \rightarrow R \notin F^+ \).
+  
+- Para probar que \( R \) no está en FNBC con respecto a \( F \), basta con encontrar una DF testigo en \( F^+ \).
+  - A veces (pero no siempre) la DF testigo está en \( F \).
+
+__¿Cómo comprobar que un esquema \( R \) con respecto a \( F \) está en FNBC?__
+
+Chequear todos los \( \alpha \rightarrow \beta \) de \( F^+ \) con atributos en \( R \) es demasiado costoso.
+
+__Comprobación de FNBC__: Sea \( R_U \) universal, con DFs \( F \) y sea \( R_i \) que forma parte de la descomposición de \( R_U \); para probar que \( R_i \) está en FNBC se puede hacer la siguiente comprobación:
+
+  \[
+  \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+
+  \]
+
+La primera condición del V significa: todas las DF con lado izquierdo \( \alpha \) son triviales.
+
+__Prueba:__
+
+- Supongamos que \( R_i \) está en FNBC y \( \neg (R_i \subseteq \alpha^+) \):
+  - Toda \( \alpha \rightarrow \beta \) en \( F^+ \) con atributos en \( R_i \) es trivial.
+  - Esto implica que para todo \( \beta \): \( \beta \cap (R_i - \alpha) = \emptyset \)
+  - Se obtiene: \( \alpha^+ \cap (R_i - \alpha) = \emptyset \) (tomando \( \beta = \alpha^+ \))
+  - Luego se cumple: \( \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+ \)
+
+- Supongamos que \( \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+ \):
+  - Sea \( \alpha \rightarrow \beta \) en \( F^+ \) con atributos en \( R_i \) y \( \neg (R_i \subseteq \alpha^+) \)
+  - Entonces se tiene que \( \beta \subseteq \alpha^+ \)
+  - Entonces: \( \beta \cap (R_i - \alpha) \subseteq \alpha^+ \cap (R_i - \alpha) = \emptyset \)
+  - Luego \( \beta \subseteq \alpha \) y \( \alpha \rightarrow \beta \) es trivial.
+
+Si \( \alpha \subseteq R_i \) viola la condición:
+
+\[ \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+ \]
+
+entonces la siguiente dependencia funcional es testigo:
+
+\[ \alpha \rightarrow \alpha^+ \cap (R_i - \alpha) \]
+
+
+__Algoritmo de normalización en FNBC__
+
+Sea R esquema universal, F conjunto de DFs halla una descomposicion de R que está en FNBC.
+
+  <div style="text-align: center;">
+      <img src="PNGs/image-22.png" width="500">
+  </div>
+
+Algunas aclaraciones sobre el algoritmo anterior si se implementa automáticamente:
+- Para buscar un esquema que no está en FNBC, se puede usar el algoritmo de comprobación de que un esquema está en FNBC:
+\[ \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+ \]
+
+- Este algoritmo encontrará un \( \alpha \) que no cumple la condición. A partir de ese \( \alpha \), se puede obtener la dependencia funcional testigo:
+\[ \alpha \rightarrow \alpha^+ \cap (R_i - \alpha) \]
+
 
 ## Lenguajes de Consultas
 

@@ -152,3 +152,29 @@ Prueba de \(  \beta \subseteq \alpha \Rightarrow \alpha \rightarrow \beta \text{
 - Dado que \( \beta \subseteq \alpha \), cada valor de \( \alpha \) puede determinar a todos los valores de \( \beta \).
 - En otras palabras, en cualquier relación \( R \) que contenga atributos de \( \alpha \) y \( \beta \), la información sobre \( \beta \) está siempre presente dentro de \( \alpha \). 
 - Por lo tanto, la dependencia \( \alpha \rightarrow \beta \) se satisface en todas las relaciones posibles del esquema, lo que confirma que es trivial.
+
+  > __7)__ Sea \( R = (A, B, C, G, H, I) \) con el siguiente conjunto de dependencias funcionales:
+  \[
+  F = \{ A \rightarrow B; \; A \rightarrow C; \; CG \rightarrow H; \; CG \rightarrow I; \; B \rightarrow H \}.
+  \]
+
+  > - __Axiomas de Armstrong__:
+  >   1. __Reflexividad__: Si \( \beta \subseteq \alpha \), entonces \( \alpha \to \beta \).
+  >   2. __Aumentatividad__ (o Augmentación): Si \( \alpha \to \beta \), entonces \( \gamma\alpha \to \gamma\beta \) para cualquier conjunto de atributos \( \gamma \).
+  >   3. __Transitividad__: Si \( \alpha \to \beta \) y \( \beta \to \gamma \), entonces \( \alpha \to \gamma \).
+  > 
+  > - _Y se puede inferir de ellas las siguientes:_
+  >   1. __Unión__: Si \( \alpha \to \beta \) y \( \alpha \to \gamma \), entonces \( \alpha \to \beta \gamma \).
+  >   2. __Descomposición__: Si \( \alpha \to \beta \gamma \), entonces \( \alpha \to \beta \) y \( \alpha \to \gamma \).
+  >   3. __Pseudotransitividad__: Si \( \alpha \to \beta \) y \( \gamma \beta \to \delta \), entonces \( \alpha \gamma \to \delta \).
+  - __a)__ Derivar \( A \rightarrow BCH \) de \( F \) y derivar \( AG \rightarrow I \) de \( F \). Usar solamente los axiomas de Armstrong.
+
+  -  \(F = \{ A \rightarrow B; \; A \rightarrow C; \; CG \rightarrow H; \; CG \rightarrow I; \; B \rightarrow H \}.\)
+  1. \( A \rightarrow  B \text{ y } B \rightarrow  H \text{. Por lo tanto, por transitividad } A \rightarrow H\)
+  3. \( A \rightarrow H, A \rightarrow B \text{ y } A \rightarrow  C \text{. Por lo tanto, }A \rightarrow BCH\)
+  4. \( A \rightarrow BCH \)
+
+- __b)__ Derivar \( A \rightarrow BCH \) a partir de \( F \) usando los axiomas de Armstrong y los adicionales enseñados.
+- __c)__ Calcular \( A^+ \) y \( (AG)^+ \).
+- __d)__ Calcular las claves candidatas de \( R \).
+
