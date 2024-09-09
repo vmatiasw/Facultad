@@ -18,8 +18,6 @@ Se construye diagramáticamente usado un _diagrama de entidad-relación_.
 
 Se utiliza para visualizar la estructura de una base de datos antes de su __traducción__ del modelo de entidad-relación a esquemas relacionales para su implementación. Sirve como un plano, mientras que el modelo relacional realiza este plano en forma de base de datos.
 
-
-
 - __Entidad__: objeto distinguible de otros objetos. Descrito por medio de atributos.
   - __Conjunto de entidades (CE)__: conjunto de entidades del mismo tipo (i.e. Con los mismos atributos) que comparte las mismas propiedades.
 
@@ -278,7 +276,7 @@ __Descomposición__: Sea \( R \) un esquema de relación. Un conjunto de esquema
 2. Encontramos la propiedad del tipo \( K \to J \).
 3. Usamos \( K \to J \) para descomponer \( R \) en: \( K \cup J \) y \( R_1 = R - J \).
 
-__\( A \to B, C, ... \)__: Sea \( R \)  una relacion con valores redundantes \( J \)  que se pueden inferir por un valor \( K \) , se dice que un valor de \( K \)  __determina unívocamente__ uno o mas valores de \( J \)  si se puede descomponer eliminando la redundancia y lo indicamos de la siguiente forma: \( A \to B, C, ... \).
+__\( A \to B, C, ... \) (determinacion)__: Sea \( R \)  una relacion con valores redundantes \( J \)  que se pueden inferir por un valor \( K \) , se dice que un valor de \( K \)  __determina unívocamente__ uno o mas valores de \( J \)  si se puede descomponer eliminando la redundancia y lo indicamos de la siguiente forma: \( A \to B, C, ... \).
 
 __Dependencias funcionales__: Propiedades del tipo \( \alpha \to \beta \), con \( \alpha \) y \( \beta \) conjuntos de atributos.
 En otras palabras, \( \alpha \) es un determinante funcional de \( \beta \) si para cada valor de \( \alpha \) en una tabla, hay un único valor posible correspondiente de \( \beta \).
@@ -290,9 +288,8 @@ Una vez que tenemos el esquema universal \( K \), el siguiente paso es definir u
 __Restricciones de integridad__: Reglas que el esquema de la base de datos debe cumplir para asegurar la consistencia y validez de los datos.
 - Pueden incluir:
   - Dependencias Funcionales (DFs),
-  - Reglas de Integridad de Entidad: Cada entidad debe tener una clave primaria única;
+  - Reglas de Integridad de Entidad: Cada entidad debe tener una clave primaria única,
   - Reglas de Integridad Referencial: Las claves foráneas deben hacer referencia a claves primarias válidas en otras relaciones.
-
 - Necesitan ser chequeadas cada vez que cambia la base de datos. Y esto tiene su costo computacional. Cuantas menos restricciones de integridad necesiten ser chequeadas, mejor.
 
 __Tablas legales__: Tablas con las que la empresa quiere poder trabajar; donde las tuplas cumplen con ciertas propiedades obligatorias (reglas y restricciones definidas por el negocio o la aplicación)  y tienen significado dentro del contexto del problema que está modelando la base de datos.
@@ -305,79 +302,66 @@ t_1[\alpha] = t2[\alpha] \implies t_1[\beta] = t_2[\beta]
 
 > No necesito dar todas las DF que se cumplen en el problema del mundo real, debido al costo computacional de las restricciones de integridad, __necesito un subconjunto de las DF lo menor posible tal que todas las demás DF se puedan derivar de ese subconjunto__.
 
-__Proposicion__: \(\alpha \to \beta\) es __trivial__ si y solo si \( \beta \subseteq \alpha \).
+__Trivialidad__: \(\alpha \to \beta\) es __trivial__ si y solo si \( \beta \subseteq \alpha \).
 
 
-- __Axiomas de Armstrong__: _Conjunto de reglas de inferencia al derivar_. :
-
+__Axiomas de Armstrong__: (Conjunto de reglas de inferencia al derivar)
   1. __Reflexividad__: Si \( \beta \subseteq \alpha \), entonces \( \alpha \to \beta \).
-  
   2. __Aumentatividad__ (o Augmentación): Si \( \alpha \to \beta \), entonces \( \gamma\alpha \to \gamma\beta \) para cualquier conjunto de atributos \( \gamma \).
-  
   3. __Transitividad__: Si \( \alpha \to \beta \) y \( \beta \to \gamma \), entonces \( \alpha \to \gamma \).
 
-  y se puede inferir de ellas las siguientes:
+y se puede inferir de ellas las siguientes:
   - __Unión__: Si \( \alpha \to \beta \) y \( \alpha \to \gamma \), entonces \( \alpha \to \beta \gamma \).
-
   - __Descomposición__: Si \( \alpha \to \beta \gamma \), entonces \( \alpha \to \beta \) y \( \alpha \to \gamma \).
-
   - __Pseudotransitividad__: Si \( \alpha \to \beta \) y \( \gamma \beta \to \delta \), entonces \( \alpha \gamma \to \delta \).
 
 
+__\( F \vdash f \) (deduccion)__: Indica que \( f \) se deduce de \( F \).
 Dado un esquema relacional \( R \), una dependencia funcional \( f \) con atributos en \( R \) se deduce de un conjunto de dependencias funcionales \( F \) con atributos en \( R \) si existe una lista de dependencias funcionales \( f_1, f_2, \ldots, f_n \) tales que \( f_n = f \) y para todo \( 1 \leq i \leq n \):
 
 1. \( f_i \in F \), o
 2. \( f_i \) se obtiene aplicando la regla de reflexividad, o
 3. \( f_i \) se obtiene aplicando las propiedades de aumentatividad o transitividad a pasos anteriores en la lista.
 
-__Notación__: Usaremos \( F \vdash f \) para indicar que \( f \) se deduce de \( F \).
+__F+ (Cierre (o clausura) de un conjunto de DFs F)__: todas las dependencias que se deducen de F. Sirve para:
+- Calcular F+ y ver si f está en F+; Si está, no se agrega a F; Si no está, hay que agregarla.
+  > En la práctica, calcular la clausura \( F^+ \) suele ser inviable debido al gran número de atributos en un esquema universal. Una razón es que para un conjunto de atributos \( \alpha \), existen \( 2^{|\alpha|} \) dependencias triviales. Además, si \( \alpha \to \beta \) está en \( F \), hay \( 2^{|R|} \) maneras de aplicar la aumentatividad a \( \alpha \to \beta \) (donde \( R \) es el esquema universal) y algunas de estas aplicaciones ni cambiarán el resultado.
+- Intentar deducir f de F y si lo logramos: no se agrega f a F. 
+  > Si no lo logramos no quiere decir que no se pueda, no nos dice nada.
+- Para saber si \( \alpha \to \beta \) es deducible de \( F \). Si tenemos las dependencias de \( F^+ \) con el lado izquierdo \( \alpha \), este conjunto es mucho más pequeño que \( F^+ \) (porque hay \( 2^n \) tales \( \alpha \)).
+Por lo tanto, para responder si \( F \vdash \alpha \to \beta \), podríamos contestar \( \alpha \to \beta \in \{ \alpha \to \phi \mid F \vdash \alpha \to \phi \} \).
+- Para obtener solo el conjunto de dependencias funcionales \( \alpha \to A \) (deducibles de \( F \)) donde \( A \) es un atributo:
+  1. Primero, consideramos el conjunto \( \{ A \in R \mid F \vdash \alpha \to A \} \). Esto representa todos los atributos \( A \) que están relacionados con \( \alpha \) mediante una dependencia funcional deducida de \( F \).
+  2. Si se cumple que \( \beta \subseteq \{ A \in R \mid F \vdash \alpha \to A \} \), entonces, aplicando la regla de unión finitas veces a todos los atributos de \( \beta \), obtenemos que \( F \vdash \alpha \to \beta \).
+  - De esta manera, llegamos a un conjunto conocido como __cierre de un conjunto de atributos__, que es el conjunto a la derecha de la inclusión.
 
-El __cierre (o clausura) de un conjunto__ de dependencias funcionales F (F+) son todas las dependencias que se deducen de F.
-
-Sirve para saber si vale la pena agregar una dependencia funcional f a F. De las siguentes formas:
-  - Calcular F+ y ver si f está en F+; Si f está en F+ entonces no se agrega a F; en caso contrario hay que agregarla.
-  En la práctica, calcular la clausura \( F^+ \) suele ser inviable debido al gran número de atributos en un esquema universal. Una razón es que para un conjunto de atributos \( \alpha \), existen \( 2^{|\alpha|} \) dependencias triviales. Además, si \( \alpha \to \beta \) está en \( F \), hay \( 2^{|R|} \) maneras de aplicar la aumentatividad a \( \alpha \to \beta \) (donde \( R \) es el esquema universal) y algunas de estas aplicaciones ni cambiarán el resultado.
-  - Intentar deducir f de F y si lo logramos: no se agrega f a F. Pero si no, no sabremos si no se puede o solo no pudimos.
-  - Para saber si \( \alpha \to \beta \) es deducible de \( F \). Si tenemos las dependencias de \( F^+ \) con el lado izquierdo \( \alpha \), este conjunto es mucho más pequeño que \( F^+ \) (porque hay \( 2^n \) tales \( \alpha \)).
-  Por lo tanto, para responder si \( F \vdash \alpha \to \beta \), podríamos contestar \( \alpha \to \beta \in \{ \alpha \to \phi \mid F \vdash \alpha \to \phi \} \).
-  - Para obtener solo el conjunto de dependencias funcionales \( \alpha \to A \) (deducibles de \( F \)) donde \( A \) es un atributo:
-    1. Primero, consideramos el conjunto \( \{ A \in R \mid F \vdash \alpha \to A \} \). Esto representa todos los atributos \( A \) que están relacionados con \( \alpha \) mediante una dependencia funcional deducida de \( F \).
-    2. Si se cumple que \( \beta \subseteq \{ A \in R \mid F \vdash \alpha \to A \} \), entonces, aplicando la regla de unión finitas veces a todos los atributos de \( \beta \), obtenemos que \( F \vdash \alpha \to \beta \).
-    - De esta manera, llegamos a un conjunto conocido como __cierre de un conjunto de atributos__, que es el conjunto a la derecha de la inclusión.
-
-Sea \( R \) el esquema universal y \( F \) el conjunto de dependencias funcionales del problema del mundo real (con atributos en el esquema universal). Sea \( \alpha \subseteq R \). El __cierre de \( \alpha \) bajo \( F \)__ (denotado por \( \alpha^+_F \)) se define como:
+__\( \alpha^+_F \) (cierre de \( \alpha \) bajo \( F \))__: Sea \( R \) el esquema universal y \( F \) el conjunto de dependencias funcionales del problema del mundo real (con atributos en el esquema universal). Sea \( \alpha \subseteq R \). El cierre de \( \alpha \) bajo \( F \) se define como:
 
 \[ \alpha^+_F = \{ A \in R \mid F \vdash \alpha \to A \} \]
 
-- __Proposición__
-
+__Proposición__:
   1. \( F \vdash \alpha \to \alpha^+_F \)
-
      - __Prueba__: Esta proposición se demuestra aplicando la regla de unión finitas veces.
-
   2. \( F \vdash \alpha \to \beta \) si y solo si \( \beta \subseteq \alpha^+_F \)
-
-- __Problema__: Dado un conjunto de dependencias funcionales \( F \) para un problema del mundo real, queremos determinar si es útil agregar la dependencia funcional \( \alpha \to \beta \) a \( F \).
-
-- __Solución__: Para decidir si agregar \( \alpha \to \beta \) a \( F \), utilizamos la proposición anterior:
+   
+Para decidir si es util agregar \( \alpha \to \beta \) a \( F \) (osea, no es redundante, agrega nueva información), utilizamos la proposición anterior:
   1. Si \( \beta \subseteq \alpha^+_F \): La respuesta es sí; por lo tanto, no es necesario agregar \( \alpha \to \beta \) a \( F \).
   2. Si no, \( \alpha \to \beta \) no se deduce de \( F \), por lo tanto, agregamos \( \alpha \to \beta \) a \( F \).
-
   - Entonces, Se necesita un algoritmo para calcular \( \alpha^+_F \).
   <div style="text-align: center;">
       <img src="PNGs/image-21.png" width="500">
   </div>
 
-1. **Superclave**: Dado un esquema relacional \( R \) y un conjunto de dependencias funcionales \( F \), un conjunto de atributos \( \alpha \) es una superclave de \( R \) si y solo si \( \alpha \to R \) está en \( F^+ \).
+__Superclave__: Dado un esquema relacional \( R \) y un conjunto de dependencias funcionales \( F \), un conjunto de atributos \( \alpha \) es una superclave de \( R \) si y solo si \( \alpha \to R \) está en \( F^+ \).
 
-2. **Clave Candidata**: Un conjunto de atributos \( \alpha \) es una clave candidata de \( R \) si y solo si:
-   - \( \alpha \) es una superclave de \( R \).
-   - Para todo atributo \( A \) en \( \alpha \), el conjunto \( \alpha - \{A\} \) no es una superclave de \( R \).
+__Clave Candidata__: Un conjunto de atributos \( \alpha \) es una clave candidata de \( R \) si y solo si:
+- \( \alpha \) es una superclave de \( R \).
+- Para todo atributo \( A \) en \( \alpha \), el conjunto \( \alpha - \{A\} \) no es una superclave de \( R \).
 
-3. **Verificación de Superclave**:
-   - Para verificar que \( \alpha \) es una superclave de \( R \):
-     - Calcula \( \alpha^+ \) (el cierre de \( \alpha \) bajo \( F \)).
-     - Chequea si \( \alpha^+ \) contiene todos los atributos de \( R \).
+__Verificación de Superclave__:
+- Para verificar que \( \alpha \) es una superclave de \( R \):
+  - Calcula \( \alpha^+ \) (el cierre de \( \alpha \) bajo \( F \)).
+  - Chequea si \( \alpha^+ \) contiene todos los atributos de \( R \).
 
 Si \( R \) es un esquema con redundancia de información en un conjunto de atributos \( \beta \) y la dependencia funcional \( \alpha \rightarrow \beta \) (donde \( \alpha \) y \( \beta \) son disjuntos) se cumple en \( R \):
 
