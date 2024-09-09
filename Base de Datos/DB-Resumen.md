@@ -312,6 +312,14 @@ __Axiomas de Armstrong__: (Conjunto de reglas de inferencia al derivar)
 
 y se puede inferir de ellas las siguientes:
   - __Unión__: Si \( \alpha \to \beta \) y \( \alpha \to \gamma \), entonces \( \alpha \to \beta \gamma \).
+    - __Prueba__:
+      1. \( \alpha \to \beta \)
+      2. \( \alpha \to \gamma \)
+      3. \( \alpha \gamma \to \beta \gamma \text{ (Aumentatividad en a.) } \)
+      4. \( \alpha \subseteq \alpha \implies \alpha \to \alpha \text{ (Reflexividad) }\)
+      5. \( \alpha \alpha \to \gamma \alpha \text{ (Aumentatividad en b.) } \)
+      6. \( \alpha \alpha \subseteq \alpha \implies \alpha \to \alpha \alpha \text{ (Reflexividad) }\)
+      7.  \( \alpha \to \beta \gamma  \text{ (Transitividad en f, e, c) }\)
   - __Descomposición__: Si \( \alpha \to \beta \gamma \), entonces \( \alpha \to \beta \) y \( \alpha \to \gamma \).
   - __Pseudotransitividad__: Si \( \alpha \to \beta \) y \( \gamma \beta \to \delta \), entonces \( \alpha \gamma \to \delta \).
 

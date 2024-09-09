@@ -167,12 +167,14 @@ Prueba de \(  \beta \subseteq \alpha \Rightarrow \alpha \rightarrow \beta \text{
   >   1. __Unión__: Si \( \alpha \to \beta \) y \( \alpha \to \gamma \), entonces \( \alpha \to \beta \gamma \).
   >   2. __Descomposición__: Si \( \alpha \to \beta \gamma \), entonces \( \alpha \to \beta \) y \( \alpha \to \gamma \).
   >   3. __Pseudotransitividad__: Si \( \alpha \to \beta \) y \( \gamma \beta \to \delta \), entonces \( \alpha \gamma \to \delta \).
-  - __a)__ Derivar \( A \rightarrow BCH \) de \( F \) y derivar \( AG \rightarrow I \) de \( F \). Usar solamente los axiomas de Armstrong.
-
-  -  \(F = \{ A \rightarrow B; \; A \rightarrow C; \; CG \rightarrow H; \; CG \rightarrow I; \; B \rightarrow H \}.\)
-  1. \( A \rightarrow  B \text{ y } B \rightarrow  H \text{. Por lo tanto, por transitividad } A \rightarrow H\)
-  3. \( A \rightarrow H, A \rightarrow B \text{ y } A \rightarrow  C \text{. Por lo tanto, }A \rightarrow BCH\)
-  4. \( A \rightarrow BCH \)
+  - __a)__ Derivar \( A \rightarrow BCH \) de \( F \) y derivar \( AG \rightarrow I \) de \( F \). Usar solamente los axiomas de Armstrong (Usare tambien los demas, su prueba estara en el resumen del teorico).
+  \(F = \{ A \rightarrow B; \; A \rightarrow C; \; CG \rightarrow H; \; CG \rightarrow I; \; B \rightarrow H \}.\)
+    1. \( A \rightarrow  C \)
+    2. \( A \rightarrow  B \)
+    3. \( B \rightarrow  H \)
+    4. \( A \rightarrow  H \text{ (Transitividad en b, c) }\)
+    5. \( A \rightarrow  BC \text{ (Union en a, b) }\)
+    6. \( A \rightarrow  HBC \text{ (Union en d, e) }\)
 
 - __b)__ Derivar \( A \rightarrow BCH \) a partir de \( F \) usando los axiomas de Armstrong y los adicionales enseñados.
 - __c)__ Calcular \( A^+ \) y \( (AG)^+ \).
