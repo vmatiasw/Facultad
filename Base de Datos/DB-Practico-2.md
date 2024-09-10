@@ -140,37 +140,12 @@ PK UNIQUE PK UNIQUE ( UNIQUE ) ( UNIQUE )
 > Probar la siguiente afirmacion:
 > \[ \alpha \rightarrow \beta \text{ es trivial } \iff \beta \subseteq \alpha. \]
 
-Prueba de \( \alpha \rightarrow \beta \text{ es trivial} \Rightarrow \beta \subseteq \alpha. \):
-
-- Supongamos que \( \alpha \rightarrow \beta \) es trivial.
-  - Esto significa que esta dependencia se satisface en todas las relaciones posibles del esquema.
-- Para que \( \alpha \rightarrow \beta \) sea trivial, \( \beta \) debe ser un subconjunto de \( \alpha \).
-  - Esto es porque si no fuera así, habría una relación \( R \) en la que \( \alpha \) y \( \beta \) no están necesariamente vinculados.
-  - Formalmente, si \( \beta \nsubseteq \alpha \), podría haber una relación \( R \) en la que existen valores para \( \alpha \) que no determinan completamente a \( \beta \), violando así la propiedad de trivialidad.
-- Por lo tanto, si \( \alpha \rightarrow \beta \) es trivial, necesariamente \( \beta \subseteq \alpha \).
-
-Prueba de \( \beta \subseteq \alpha \Rightarrow \alpha \rightarrow \beta \text{ es trivial}\):
-
-- Supongamos que \( \beta \subseteq \alpha \).
-- Dado que \( \beta \subseteq \alpha \), cada valor de \( \alpha \) puede determinar a todos los valores de \( \beta \).
-- En otras palabras, en cualquier relación \( R \) que contenga atributos de \( \alpha \) y \( \beta \), la información sobre \( \beta \) está siempre presente dentro de \( \alpha \).
-- Por lo tanto, la dependencia \( \alpha \rightarrow \beta \) se satisface en todas las relaciones posibles del esquema, lo que confirma que es trivial.
+Resuelto en el teorico/resumen
 
 > **7)** Sea \( R = (A, B, C, G, H, I) \) con el siguiente conjunto de dependencias funcionales:
 > \[
 > F = \{ A \rightarrow B; \; A \rightarrow C; \; CG \rightarrow H; \; CG \rightarrow I; \; B \rightarrow H \}.
 > \]
-
-> - **Axiomas de Armstrong**:
->
->   1. **Reflexividad**: Si \( \beta \subseteq \alpha \), entonces \( \alpha \to \beta \).
->   2. **Aumentatividad** (o Augmentación): Si \( \alpha \to \beta \), entonces \( \gamma\alpha \to \gamma\beta \) para cualquier conjunto de atributos \( \gamma \).
->   3. **Transitividad**: Si \( \alpha \to \beta \) y \( \beta \to \gamma \), entonces \( \alpha \to \gamma \).
->
-> - _Y se puede inferir de ellas las siguientes:_
->   1. **Unión**: Si \( \alpha \to \beta \) y \( \alpha \to \gamma \), entonces \( \alpha \to \beta \gamma \).
->   2. **Descomposición**: Si \( \alpha \to \beta \gamma \), entonces \( \alpha \to \beta \) y \( \alpha \to \gamma \).
->   3. **Pseudotransitividad**: Si \( \alpha \to \beta \) y \( \gamma \beta \to \delta \), entonces \( \alpha \gamma \to \delta \).
 
 - Ejercicios: (Usare los axiomas y sus inferencias mencionadas donde su prueba este en el teorico/resumen)
 
@@ -191,28 +166,35 @@ Prueba de \( \beta \subseteq \alpha \Rightarrow \alpha \rightarrow \beta \text{ 
     2. \( CG \rightarrow I \)
     3. \( AG \rightarrow I \text{ (Pseudotransitividad en a, c) } \)
 
-  - **c)** Calcular \( A^+_F \) y \( (AG)^+_F \).
+  - **c)** Calcular \( A^+\_F \) y \( (AG)^+\_F \).
     \(F = \{ A \rightarrow B; \; A \rightarrow C; \; CG \rightarrow H; \; CG \rightarrow I; \; B \rightarrow H \}.\)
-    - \( A^+_F \)
+    - \( A^+\_F \)
       1. \( \text{ res } = \{ A \} \)
-      2. \( A \in \text{ res } \land \{ A \rightarrow B; A \rightarrow C \} \subseteq F  \implies \text{ res }  = \text{ res } \cup \{ B, C \} \)
-      3. \( B \in \text{ res } \land \{ B \rightarrow H \} \subseteq F \implies \text{ res }  = \text{ res } \cup \{ H \} \)
-      4. \( A^+_F = res = \{A, C, B, H\} \)
-    - \( (AG)^+_F \)
+      2. \( A \in \text{ res } \land \{ A \rightarrow B; A \rightarrow C \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ B, C \} \)
+      3. \( B \in \text{ res } \land \{ B \rightarrow H \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ H \} \)
+      4. \( A^+\_F = res = \{A, C, B, H\} \)
+    - \( (AG)^+\_F \)
       1. \( \text{ res } = \{ AG \} \)
-      2. \( AG^+_F = res = \{AG\} \)
+      2. \( AG^+\_F = res = \{AG\} \)
       - AG no esta a la izquierda de nada en F.
   - **d)** Calcular las claves candidatas de \( R \).
     \(F = \{ A \rightarrow B; \; A \rightarrow C; \; CG \rightarrow H; \; CG \rightarrow I; \; B \rightarrow H \}.\)
     \( R = (A, B, C, G, H, I) \)
     1. Propongo \( \alpha = \{ A, CG \}\)
     2. Verifico que sea superclave:
-      - \( \alpha^+_F \)
-        1. \( \text{ res } = \{ A, CG\} \)
-        2. \( A \in \text{ res } \land \{ A \rightarrow B; A \rightarrow C \} \subseteq F  \implies \text{ res }  = \text{ res } \cup \{ B, C \} \)
-        3. \( B \in \text{ res } \land \{ B \rightarrow H \} \subseteq F \implies \text{ res }  = \text{ res } \cup \{ H \} \)
-        4. \( CG \in \text{ res } \land \{ CG \rightarrow I \} \subseteq F \implies \text{ res }  = \text{ res } \cup \{ I \} \)
-        5. \( \alpha^+_F = res = \{A, B, C, G, H, I\} = R \)
+    - \( \alpha^+\_F \)
+      1. \( \text{ res } = \{ A, CG\} \)
+      2. \( A \in \text{ res } \land \{ A \rightarrow B; A \rightarrow C \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ B, C \} \)
+      3. \( B \in \text{ res } \land \{ B \rightarrow H \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ H \} \)
+      4. \( CG \in \text{ res } \land \{ CG \rightarrow I \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ I \} \)
+      5. \( \alpha^+\_F = res = \{A, B, C, G, H, I\} = R \)
     3. Verifico que sea clave candidata:
-      - Si \( A \notin \alpha \implies \{ B, C \} \nsubseteq \alpha^+_F \neq R\) por lo que no seria superclave.
-      - Si \( AG \notin \alpha \implies \{ I \} \nsubseteq \alpha^+_F \neq R\) por lo que no seria superclave.
+    - Si \( A \notin \alpha \implies \{ B, C \} \nsubseteq \alpha^+\_F \neq R\) por lo que no seria superclave.
+    - Si \( AG \notin \alpha \implies \{ I \} \nsubseteq \alpha^+\_F \neq R\) por lo que no seria superclave.
+
+> **8)** Sea el esquema \( R = (A, B, C, D, E, F, G) \) y el conjunto de dependencias funcionales:
+> \[
+> G = \{A \to CD; CE \to AD; CF \to EB; E \to F ; CD \to E; G \to E\}
+> \]
+> Mostrar una dependencia funcional que no es derivable de \( G \). Probar que no es derivable de \( G \) indicando todos los pasos de la prueba.
+

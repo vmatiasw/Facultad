@@ -322,11 +322,27 @@ t_1[\alpha] = t2[\alpha] \implies t_1[\beta] = t_2[\beta]
 
 > No necesito dar todas las DF que se cumplen en el problema del mundo real, debido al costo computacional de las restricciones de integridad, **necesito un subconjunto de las DF lo menor posible tal que todas las demás DF se puedan derivar de ese subconjunto**.
 
-**Trivialidad**: \(\alpha \to \beta\) es **trivial** si y solo si \( \beta \subseteq \alpha \).
+**Trivialidad**: Una DF **trivial** se cumple en todas las tablas de un esquema, osea si es satisfecha por todas la relaciones de un esquema.
+Proposicion: \[ \alpha \rightarrow \beta \text{ es trivial } \iff \beta \subseteq \alpha. \]
+
+- **Prueba**:
+
+  - \( \alpha \rightarrow \beta \text{ es trivial} \Rightarrow \beta \subseteq \alpha. \):
+
+    - Supongamos que \( \alpha \rightarrow \beta \) es trivial.
+    - Si \( \beta \nsubseteq \alpha \), podría haber una relación \( R \) en la que existen valores para \( \alpha \) que no determinan completamente a \( \beta \), violando así la propiedad de trivialidad.
+    - Por lo tanto, si \( \alpha \rightarrow \beta \) es trivial, necesariamente \( \beta \subseteq \alpha \).
+
+  - \( \beta \subseteq \alpha \Rightarrow \alpha \rightarrow \beta \text{ es trivial}\):
+
+    - Supongamos que \( \beta \subseteq \alpha \).
+    - Dado que \( \beta \subseteq \alpha \), cada valor de \( \alpha \) puede determinar a todos los valores de \( \beta \).
+    - En otras palabras, en cualquier relación \( R \) que contenga atributos de \( \alpha \) y \( \beta \), la información sobre \( \beta \) está siempre presente dentro de \( \alpha \).
+    - Por lo tanto, la dependencia \( \alpha \rightarrow \beta \) se satisface en todas las relaciones posibles del esquema, lo que confirma que es trivial.
 
 **Axiomas de Armstrong**: (Conjunto de reglas de inferencia al derivar)
 
-1. **Reflexividad**: Si \( \beta \subseteq \alpha \), entonces \( \alpha \to \beta \).
+1. **Reflexividad**: Si \( \beta \subseteq \alpha \), entonces \( \alpha \to \beta \). (y, recordemos, \( \alpha \to \beta \) es trivial)
 2. **Aumentatividad** (o Augmentación): Si \( \alpha \to \beta \), entonces \( \gamma\alpha \to \gamma\beta \) para cualquier conjunto de atributos \( \gamma \).
 3. **Transitividad**: Si \( \alpha \to \beta \) y \( \beta \to \gamma \), entonces \( \alpha \to \gamma \).
 
@@ -354,12 +370,13 @@ y se puede inferir de ellas las siguientes:
     3. \( \alpha \gamma \to \beta \gamma \text{ (Aumentatividad en a.) } \)
     4. \( \alpha \gamma \to \delta \text{ (Transitividad en c, b.) } \)
 
-**\( F \vdash f \) (deduccion)**: Indica que \( f \) se deduce de \( F \).
-Dado un esquema relacional \( R \), una dependencia funcional \( f \) con atributos en \( R \) se deduce de un conjunto de dependencias funcionales \( F \) con atributos en \( R \) si existe una lista de dependencias funcionales \( f_1, f_2, \ldots, f_n \) tales que \( f_n = f \) y para todo \( 1 \leq i \leq n \):
+**Deduccion**: Dado un esquema relacional \( R \), una dependencia funcional \( f \) con atributos en \( R \) se deduce de un conjunto de dependencias funcionales \( F \) con atributos en \( R \) si existe una lista de dependencias funcionales \( f_1, f_2, \ldots, f_n \) tales que \( f_n = f \) y para todo \( 1 \leq i \leq n \):
 
 1. \( f_i \in F \), o
 2. \( f_i \) se obtiene aplicando la regla de reflexividad, o
 3. \( f_i \) se obtiene aplicando las propiedades de aumentatividad o transitividad a pasos anteriores en la lista.
+
+**\( F \vdash f \)**: Indica que \( f \) se deduce de \( F \).
 
 **F+ (Cierre (o clausura) de un conjunto de DFs F)**: todas las dependencias que se deducen de F. Sirve para:
 
@@ -374,7 +391,7 @@ Dado un esquema relacional \( R \), una dependencia funcional \( f \) con atribu
   2. Si se cumple que \( \beta \subseteq \{ A \in R \mid F \vdash \alpha \to A \} \), entonces, aplicando la regla de unión finitas veces a todos los atributos de \( \beta \), obtenemos que \( F \vdash \alpha \to \beta \).
   - De esta manera, llegamos a un conjunto conocido como **cierre de un conjunto de atributos**, que es el conjunto a la derecha de la inclusión.
 
-**\( \alpha^+\_F \) (cierre de \( \alpha \) bajo \( F \))**: Sea \( R \) el esquema universal y \( F \) el conjunto de dependencias funcionales del problema del mundo real (con atributos en el esquema universal). Sea \( \alpha \subseteq R \). El cierre de \( \alpha \) bajo \( F \) se define como:
+**\( \alpha^+\_F \) (cierre de \( \alpha \) bajo \( F \))**: Sea \( R \) el esquema universal y \( F \) el conjunto de dependencias funcionales del problema del mundo real (con atributos en el esquema universal \( R \)). Sea \( \alpha \subseteq R \). El cierre de \( \alpha \) bajo \( F \) se define como:
 
 \[ \alpha^+\_F = \{ A \in R \mid F \vdash \alpha \to A \} \]
 
