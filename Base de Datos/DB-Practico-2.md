@@ -100,7 +100,6 @@ pelicula-rol((peliculaID FK, actorID FK, rolID FK) PK)
 rol(rol PK, salario) -->
 
 Esquema universal: (nActor,dActor,nEstudio,dEstudio,titulo,año,presupuesto,rol,salario)
-PK UNIQUE PK UNIQUE ( UNIQUE ) ( UNIQUE )
 
 - ¿Es este un buen esquema relacional? Explique y liste los diferentes tipos de anomalias que presenta este esquema.
 
@@ -127,11 +126,10 @@ PK UNIQUE PK UNIQUE ( UNIQUE ) ( UNIQUE )
 
 - Existe un conjunto de relaciones de uno a uno entre los conjuntos de entidades decano y facultad.
 
-\( decano \leftrightarrow facultad \): Si establecemos una DF entre decano y facultad en ambas direcciones, cada vez que aparezca uno debera si o si aparecer el otro.
+  - \( decano \leftrightarrow facultad \): Si establecemos una DF entre decano y facultad en ambas direcciones, cada vez que aparezca uno debera si o si aparecer el otro.
 
 - Existe un conjunto de relaciones de varios a uno entre los conjuntos de entidades alumno y supervisor
-
-\( alumno \to supervisor\): Si establecemos una DF entre alumno y supervisor pero solo en esa dirrecion, cada alumno tendra un solo supervisor pero el supervisor sera libre de tener muchos alumnos.
+  - \( alumno \to supervisor\): Si establecemos una DF entre alumno y supervisor pero solo en esa dirrecion, cada alumno tendra un solo supervisor pero el supervisor sera libre de tener muchos alumnos.
 
 > **6)** Usar la siguiente definicion:
 >
@@ -166,35 +164,149 @@ Resuelto en el teorico/resumen
     2. \( CG \rightarrow I \)
     3. \( AG \rightarrow I \text{ (Pseudotransitividad en a, c) } \)
 
-  - **c)** Calcular \( A^+\_F \) y \( (AG)^+\_F \).
+  - **c)** Calcular \( A^+_F \) y \( (AG)^+_F \).
     \(F = \{ A \rightarrow B; \; A \rightarrow C; \; CG \rightarrow H; \; CG \rightarrow I; \; B \rightarrow H \}.\)
-    - \( A^+\_F \)
+    - \( A^+_F \)
       1. \( \text{ res } = \{ A \} \)
       2. \( A \in \text{ res } \land \{ A \rightarrow B; A \rightarrow C \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ B, C \} \)
       3. \( B \in \text{ res } \land \{ B \rightarrow H \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ H \} \)
-      4. \( A^+\_F = res = \{A, C, B, H\} \)
-    - \( (AG)^+\_F \)
-      1. \( \text{ res } = \{ AG \} \)
-      2. \( AG^+\_F = res = \{AG\} \)
-      - AG no esta a la izquierda de nada en F.
+      4. \( A^+_F = res = \{A, C, B, H\} \)
+    - \( (AG)^+_F \)
+      1. \( \text{ res } = \{ A, G \} \)
+      2. \( A \in \text{ res } \land \{ A \rightarrow B; A \rightarrow C \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ B, C \} \)
+      3. \( B \in \text{ res } \land \{ B \rightarrow H \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ H \} \)
+      4. \( CG \in \text{ res } \land \{ CG \rightarrow I\} \subseteq F \implies \text{ res } = \text{ res } \cup \{ I \} \)
+      5. \( (AG)^+_F = res = \{A, G, C, B, H, I\} \)
   - **d)** Calcular las claves candidatas de \( R \).
     \(F = \{ A \rightarrow B; \; A \rightarrow C; \; CG \rightarrow H; \; CG \rightarrow I; \; B \rightarrow H \}.\)
     \( R = (A, B, C, G, H, I) \)
-    1. Propongo \( \alpha = \{ A, CG \}\)
+    1. Propongo \( \alpha = \{ AG \}\)
     2. Verifico que sea superclave:
-    - \( \alpha^+\_F \)
-      1. \( \text{ res } = \{ A, CG\} \)
-      2. \( A \in \text{ res } \land \{ A \rightarrow B; A \rightarrow C \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ B, C \} \)
-      3. \( B \in \text{ res } \land \{ B \rightarrow H \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ H \} \)
-      4. \( CG \in \text{ res } \land \{ CG \rightarrow I \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ I \} \)
-      5. \( \alpha^+\_F = res = \{A, B, C, G, H, I\} = R \)
+    - \( \alpha^+_F = (AG)^+_F = R \text{ (como vimos en el ejercicio anterior) } \)
     3. Verifico que sea clave candidata:
-    - Si \( A \notin \alpha \implies \{ B, C \} \nsubseteq \alpha^+\_F \neq R\) por lo que no seria superclave.
-    - Si \( AG \notin \alpha \implies \{ I \} \nsubseteq \alpha^+\_F \neq R\) por lo que no seria superclave.
+    - Si \( A \notin \alpha \implies \{ B, C \} \nsubseteq \alpha^+_F \neq R\) por lo que no seria superclave.
+    - Si \( G \notin \alpha \implies \{ I \} \nsubseteq \alpha^+_F \neq R\) por lo que no seria superclave.
 
 > **8)** Sea el esquema \( R = (A, B, C, D, E, F, G) \) y el conjunto de dependencias funcionales:
 > \[
-> G = \{A \to CD; CE \to AD; CF \to EB; E \to F ; CD \to E; G \to E\}
-> \]
+> G = \{A \to CD; CE \to AD; CF \to EB; E \to F ; CD \to E; G \to E\} > \]
 > Mostrar una dependencia funcional que no es derivable de \( G \). Probar que no es derivable de \( G \) indicando todos los pasos de la prueba.
+
+> **9)** Los registros de un club deportivo son tuplas de la forma
+> (clubNro, ubicacion, gerente, instalacion, tamaño, cuota, prioridad).
+> Un club deportivo se divide en varios clubes que pueden estar o no en diferentes ciudades.
+> La ubicacion es una ciudad y varios clubes pueden tener la misma ubicacion.
+> El valor de clubNro es unico dentro de una ciudad dada, aun cuando pueden existir duplicados en diferentes ciudades.
+> La combinacion de clubNro y ubicacion determina una tupla unica.
+> Un gerente es una persona asignada a una ubicacion en particular y maneja todos los clubes de esa ciudad.
+> Una instalacion es una subunidad de un club, por ejemplo, una piscina, un sauna, una cancha de tenis, etc.
+> El tamaño describe una instalacion en unidades adecuadas, por ejemplo, volumen para una piscina, area para una cancha de tenis, o asientos para un baño sauna.
+> La prioridad es un esquema de clasificacion que la empresa utiliza para medir la importancia economica de clubes; esta basada en la ubicacion.
+> Cada ciudad cuenta con un intervalo distinto de valores de prioridad.
+> La cuota es el cargo por hora de utilizar una instalacion en particular.
+> La cuota es constante para una instalacion dada en todos los clubes de la misma ciudad.
+> Se pide:
+
+<!--
+Registros de un club deportivo :
+(clubNro, ubicacion, gerente, instalacion, tamaño, cuota, prioridad).
+
+Un club deportivo se divide en varios clubes que pueden estar o no en diferentes ciudades. La ubicacion es una ciudad y varios clubes pueden tener la misma ubicacion.
+El valor de clubNro es unico dentro de una ciudad dada, aun cuando pueden existir duplicados en diferentes ciudades. La combinacion de clubNro y ubicacion determina una tupla unica.
+>>> (clubNro, ubicacion) UNIQUE
+>>> clubNro -muchos a muchos- ubicacion
+
+Un gerente es una persona asignada a una ubicacion en particular y maneja todos los clubes de esa ciudad.
+>>> ubicacion <-> gerente
+>>> (clubNro, ubicacion) -> gerente
+
+Una instalacion es una subunidad de un club, por ejemplo, una piscina, un sauna, una cancha de tenis, etc.
+El tamaño describe una instalacion en unidades adecuadas, por ejemplo, volumen para una piscina, area para una cancha de tenis, o asientos para un baño sauna.
+>>> instalacion -> unidad(tamaño) (¿¿¿¿¿DF con el formato/unidad del atributo?????)
+>>> ¿¿¿¿¿¿¿¿¿¿¿¿ clubNro -muchos a muchos- instalacion ???????????
+
+La prioridad es un esquema de clasificacion que la empresa utiliza para medir la importancia economica de clubes; esta basada en la ubicacion.
+Cada ciudad cuenta con un intervalo distinto de valores de prioridad.
+>>> ubicacion -> intervalo(prioridad) (¿¿¿¿¿DF con el intervalo del atributo?????)
+
+La cuota es el cargo por hora de utilizar una instalacion en particular.
+La cuota es constante para una instalacion dada en todos los clubes de la misma ciudad.
+>>> instalacion -> cuota
+
+(clubNro, ubicacion, gerente, instalacion, tamaño, cuota, prioridad).
+-->
+
+a) Crear un conjunto de dependencias funcionales \(F\) para captar las restricciones de la base de datos.
+\(
+F = \{ubicacion \leftrightarrow gerente, instalacion \rightarrow cuota, (clubNro, ubicacion) \rightarrow gerente\}
+\)
+\(
+R = \{clubNro, ubicacion, gerente, instalacion, tamaño, cuota, prioridad\}
+\)
+b) Aplicar el algoritmo de normalizacion de FNBC al esquema universal
+
+
+- > **Del teorico:**
+  **Ejercicio**: Comprobación de Forma normal de Boyce Codd
+  - Sea F dado por:
+    1. nomBib → calle, numero
+    2. calle, numero → nomBib
+    3. ISBN → título, editorial, autores, edición
+    4. nomBib, numInv → ISBN
+  - Sean los esquemas:
+    - R = (nomBib, numInv, ISBN)
+    - Biblioteca = (nomBib, calle, número)
+    - Libro = (ISBN, título, editorial, autores, edición)
+  - Comprobar que Biblioteca, Libro están en FNBC:
+
+  **Ejercicio**: Aplicar el algoritmo de normalización en FNBC a:
+  R = (A, B, C, D, E, F)
+  F = {A → CB, E →FA}
+
+  **Ejercicio**: Sea el esquema universal:
+  BibLibs = (nomBib, calle, número, numInv, ISBN, título, editorial, autores, edición)
+- Sea \( F \) dado por:
+  - \( \text{nomBib} \to \text{calle}, \text{número} \)
+  - \( \text{calle}, \text{número} \to \text{nomBib} \)
+  - \( \text{ISBN} \to \text{título}, \text{editorial}, \text{autores}, \text{edición} \)
+  - \( \text{nomBib}, \text{numInv} \to \text{ISBN} \)
+  
+  - Aplicar el algoritmo de normalización en FNBC:
+    - ¿\( \text{nomBib} \to \text{calle}, \text{número} \) es testigo?
+      - Sí, porque no es trivial y
+      - \( \text{nomBib}^+ = \{\text{nomBib}, \text{calle}, \text{número}\} \neq R \)
+      - Luego \( \text{nomBib} \) no es superclave de \( R \).
+    
+    - ¿Cómo queda la descomposición de BibLibs?
+      - \( \text{BibLibs2} = (\text{nomBib}, \text{numInv}, \text{ISBN}, \text{título}, \text{editorial}, \text{autores}, \text{edición}) \)
+      - \( R1 = (\text{nomBib}, \text{calle}, \text{número}) \)
+    
+    - ¿\( \text{ISBN} \to \text{título}, \text{editorial}, \text{autores}, \text{edición} \) es testigo?
+      - Sí, porque no es trivial y
+      - \( \text{ISBN}^+ = \{\text{ISBN}, \text{título}, \text{editorial}, \text{edición}, \text{autores}\} \) que es menor que \( \text{BibLibs2} \)
+      - Luego \( \text{ISBN} \) no es superclave de \( \text{BibLibs2} \).
+    
+    - ¿Cómo queda la descomposición de \( \text{BibLibs2} \)?
+      - \( \text{BibLibs3} = (\text{nomBib}, \text{numInv}, \text{ISBN}) \)
+      - \( R2 = (\text{ISBN}, \text{título}, \text{editorial}, \text{edición}, \text{autores}) \)
+
+    - ¿Estan en FNBC?
+      - En un ejercicio anterior sale que R1 y R2 están en FNBC. <!-- FIXME: ?? -->
+    - Usamos la comprobación:
+      \[
+        \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+
+      \]
+      - \({\{numInv, nomBib\}}^+ = \text{BibLibs} \supseteq \text{BibLibs3}\)
+      - Luego \({\{numInv, nomBib\}}\) es superclave y no hace falta chequear superconjuntos.
+      - \({\{ISBN, numInv\}}^+ = R2 \cup \{numInv\}\), luego no contiene BibLibs3.
+      - \({\{ISBN, numInv\}}^+ \cap (\text{BibLibs3} - \{ISBN, numInv\}) = R2 \cap \{nomBib\} = \emptyset\)
+      - \({\{ISBN, nomBib\}}^+ = R2 \cup R1\), luego no contiene BibLibs3.
+      - \( {\{ISBN, nomBib\}}^+ \cap (\text{BibLibs3} - \{ISBN, nomBib\}) = (R2 \cup R1) \cap \{numInv\} = \emptyset \)
+      - \(\text{nomBib}^+ = \{nomBib, calle, numero\}\)
+      - \(\text{nomBib}^+ \cap (\text{BibLibs3} - \{nomBib\}) = \{nomBib, calle, numero\} \cap \{numInv, ISBN\} = \emptyset\)
+      - \(\text{numinv}^+ = \text{numinv}\), luego \(\text{numinv}^+ \cap (\text{BibLibs3} - \{numinv\}) = \emptyset\).
+      - \(\text{ISBN}^+ = R2\), luego ISBN no es superclave de BibLib3.
+      - \( \text{ISBN}^+ \cap \{nomBib, numInv\} = \emptyset \)
+    - Hemos chequeado todos los casos, por lo tanto, BibLibs3 está en FNBC.
+
 

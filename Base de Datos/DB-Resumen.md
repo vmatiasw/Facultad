@@ -322,7 +322,7 @@ t_1[\alpha] = t2[\alpha] \implies t_1[\beta] = t_2[\beta]
 
 > No necesito dar todas las DF que se cumplen en el problema del mundo real, debido al costo computacional de las restricciones de integridad, **necesito un subconjunto de las DF lo menor posible tal que todas las demás DF se puedan derivar de ese subconjunto**.
 
-**Trivialidad**: Una DF **trivial** se cumple en todas las tablas de un esquema, osea si es satisfecha por todas la relaciones de un esquema.
+**Trivialidad**: Una DF **trivial** se cumple en todas las tablas de un esquema, osea es satisfecha por todas la relaciones de un esquema.
 Proposicion: \[ \alpha \rightarrow \beta \text{ es trivial } \iff \beta \subseteq \alpha. \]
 
 - **Prueba**:
