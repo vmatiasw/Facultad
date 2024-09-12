@@ -391,22 +391,20 @@ y se puede inferir de ellas las siguientes:
   2. Si se cumple que \( \beta \subseteq \{ A \in R \mid F \vdash \alpha \to A \} \), entonces, aplicando la regla de unión finitas veces a todos los atributos de \( \beta \), obtenemos que \( F \vdash \alpha \to \beta \).
   - De esta manera, llegamos a un conjunto conocido como **cierre de un conjunto de atributos**, que es el conjunto a la derecha de la inclusión.
 
-**\( \alpha^+\_F \) (cierre de \( \alpha \) bajo \( F \))**: Sea \( R \) el esquema universal y \( F \) el conjunto de dependencias funcionales del problema del mundo real (con atributos en el esquema universal \( R \)). Sea \( \alpha \subseteq R \). El cierre de \( \alpha \) bajo \( F \) se define como:
+**\( \alpha^+_F \) (cierre de \( \alpha \) bajo \( F \))**: Sea \( R \) el esquema universal y \( F \) el conjunto de dependencias funcionales del problema del mundo real (con atributos en el esquema universal \( R \)). Sea \( \alpha \subseteq R \). El cierre de \( \alpha \) bajo \( F \) se define como:
 
-\[ \alpha^+\_F = \{ A \in R \mid F \vdash \alpha \to A \} \]
+\[ \alpha^+_F = \{ A \in R \mid F \vdash \alpha \to A \} \]
 
-**Proposición**:
-
-1. \( F \vdash \alpha \to \alpha^+\_F \)
+**Proposición**: \( F \vdash \alpha \to \alpha^+_F \)
    - **Prueba**: Esta proposición se demuestra aplicando la regla de unión finitas veces.
-2. \( F \vdash \alpha \to \beta \) si y solo si \( \beta \subseteq \alpha^+\_F \)
 
-Para decidir si es util agregar \( \alpha \to \beta \) a \( F \) (osea, no es redundante, agrega nueva información), utilizamos la proposición anterior:
+**Proposición**: \( F \vdash \alpha \to \beta \iff \beta \subseteq \alpha^+_F \)
 
-1. Si \( \beta \subseteq \alpha^+\_F \): La respuesta es sí; por lo tanto, no es necesario agregar \( \alpha \to \beta \) a \( F \).
+Para **decidir si es util agregar \( \alpha \to \beta \) a \( F \)** (osea, no es redundante, agrega nueva información), utilizamos la proposición anterior:
+
+1. Si \( \beta \subseteq \alpha^+_F \): La respuesta es sí; por lo tanto, no es necesario agregar \( \alpha \to \beta \) a \( F \).
 2. Si no, \( \alpha \to \beta \) no se deduce de \( F \), por lo tanto, agregamos \( \alpha \to \beta \) a \( F \).
 
-- Entonces, Se necesita un algoritmo para calcular \( \alpha^+\_F \).
 <div style="text-align: center;">
     <img src="PNGs/image-21.png" width="500">
 </div>
