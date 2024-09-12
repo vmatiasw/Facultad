@@ -273,29 +273,28 @@ b) Aplicar el algoritmo de normalizacion de FNBC al esquema universal
   
   - Aplicar el algoritmo de normalización en FNBC:
     - ¿\( \text{nomBib} \to \text{calle}, \text{número} \) es testigo?
-      - Sí, porque no es trivial y
-      - \( \text{nomBib}^+ = \{\text{nomBib}, \text{calle}, \text{número}\} \neq R \)
-      - Luego \( \text{nomBib} \) no es superclave de \( R \).
+      - Sí, porque no es trivial y \( \text{nomBib}^+ = \{\text{nomBib}, \text{calle}, \text{número}\} \neq R \)
+      - Luego, \( \text{nomBib} \) no es superclave de \( R \).
     
     - ¿Cómo queda la descomposición de BibLibs?
       - \( \text{BibLibs2} = (\text{nomBib}, \text{numInv}, \text{ISBN}, \text{título}, \text{editorial}, \text{autores}, \text{edición}) \)
       - \( R1 = (\text{nomBib}, \text{calle}, \text{número}) \)
     
     - ¿\( \text{ISBN} \to \text{título}, \text{editorial}, \text{autores}, \text{edición} \) es testigo?
-      - Sí, porque no es trivial y
-      - \( \text{ISBN}^+ = \{\text{ISBN}, \text{título}, \text{editorial}, \text{edición}, \text{autores}\} \) que es menor que \( \text{BibLibs2} \)
-      - Luego \( \text{ISBN} \) no es superclave de \( \text{BibLibs2} \).
+      - Sí, porque no es trivial y \( \text{ISBN}^+ = \{\text{ISBN}, \text{título}, \text{editorial}, \text{edición}, \text{autores}\} \) que es menor que \( \text{BibLibs2} \)
+      - Luego, \( \text{ISBN} \) no es superclave de \( \text{BibLibs2} \).
     
     - ¿Cómo queda la descomposición de \( \text{BibLibs2} \)?
       - \( \text{BibLibs3} = (\text{nomBib}, \text{numInv}, \text{ISBN}) \)
       - \( R2 = (\text{ISBN}, \text{título}, \text{editorial}, \text{edición}, \text{autores}) \)
 
     - ¿Estan en FNBC?
-      - En un ejercicio anterior sale que R1 y R2 están en FNBC. <!-- FIXME: ?? -->
-    - Usamos la comprobación:
+      - R1 y R2 se comprobo en el ejercio anterior.
+      - BibLibs3 hay que verificarlo a traves del algoritmo de comprobación de que esquema está en FNBC:
       \[
         \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+
       \]
+    - Comprobacion:
       - \({\{numInv, nomBib\}}^+ = \text{BibLibs} \supseteq \text{BibLibs3}\)
       - Luego \({\{numInv, nomBib\}}\) es superclave y no hace falta chequear superconjuntos.
       - \({\{ISBN, numInv\}}^+ = R2 \cup \{numInv\}\), luego no contiene BibLibs3.
