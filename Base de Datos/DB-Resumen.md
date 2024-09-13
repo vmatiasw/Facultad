@@ -256,8 +256,8 @@ O sea que en las consultas o restricciones de integridad no vamos a dividir el v
     <img src="PNGs/image-2.png" width="500">
 </div>
 
-**Redundancia de datos**: Repetición/duplicación de datos que son el mismo y por lo tanto mantenerse iguales. Debemos diseñar un esquema de la BD que no contenga redundancia de
-datos. **Una solución**: Obtener un buen diseño descomponiendo el esquema que contiene todos los atributos en esquemas más chicos. La **teoría de normalización** trabaja con esta idea y trata con cómo diseñar buenos esquemas de BD relacionales.
+**Redundancia de datos**: La redundancia es un problema que ocurre cuando tienes tuplas en \( R \) que tienen los mismos valores en \( \alpha \) pero diferentes valores en \( \beta \). Esta repetición de los valores de \( \beta \) es innecesaria si no es una clave candidata.
+Una **solucion** es obtener un buen diseño descomponiendo el esquema que contiene todos los atributos en esquemas más chicos.
 
 **Criterios para tener un diseño de calidad:**
 
@@ -378,13 +378,15 @@ y se puede inferir de ellas las siguientes:
 
 **\( F \vdash f \)**: Indica que \( f \) se deduce de \( F \).
 
-**F+ (Cierre (o clausura) de un conjunto de DFs F)**: todas las dependencias que se deducen de F. Sirve para:
+**F+ (Cierre (o clausura) de un conjunto de DFs F)**: todas las dependencias que se deducen de F.
+Sirve para:
 
 - Calcular F+ y ver si f está en F+; Si está, no se agrega a F; Si no está, hay que agregarla.
   > En la práctica, calcular la clausura \( F^+ \) suele ser inviable debido al gran número de atributos en un esquema universal. Una razón es que para un conjunto de atributos \( \alpha \), existen \( 2^{|\alpha|} \) dependencias triviales. Además, si \( \alpha \to \beta \) está en \( F \), hay \( 2^{|R|} \) maneras de aplicar la aumentatividad a \( \alpha \to \beta \) (donde \( R \) es el esquema universal) y algunas de estas aplicaciones ni cambiarán el resultado.
 - Intentar deducir f de F y si lo logramos: no se agrega f a F.
   > Si no lo logramos no quiere decir que no se pueda, no nos dice nada.
-- Para saber si \( \alpha \to \beta \) es deducible de \( F \). Si tenemos las dependencias de \( F^+ \) con el lado izquierdo \( \alpha \), este conjunto es mucho más pequeño que \( F^+ \) (porque hay \( 2^n \) tales \( \alpha \)).
+- Para saber si \( \alpha \to \beta \) es deducible de \( F \).
+  - Si tenemos las dependencias de \( F^+ \) con el lado izquierdo \( \alpha \), este conjunto es mucho más pequeño que \( F^+ \) (porque hay \( 2^n \) tales \( \alpha \)).
   Por lo tanto, para responder si \( F \vdash \alpha \to \beta \), podríamos contestar \( \alpha \to \beta \in \{ \alpha \to \phi \mid F \vdash \alpha \to \phi \} \).
 - Para obtener solo el conjunto de dependencias funcionales \( \alpha \to A \) (deducibles de \( F \)) donde \( A \) es un atributo:
   1. Primero, consideramos el conjunto \( \{ A \in R \mid F \vdash \alpha \to A \} \). Esto representa todos los atributos \( A \) que están relacionados con \( \alpha \) mediante una dependencia funcional deducida de \( F \).
@@ -416,29 +418,22 @@ Para **decidir si es util agregar \( \alpha \to \beta \) a \( F \)** (osea, no e
 - \( \alpha \) es una superclave de \( R \).
 - Para todo atributo \( A \) en \( \alpha \), el conjunto \( \alpha - \{A\} \) no es una superclave de \( R \).
 
-**Verificación de Superclave**:
+**Verificación de Superclave**: Para verificar que \( \alpha \) es una superclave de \( R \):
+  1. Calcula \( \alpha^+ \) (el cierre de \( \alpha \) bajo \( F \)).
+  2. Chequea si \( \alpha^+ \) contiene todos los atributos de \( R \).
 
-- Para verificar que \( \alpha \) es una superclave de \( R \):
-  - Calcula \( \alpha^+ \) (el cierre de \( \alpha \) bajo \( F \)).
-  - Chequea si \( \alpha^+ \) contiene todos los atributos de \( R \).
+**Redundancia**: Si el esquema relacional \( R \) tiene redundancia en un conjunto de atributos \( \beta \) y se cumple en \( R \) una dependencia funcional \( \alpha \rightarrow \beta \) (donde \( \alpha \) y \( \beta \) son disjuntos), entonces:
 
-Si \( R \) es un esquema con redundancia de información en un conjunto de atributos \( \beta \) y la dependencia funcional \( \alpha \rightarrow \beta \) (donde \( \alpha \) y \( \beta \) son disjuntos) se cumple en \( R \):
-
-- Si \( \alpha \) no determina todos los atributos de \( R \),
-  - La dependencia \( \alpha \rightarrow \beta \) puede ser usada para eliminar redundancia de información por medio de la descomposición de \( R \):
-  - Para eliminar la redundancia de información, se saca \( \beta \) de \( R \) y se crea un esquema con los atributos de \( \alpha \cup \beta \).
-  - Al hacer esto, desaparece la redundancia de información para los atributos de \( \beta \).
-- Si \( \alpha \rightarrow \beta \) es no trivial, y \( \alpha \) no determina todos los atributos de \( R \):
-  - Entonces existen 2 tuplas distintas de \( R \) que coinciden en \( \alpha \).
-  - Entonces para esas tuplas se van a repetir los valores de \( \beta \).
-  - Por lo tanto, tenemos redundancia de información en esas tuplas para los atributos de \( \beta \), a menos que \( \beta \) sea clave candidata para el conjunto de atributos de un concepto del problema.
-- Sea \( R \), \( F \) (conjunto de dependencias funcionales). Decir que \( \alpha \) no determina todos los atributos de \( R \) es lo mismo que decir:
-  - Que \( \alpha \rightarrow R \) no se deduce de \( F \).
-  - O, equivalentemente, que \( \alpha \) no es superclave de \( R \).
-- Juntando todo, consideramos las dependencias \( \alpha \rightarrow \beta \) que cumplen:
-  - \( \alpha \rightarrow \beta \) es no trivial, y
-  - \( \alpha \) no es superclave de \( R \).
-
+- **Si \( \alpha \) no determina todos los atributos de \( R \)**:
+  - La dependencia \( \alpha \rightarrow \beta \) puede ser usada para eliminar redundancia de información para los atributos de \( \beta \) por medio de la *descomposición* de \( R \) en  \( R - \{\beta\} \) y \( \alpha \cup \beta \).
+  - Sea \( R \), \( F \) (conjunto de dependencias funcionales). Decir que \( \alpha \) no determina todos los atributos de \( R \) es lo mismo que decir:
+    - Que \( \alpha \rightarrow R \) no se deduce de \( F \).
+    - O, equivalentemente, que **\( \alpha \) no es superclave de \( R \)**.
+- **Si \( \alpha \rightarrow \beta \) es no trivial, y \( \alpha \) no determina todos los atributos de \( R \)**:
+  1. Entonces existen 2 tuplas distintas de \( R \) que coinciden en \( \alpha \).
+  2. Entonces para esas tuplas se van a repetir los valores de \( \beta \).
+  3. Por lo tanto, tenemos redundancia de información en esas tuplas para los atributos de \( \beta \), a menos que \( \beta \) sea **clave candidata** para el conjunto de atributos de un concepto del problema.
+  
 #### 3) Normalizacion
 
 Un esquema \( R \) está en **Forma Normal de Boyce-Codd (FNBC)** con respecto a un conjunto \( F \) de dependencias funcionales (DFs) si para todas las DFs en \( F^+ \) de la forma \( \alpha \rightarrow \beta \), donde \( \alpha \subseteq R \) y \( \beta \subseteq R \), al menos una de las siguientes propiedades se cumple:
@@ -446,7 +441,7 @@ Un esquema \( R \) está en **Forma Normal de Boyce-Codd (FNBC)** con respecto a
 - \( \alpha \rightarrow \beta \) es trivial (i.e., \( \beta \subseteq \alpha \)).
 - \( \alpha \) es una superclave de \( R \) (i.e., \( \alpha \rightarrow R \in F^+ \)).
 
-Es decir, cumple la propiedad de no tener redundancia de información proveniente de DFs. La propiedad expresa la negación de la existencia de DFs que cumplen: \( \alpha \rightarrow \beta \) es no trivial, y \( \alpha \) no es superclave de \( R \) .
+Es decir, cumple la propiedad de no tener redundancia de información proveniente de DFs. La propiedad expresa la negación de la existencia de DFs que cumplen: \( \alpha \rightarrow \beta \) es no trivial, y \( \alpha \) no es superclave de \( R \) (i.e: redundancia).
 
 Sea \( R \) el esquema universal, \( F \) el conjunto de dependencias funcionales. Una descomposición \( \{ R_1, \dots, R_n \} \) de \( R \) está en FNBC con respecto a \( F \) si y solo si cada \( R_i \) está en FNBC con respecto a \( F \).
 
