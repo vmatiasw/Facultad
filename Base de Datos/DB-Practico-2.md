@@ -188,10 +188,20 @@ Resuelto en el teorico/resumen
     - Si \( G \notin \alpha \implies \{ I \} \nsubseteq \alpha^+_F \neq R\) por lo que no seria superclave.
 
 > **8)** Sea el esquema \( R = (A, B, C, D, E, F, G) \) y el conjunto de dependencias funcionales:
-> \[
-> G = \{A \to CD; CE \to AD; CF \to EB; E \to F ; CD \to E; G \to E\} > \]
+> \[ 
+    G = \{A \to CD; CE \to AD; CF \to EB; E \to F ; CD \to E; G \to E\}
+  \]
 > Mostrar una dependencia funcional que no es derivable de \( G \). Probar que no es derivable de \( G \) indicando todos los pasos de la prueba.
 
+**Proposición**: \( F \vdash \alpha \to \beta \iff \beta \subseteq \alpha^+_F \)
+
+\( E \in R\), calculo \( E^+_G \):
+
+\( res = {E} \)
+\( E \in \text{ res } \land E \to F \implies \text{ res } = \text{ res }  \cup F \)
+\( E^+_G = {E, F}\)
+
+Por lo tanto, \( E \to A \) por ejemplo, no es derivable de \( G \) ya que \( G \notin E^+_G\)
 > **9)** Los registros de un club deportivo son tuplas de la forma
 > (clubNro, ubicacion, gerente, instalacion, tamaño, cuota, prioridad).
 > Un club deportivo se divide en varios clubes que pueden estar o no en diferentes ciudades.
@@ -246,66 +256,79 @@ R = \{clubNro, ubicacion, gerente, instalacion, tamaño, cuota, prioridad\}
 b) Aplicar el algoritmo de normalizacion de FNBC al esquema universal
 
 
-- > **Del teorico:**
+> **Del teorico:**
   **Ejercicio**: Comprobación de Forma normal de Boyce Codd
-  - Sea F dado por:
-    1. nomBib → calle, numero
-    2. calle, numero → nomBib
-    3. ISBN → título, editorial, autores, edición
-    4. nomBib, numInv → ISBN
-  - Sean los esquemas:
-    - R = (nomBib, numInv, ISBN)
-    - Biblioteca = (nomBib, calle, número)
-    - Libro = (ISBN, título, editorial, autores, edición)
-  - Comprobar que Biblioteca, Libro están en FNBC:
+>
+> Sea F dado por:
+>  1. nomBib → calle, numero
+>  2. calle, numero → nomBib
+>  3. ISBN → título, editorial, autores, edición
+>  4. nomBib, numInv → ISBN
+>
+> Sean los esquemas:
+>  - R = (nomBib, numInv, ISBN)
+>  - Biblioteca = (nomBib, calle, número)
+>  - Libro = (ISBN, título, editorial, autores, edición)
+>
+> Comprobar que Biblioteca, Libro están en FNBC:
 
-  **Ejercicio**: Aplicar el algoritmo de normalización en FNBC a:
-  R = (A, B, C, D, E, F)
-  F = {A → CB, E →FA}
-
-  **Ejercicio**: Sea el esquema universal:
-  BibLibs = (nomBib, calle, número, numInv, ISBN, título, editorial, autores, edición)
-- Sea \( F \) dado por:
-  - \( \text{nomBib} \to \text{calle}, \text{número} \)
-  - \( \text{calle}, \text{número} \to \text{nomBib} \)
-  - \( \text{ISBN} \to \text{título}, \text{editorial}, \text{autores}, \text{edición} \)
-  - \( \text{nomBib}, \text{numInv} \to \text{ISBN} \)
+>**Del teorico:**
+>**Ejercicio**: Aplicar el algoritmo de normalización en FNBC a:
+>R = (A, B, C, D, E, F)
+>F = {A → CB, E →FA}
   
-  - Aplicar el algoritmo de normalización en FNBC:
-    - ¿\( \text{nomBib} \to \text{calle}, \text{número} \) es testigo?
-      - Sí, porque no es trivial y \( \text{nomBib}^+ = \{\text{nomBib}, \text{calle}, \text{número}\} \neq R \)
-      - Luego, \( \text{nomBib} \) no es superclave de \( R \).
+>**Del teorico:**
+>**Ejercicio**: Sea el esquema universal:
+BibLibs = (nomBib, calle, número, numInv, ISBN, título, editorial, autores, edición)
+> Sea \( F \) dado por:
+>- \( \text{nomBib} \to \text{calle}, \text{número} \)
+>- \( \text{calle}, \text{número} \to \text{nomBib} \)
+>- \( \text{ISBN} \to \text{título}, \text{editorial}, \text{autores}, \text{edición} \)
+>- \( \text{nomBib}, \text{numInv} \to \text{ISBN} \)
+>
+Aplicar el algoritmo de normalización en FNBC:
+- ¿\( \text{nomBib} \to \text{calle}, \text{número} \) es testigo?
+  - Sí, porque no es trivial y 
+  - \( \text{nomBib}^+ = \{\text{nomBib}, \text{calle}, \text{número}\} \neq R \) por lo que \( \text{nomBib} \) no es superclave de \( BibLibs \).
     
-    - ¿Cómo queda la descomposición de BibLibs?
-      - \( \text{BibLibs2} = (\text{nomBib}, \text{numInv}, \text{ISBN}, \text{título}, \text{editorial}, \text{autores}, \text{edición}) \)
-      - \( R1 = (\text{nomBib}, \text{calle}, \text{número}) \)
+- ¿Cómo queda la descomposición de BibLibs?
+  - \( \text{BibLibs2} = (\text{nomBib}, \text{numInv}, \text{ISBN}, \text{título}, \text{editorial}, \text{autores}, \text{edición}) \)
+  - \( R1 = (\text{nomBib}, \text{calle}, \text{número}) \)
     
-    - ¿\( \text{ISBN} \to \text{título}, \text{editorial}, \text{autores}, \text{edición} \) es testigo?
-      - Sí, porque no es trivial y \( \text{ISBN}^+ = \{\text{ISBN}, \text{título}, \text{editorial}, \text{edición}, \text{autores}\} \) que es menor que \( \text{BibLibs2} \)
-      - Luego, \( \text{ISBN} \) no es superclave de \( \text{BibLibs2} \).
+- ¿\( \text{ISBN} \to \text{título}, \text{editorial}, \text{autores}, \text{edición} \) es testigo?
+  - Sí, porque no es trivial y 
+  - \( \text{ISBN}^+ = \{\text{ISBN}, \text{título}, \text{editorial}, \text{edición}, \text{autores}\} \neq \text{BibLibs2} \) por lo que \( \text{ISBN} \) no es superclave de \( \text{BibLibs2} \).
     
-    - ¿Cómo queda la descomposición de \( \text{BibLibs2} \)?
-      - \( \text{BibLibs3} = (\text{nomBib}, \text{numInv}, \text{ISBN}) \)
-      - \( R2 = (\text{ISBN}, \text{título}, \text{editorial}, \text{edición}, \text{autores}) \)
+- ¿Cómo queda la descomposición de \( \text{BibLibs2} \)?
+  - \( \text{BibLibs3} = (\text{nomBib}, \text{numInv}, \text{ISBN}) \)
+  - \( R2 = (\text{ISBN}, \text{título}, \text{editorial}, \text{edición}, \text{autores}) \)
 
-    - ¿Estan en FNBC?
-      - R1 y R2 se comprobo en el ejercio anterior.
-      - BibLibs3 hay que verificarlo a traves del algoritmo de comprobación de que esquema está en FNBC:
+- ¿Estan en FNBC?
+  - R1 y R2 se comprobo en el ejercio anterior.
+  - BibLibs3 hay que verificarlo a traves del algoritmo de comprobación de que esquema está en FNBC:
       \[
         \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+
       \]
-    - Comprobacion:
-      - \({\{numInv, nomBib\}}^+ = \text{BibLibs} \supseteq \text{BibLibs3}\)
-      - Luego \({\{numInv, nomBib\}}\) es superclave y no hace falta chequear superconjuntos.
-      - \({\{ISBN, numInv\}}^+ = R2 \cup \{numInv\}\), luego no contiene BibLibs3.
-      - \({\{ISBN, numInv\}}^+ \cap (\text{BibLibs3} - \{ISBN, numInv\}) = R2 \cap \{nomBib\} = \emptyset\)
-      - \({\{ISBN, nomBib\}}^+ = R2 \cup R1\), luego no contiene BibLibs3.
-      - \( {\{ISBN, nomBib\}}^+ \cap (\text{BibLibs3} - \{ISBN, nomBib\}) = (R2 \cup R1) \cap \{numInv\} = \emptyset \)
-      - \(\text{nomBib}^+ = \{nomBib, calle, numero\}\)
-      - \(\text{nomBib}^+ \cap (\text{BibLibs3} - \{nomBib\}) = \{nomBib, calle, numero\} \cap \{numInv, ISBN\} = \emptyset\)
-      - \(\text{numinv}^+ = \text{numinv}\), luego \(\text{numinv}^+ \cap (\text{BibLibs3} - \{numinv\}) = \emptyset\).
-      - \(\text{ISBN}^+ = R2\), luego ISBN no es superclave de BibLib3.
-      - \( \text{ISBN}^+ \cap \{nomBib, numInv\} = \emptyset \)
-    - Hemos chequeado todos los casos, por lo tanto, BibLibs3 está en FNBC.
+
+Aplicar el algoritmo de comprobacion en FNBC:
+- - \({\{numInv, nomBib\}}^+ = \text{BibLibs} \supseteq \text{BibLibs3}\)
+  - Luego \({\{numInv, nomBib\}}\) es superclave y no hace falta chequear superconjuntos.
+  - \({\{ISBN, numInv\}}^+ = R2 \cup \{numInv\}\), luego no contiene BibLibs3.
+  - \({\{ISBN, numInv\}}^+ \cap (\text{BibLibs3} - \{ISBN, numInv\}) = R2 \cap \{nomBib\} = \emptyset\)
+  - \({\{ISBN, nomBib\}}^+ = R2 \cup R1\), luego no contiene BibLibs3.
+  - \( {\{ISBN, nomBib\}}^+ \cap (\text{BibLibs3} - \{ISBN, nomBib\}) = (R2 \cup R1) \cap \{numInv\} = \emptyset \)
+  - \(\text{nomBib}^+ = \{nomBib, calle, numero\}\)
+  - \(\text{nomBib}^+ \cap (\text{BibLibs3} - \{nomBib\}) = \{nomBib, calle, numero\} \cap \{numInv, ISBN\} = \emptyset\)
+  - \(\text{numinv}^+ = \text{numinv}\), luego \(\text{numinv}^+ \cap (\text{BibLibs3} - \{numinv\}) = \emptyset\).
+  - \(\text{ISBN}^+ = R2\), luego ISBN no es superclave de BibLib3.
+  - \( \text{ISBN}^+ \cap \{nomBib, numInv\} = \emptyset \)
+- Hemos chequeado todos los casos, por lo tanto, BibLibs3 está en FNBC.
+
+
+> **10)** Para \( R = (I, S, C, D, A, O) \) y \( F = \{S \to D; I \to A; IS \to C; A \to O\} \), analizar para cada descomposición si cumple la FNBC justificando su respuesta:
+
+**a)** \( R_1 = (I, S, C, D); R_2 = (I, A, O) \).
+
+**b)** \( R_1 = (S, D); R_2 = (I, A); R_3 = (I, S, C); R_4 = (A, O) \).
 
 
