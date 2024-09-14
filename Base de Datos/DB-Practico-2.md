@@ -304,31 +304,110 @@ Aplicar el algoritmo de normalización en FNBC:
   - \( R2 = (\text{ISBN}, \text{título}, \text{editorial}, \text{edición}, \text{autores}) \)
 
 - ¿Estan en FNBC?
-  - R1 y R2 se comprobo en el ejercio anterior.
-  - BibLibs3 hay que verificarlo a traves del algoritmo de comprobación de que esquema está en FNBC:
+  - R1 y R2 se comprobo en el ejercio del teorico anterior.
+  - comprobemos que \( BibLibs3 \) está en FNBC a traves del siguiente algoritmo:
       \[
         \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+
       \]
 
-Aplicar el algoritmo de comprobacion en FNBC:
-- - \({\{numInv, nomBib\}}^+ = \text{BibLibs} \supseteq \text{BibLibs3}\)
-  - Luego \({\{numInv, nomBib\}}\) es superclave y no hace falta chequear superconjuntos.
-  - \({\{ISBN, numInv\}}^+ = R2 \cup \{numInv\}\), luego no contiene BibLibs3.
-  - \({\{ISBN, numInv\}}^+ \cap (\text{BibLibs3} - \{ISBN, numInv\}) = R2 \cap \{nomBib\} = \emptyset\)
-  - \({\{ISBN, nomBib\}}^+ = R2 \cup R1\), luego no contiene BibLibs3.
-  - \( {\{ISBN, nomBib\}}^+ \cap (\text{BibLibs3} - \{ISBN, nomBib\}) = (R2 \cup R1) \cap \{numInv\} = \emptyset \)
-  - \(\text{nomBib}^+ = \{nomBib, calle, numero\}\)
-  - \(\text{nomBib}^+ \cap (\text{BibLibs3} - \{nomBib\}) = \{nomBib, calle, numero\} \cap \{numInv, ISBN\} = \emptyset\)
-  - \(\text{numinv}^+ = \text{numinv}\), luego \(\text{numinv}^+ \cap (\text{BibLibs3} - \{numinv\}) = \emptyset\).
-  - \(\text{ISBN}^+ = R2\), luego ISBN no es superclave de BibLib3.
-  - \( \text{ISBN}^+ \cap \{nomBib, numInv\} = \emptyset \)
+Aplicamos el algoritmo de comprobacion FNBC en \( R_i = BibLibs3 \) testeando sus subconjuntos \(\alpha\):
+- \(\{numInv, nomBib\}^+\)
+    - \(\{numInv, nomBib\}^+ = \text{BibLibs} \supseteq \text{ BibLibs3 } = R_i \)
+    - Por lo tanto, \(\{numInv, nomBib\}\) es superclave y no hace falta chequear superconjuntos.
+- \(\{ISBN, numInv\}^+\)
+    - \(\{ISBN, numInv\}^+ = R2 \cup \{numInv\} \nsupseteq \text{ BibLibs3 } = R_i \)
+    - \(\{ISBN, numInv\}^+ \cap (\text{BibLibs3} - \{ISBN, numInv\}) = R2 \cap \{nomBib\} = \emptyset\)
+- \(\{ISBN, nomBib\}^+\)
+    - \(\{ISBN, nomBib\}^+ = R2 \cup R1 \nsupseteq \text{ BibLibs3 } = R_i \)
+    - \(\{ISBN, nomBib\}^+ \cap (\text{BibLibs3} - \{ISBN, nomBib\}) = (R2 \cup R1) \cap \{numInv\} = \emptyset \)
+- \(\text{nomBib}^+\)
+    - \(\text{nomBib}^+ = \{nomBib, calle, numero\} \nsupseteq \text{ BibLibs3 } = R_i \)
+    - \(\text{nomBib}^+ \cap (\text{BibLibs3} - \{nomBib\}) = \{nomBib, calle, numero\} \cap \{numInv, ISBN\} = \emptyset\)
+- \(\text{numinv}^+\)
+    - \(\text{numinv}^+ = \text{numinv} \nsupseteq \text{ BibLibs3 } = R_i \)
+    - \(\text{numinv}^+ \cap (\text{BibLibs3} - \{numinv\}) = \emptyset\).
+- \(\text{ISBN}^+\)
+    - \(\text{ISBN}^+ = R2 \nsupseteq \text{ BibLibs3 } = R_i \)
+    - \(\text{ISBN}^+ \cap (\text{BibLibs3} - \{ISBN\}) = \emptyset \)
 - Hemos chequeado todos los casos, por lo tanto, BibLibs3 está en FNBC.
-
 
 > **10)** Para \( R = (I, S, C, D, A, O) \) y \( F = \{S \to D; I \to A; IS \to C; A \to O\} \), analizar para cada descomposición si cumple la FNBC justificando su respuesta:
 
 **a)** \( R_1 = (I, S, C, D); R_2 = (I, A, O) \).
 
+- **Comprobemos \( R_1 = (I, S, C, D) \)**:
+    - \(\{I,S\}^+\)
+        - \( \{I,S\}^+ = \{S, I, D, A, C, O\} \supseteq R_1 \)
+        - Por lo tanto, \(\{I, S\}\) es superclave y no hace falta chequear superconjuntos.
+    
+    - \(\{S\}^+\)
+        - \( \{S\}^+ = \{S, D\} \nsupseteq R_1 \)
+        - \( \{S\}^+ \cap (R_1 - \{S\}) = \{D\} \neq \emptyset \)
+        - No se cumple ninguna de las condiciones!!
+    
+Por lo que esta descomposicion no esta en FNBC.
+
 **b)** \( R_1 = (S, D); R_2 = (I, A); R_3 = (I, S, C); R_4 = (A, O) \).
 
+- **Comprobemos \( R_1 = (S, D) \)**:
+    - \(\{S\}^+\)
+        - \( \{S\}^+ = \{S, D\} \supseteq R_1 \)
+        - Por lo tanto, \(\{S\}\) es superclave y no hace falta chequear superconjuntos.
 
+    - \(\{D\}^+\)
+        - \( \{D\}^+ = \{D\} \nsupseteq R_1 \)
+        - \( \{D\}^+ \cap (R_1 - \{D\}) = \emptyset \)
+
+    - \( R_1 \) es FNBC
+
+- **Comprobemos \( R_2 = (I, A) \)**:
+    - \(\{I\}^+\)
+        - \( \{I\}^+ = \{I, A\} \supseteq R_2 \)
+        - Por lo tanto, \(\{I\}\) es superclave y no hace falta chequear superconjuntos.
+
+    - \(\{A\}^+\)
+        - \( \{A\}^+ = \{A\} \nsupseteq R_2 \)
+        - \( \{A\}^+ \cap (R_2 - \{A\}) = \emptyset \)
+
+    - \( R_2 \) es FNBC
+
+- **Comprobemos \( R_3 = (I, S, C) \)**:
+    - \(\{I, S\}^+\)
+        - \( \{I, S\}^+ = \{I, S, C\} \supseteq R_3 \)
+      - Por lo tanto, \(\{I, S\}\) es superclave y no hace falta chequear superconjuntos.
+
+    - \(\{I\}^+\)
+        - \( \{I\}^+ = \{I, A, O\} \nsupseteq R_3 \)
+        - \( \{I\}^+ \cap (R_3 - \{I\}) = \emptyset \)
+    
+    - \(\{S\}^+\)
+        - \( \{S\}^+ = \{S, D\} \nsupseteq R_3 \)
+        - \( \{S\}^+ \cap (R_3 - \{S\}) = \emptyset \)
+    
+    - \(\{C\}^+\)
+        - \( \{C\}^+ = \{A\} \nsupseteq R_3 \)
+        - \( \{C\}^+ \cap (R_3 - \{C\}) = \emptyset \)
+    
+    - \(\{I, C\}^+\)
+        - \( \{I, C\}^+ = \{I, C, A, O\} \nsupseteq R_3 \)
+        - \( \{I, C\}^+ \cap (R_3 - \{I, C\}) = \emptyset \)
+    
+    - \(\{S, C\}^+\)
+        - \( \{S, C\}^+ = \{S, C, D\} \nsupseteq R_3 \)
+        - \( \{S, C\}^+ \cap (R_3 - \{S, C\}) = \emptyset \)
+
+    - \( R_3 \) es FNBC
+
+- **Comprobemos \( R_4 = (A, O) \)**:
+
+    - \(\{A\}^+\)
+        - \( \{A\}^+ = \{A, O\} \supseteq R_4 \)
+        - Por lo tanto, \(\{A\}\) es superclave y no hace falta chequear superconjuntos.
+
+    - \(\{O\}^+\)
+        - \( \{O\}^+ = \{O\} \nsupseteq R_4 \)
+        - \( \{O\}^+ \cap (R_4 - \{O\}) = \emptyset \)
+
+    - \( R_4 \) es FNBC
+
+Por lo tanto la descomposicion es FNBC
