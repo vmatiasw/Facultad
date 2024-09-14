@@ -411,3 +411,41 @@ Por lo que esta descomposicion no esta en FNBC.
     - \( R_4 \) es FNBC
 
 Por lo tanto la descomposicion es FNBC
+
+> **11)** Resolver:
+
+**a)** Sea \( R = (A, B, C, D, E, G) \) con las dependencias funcionales \( F = \{A \to BC; D \to EG; G \to B; E \to C; B \to A\} \). ¿Está \( (D, E, G) \) en FNBC? Justifique su respuesta.
+
+- \(\{D\}^+\)
+    - \( \{D\}^+ = \{D, E, G, C, B, A\} \supseteq (D, E, G) \)
+    - Por lo tanto, \(\{D\}\) es superclave y no hace falta chequear superconjuntos.
+
+- \(\{G\}^+\)
+    - \( \{G\}^+ = \{G, B, A, C\} \nsupseteq (D, E, G) \)
+    - \( \{G\}^+ \cap ((D, E, G) - \{G\}) = \emptyset \)
+
+- \(\{G, E\}^+\)
+    - \( \{G, E\}^+ = \{G, E, B, A, C\} \nsupseteq (D, E, G) \)
+    - \( \{G, E\}^+ \cap ((D, E, G) - \{G, E\}) = \emptyset \)
+    
+- \(\{E\}^+\)
+    - \( \{E\}^+ = \{E, C\} \nsupseteq (D, E, G) \)
+    - \( \{E\}^+ \cap ((D, E, G) - \{E\}) = \emptyset \)
+
+Por lo que esta en FNBC.
+    
+**b)** Sea \( R = (A, B, C, D, E) \) con el conjunto de dependencias funcionales \( F = \{B \to EA; C \to E; DA \to B; E \to AC\} \). ¿Está \( (B, E, A) \) en FNBC? Justifique su respuesta.
+
+- \(\{A\}^+\)
+    - \( \{A\}^+ = \{A, B, C, E\} \supseteq (B, E, A) \)
+    - Por lo tanto, \(\{A\}\) es superclave y no hace falta chequear superconjuntos.
+
+- \(\{B\}^+\)
+    - \( \{B\}^+ = \{A, B, C, E\} \supseteq (B, E, A) \)
+    - Por lo tanto, \(\{B\}\) es superclave y no hace falta chequear superconjuntos.
+    
+- \(\{E\}^+\)
+    - \( \{E\}^+ = \{A, B, C, E\} \supseteq (B, E, A) \)
+    - Por lo tanto, \(\{E\}\) es superclave y no hace falta chequear superconjuntos.
+
+Por lo que esta en FNBC.
