@@ -437,15 +437,26 @@ Por lo que esta en FNBC.
 **b)** Sea \( R = (A, B, C, D, E) \) con el conjunto de dependencias funcionales \( F = \{B \to EA; C \to E; DA \to B; E \to AC\} \). ¿Está \( (B, E, A) \) en FNBC? Justifique su respuesta.
 
 - \(\{A\}^+\)
-    - \( \{A\}^+ = \{A, B, C, E\} \supseteq (B, E, A) \)
-    - Por lo tanto, \(\{A\}\) es superclave y no hace falta chequear superconjuntos.
+    - \( \{A\}^+ = \{A\} \nsupseteq (B, E, A) \)
+    - \( \{A\}^+ \cap ((B, E, A)- \{A\}) = \emptyset \)
 
 - \(\{B\}^+\)
     - \( \{B\}^+ = \{A, B, C, E\} \supseteq (B, E, A) \)
     - Por lo tanto, \(\{B\}\) es superclave y no hace falta chequear superconjuntos.
     
 - \(\{E\}^+\)
-    - \( \{E\}^+ = \{A, B, C, E\} \supseteq (B, E, A) \)
-    - Por lo tanto, \(\{E\}\) es superclave y no hace falta chequear superconjuntos.
+    - \( \{E\}^+ = \{A, C, E\} \nsupseteq (B, E, A) \)
+    - \( \{E\}^+ \cap ((B, E, A)- \{E\}) \neq \emptyset \)
+    - No se cumple ninguna de las condiciones!!
 
-Por lo que esta en FNBC.
+Por lo que NO esta en FNBC.
+
+> **12)** Sea \( R = (A, B, C, D) \) un esquema, para cada uno de los siguientes conjuntos de dependencias funcionales:
+\( F = \{AB \to C; C \to D; D \to A\} \),
+\( F = \{B \to C; B \to D\} \),
+\( F = \{AB \to C; BC \to D; CD \to A; AD \to B\} \).
+
+**a)** Mostrar todas las violaciones FNBC con un solo atributo a la derecha.
+
+**b)** Dar una descomposición \( R_1, \dots, R_n \) de \( R \) que esté en FNBC.
+
