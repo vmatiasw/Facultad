@@ -323,22 +323,22 @@ t_1[\alpha] = t2[\alpha] \implies t_1[\beta] = t_2[\beta]
 > No necesito dar todas las DF que se cumplen en el problema del mundo real, debido al costo computacional de las restricciones de integridad, **necesito un subconjunto de las DF lo menor posible tal que todas las demás DF se puedan derivar de ese subconjunto**.
 
 **Trivialidad**: Una DF **trivial** se cumple en todas las tablas de un esquema, osea es satisfecha por todas la relaciones de un esquema.
-Proposicion: \[ \alpha \rightarrow \beta \text{ es trivial } \iff \beta \subseteq \alpha. \]
+Proposicion: \[ \alpha \to \beta \text{ es trivial } \iff \beta \subseteq \alpha. \]
 
 - **Prueba**:
 
-  - \( \alpha \rightarrow \beta \text{ es trivial} \Rightarrow \beta \subseteq \alpha. \):
+  - \( \alpha \to \beta \text{ es trivial} \implies \beta \subseteq \alpha. \):
 
-    - Supongamos que \( \alpha \rightarrow \beta \) es trivial.
+    - Supongamos que \( \alpha \to \beta \) es trivial.
     - Si \( \beta \nsubseteq \alpha \), podría haber una relación \( R \) en la que existen valores para \( \alpha \) que no determinan completamente a \( \beta \), violando así la propiedad de trivialidad.
-    - Por lo tanto, si \( \alpha \rightarrow \beta \) es trivial, necesariamente \( \beta \subseteq \alpha \).
+    - Por lo tanto, si \( \alpha \to \beta \) es trivial, necesariamente \( \beta \subseteq \alpha \).
 
-  - \( \beta \subseteq \alpha \Rightarrow \alpha \rightarrow \beta \text{ es trivial}\):
+  - \( \beta \subseteq \alpha \implies \alpha \to \beta \text{ es trivial}\):
 
     - Supongamos que \( \beta \subseteq \alpha \).
     - Dado que \( \beta \subseteq \alpha \), cada valor de \( \alpha \) puede determinar a todos los valores de \( \beta \).
     - En otras palabras, en cualquier relación \( R \) que contenga atributos de \( \alpha \) y \( \beta \), la información sobre \( \beta \) está siempre presente dentro de \( \alpha \).
-    - Por lo tanto, la dependencia \( \alpha \rightarrow \beta \) se satisface en todas las relaciones posibles del esquema, lo que confirma que es trivial.
+    - Por lo tanto, la dependencia \( \alpha \to \beta \) se satisface en todas las relaciones posibles del esquema, lo que confirma que es trivial.
 
 **Axiomas de Armstrong**: (Conjunto de reglas de inferencia al derivar)
 
@@ -422,86 +422,72 @@ Para **decidir si es util agregar \( \alpha \to \beta \) a \( F \)** (osea, no e
   1. Calcula \( \alpha^+ \) (el cierre de \( \alpha \) bajo \( F \)).
   2. Chequea si \( \alpha^+ \) contiene todos los atributos de \( R \).
 
-**Redundancia**: Si el esquema relacional \( R \) tiene redundancia en un conjunto de atributos \( \beta \) y se cumple en \( R \) una dependencia funcional \( \alpha \rightarrow \beta \) (donde \( \alpha \) y \( \beta \) son disjuntos), entonces:
-
-- **Si \( \alpha \) no determina todos los atributos de \( R \)**:
-  - La dependencia \( \alpha \rightarrow \beta \) puede ser usada para eliminar redundancia de información para los atributos de \( \beta \) por medio de la *descomposición* de \( R \) en  \( R - \{\beta\} \) y \( \alpha \cup \beta \).
-  - Sea \( R \), \( F \) (conjunto de dependencias funcionales). Decir que \( \alpha \) no determina todos los atributos de \( R \) es lo mismo que decir:
-    - Que \( \alpha \rightarrow R \) no se deduce de \( F \).
-    - O, equivalentemente, que **\( \alpha \) no es superclave de \( R \)**.
-- **Si \( \alpha \rightarrow \beta \) es no trivial, y \( \alpha \) no determina todos los atributos de \( R \)**:
+**Redundancia**: Si el esquema relacional \( R \) tiene redundancia en un conjunto de atributos \( \beta \) y se cumple en \( R \) una dependencia funcional \( \alpha \to \beta \) (donde \( \alpha \) y \( \beta \) son disjuntos y por lo tanto \( \alpha \to \beta \) una DF no trivial ), entonces:
+- **Como \( \alpha \to \beta \) es no trivial, si \( \alpha \) no determina todos los atributos de \( R \)**:
   1. Entonces existen 2 tuplas distintas de \( R \) que coinciden en \( \alpha \).
   2. Entonces para esas tuplas se van a repetir los valores de \( \beta \).
   3. Por lo tanto, tenemos redundancia de información en esas tuplas para los atributos de \( \beta \), a menos que \( \beta \) sea **clave candidata** para el conjunto de atributos de un concepto del problema.
-  
+        - I.E: Si \( \beta \) es *clave candidata*, aunque sus valores se repitan en diferentes tuplas con el mismo valor de \( \alpha \), no son redundancia innecesaria. Sirven para identificar unívocamente las tuplas de acuerdo con las reglas del modelo relacional.
+- **Como \( \alpha \) no determina todos los atributos de \( R \)**:
+  - La dependencia \( \alpha \to \beta \) puede ser usada para eliminar redundancia de información para los atributos de \( \beta \) por medio de la *descomposición* de \( R \) en  \( R - \{\beta\} \) y \( \alpha \cup \beta \).
+  - Sea \( R \), \( F \) (conjunto de dependencias funcionales). Decir que \( \alpha \) no determina todos los atributos de \( R \) es lo mismo que decir:
+    - Que \( \alpha \to R \) no se deduce de \( F \).
+    - O, equivalentemente, que **\( \alpha \) no es superclave de \( R \)**.
+
 #### 3) Normalizacion
 
-Un esquema \( R \) está en **Forma Normal de Boyce-Codd (FNBC)** con respecto a un conjunto \( F \) de dependencias funcionales (DFs) si para todas las DFs en \( F^+ \) de la forma \( \alpha \rightarrow \beta \), donde \( \alpha \subseteq R \) y \( \beta \subseteq R \), al menos una de las siguientes propiedades se cumple:
+Un esquema \( R \) está en **Forma Normal de Boyce-Codd (FNBC)** con respecto a un conjunto \( F \) de dependencias funcionales (DFs) si para todas las DFs en \( F^+ \) de la forma \( \alpha \to \beta \), donde \( \alpha \subseteq R \) y \( \beta \subseteq R \), al menos una de las siguientes propiedades se cumple:
 
-- \( \alpha \rightarrow \beta \) es trivial (i.e., \( \beta \subseteq \alpha \)).
-- \( \alpha \) es una superclave de \( R \) (i.e., \( \alpha \rightarrow R \in F^+ \)).
+- \( \alpha \to \beta \) es trivial (i.e., \( \beta \subseteq \alpha \)).
+- \( \alpha \) es una superclave de \( R \) (i.e., \( \alpha \to R \in F^+ \)).
 
-Es decir, cumple la propiedad de no tener redundancia de información proveniente de DFs. La propiedad expresa la negación de la existencia de DFs que cumplen: \( \alpha \rightarrow \beta \) es no trivial, y \( \alpha \) no es superclave de \( R \) (i.e: redundancia).
+Es decir, cumple la propiedad de no tener redundancia de información proveniente de DFs. La propiedad expresa la negación de la existencia de DFs que cumplen: \( \alpha \to \beta \) es no trivial, y \( \alpha \) no es superclave de \( R \) (i.e: redundancia).
 
 Sea \( R \) el esquema universal, \( F \) el conjunto de dependencias funcionales. Una descomposición \( \{ R_1, \dots, R_n \} \) de \( R \) está en FNBC con respecto a \( F \) si y solo si cada \( R_i \) está en FNBC con respecto a \( F \).
 
 **¿Cómo comprobar que un esquema \( R \) con respecto a \( F \) no está en FNBC?**
 
 - Una DF de \( F^+ \) que no cumple la condición de FNBC se llama **violación** o **DF testigo**.
-  - Es una DF \( \alpha \rightarrow \beta \) no trivial en \( F^+ \) tal que \( \alpha \rightarrow R \notin F^+ \).
+  - Es una DF \( \alpha \to \beta \) no trivial en \( F^+ \) tal que \( \alpha \to R \notin F^+ \).
 - Para probar que \( R \) no está en FNBC con respecto a \( F \), basta con encontrar una DF testigo en \( F^+ \).
   - A veces (pero no siempre) la DF testigo está en \( F \).
 
 **¿Cómo comprobar que un esquema \( R \) con respecto a \( F \) está en FNBC?**
 
-Chequear todos los \( \alpha \rightarrow \beta \) de \( F^+ \) con atributos en \( R \) es demasiado costoso.
+Chequear todos los \( \alpha \to \beta \) de \( F^+ \) con atributos en \( R \) es demasiado costoso.
 
 **Comprobación de FNBC**: Sea \( R_U \) universal, con DFs \( F \) y sea \( R_i \) que forma parte de la descomposición de \( R_U \); para probar que \( R_i \) está en FNBC se puede hacer la siguiente comprobación:
-
 \[
 \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+
 \]
-
-La primera condición del V significa: todas las DF con lado izquierdo \( \alpha \) son triviales.
+- La primera condición del V significa: todas las DF con lado izquierdo \( \alpha \) son triviales.
+- Si \( \alpha \subseteq R_i \) viola la condición, entonces la siguiente DF es testigo: \( \alpha \to \alpha^+ \cap (R_i - \alpha) \) y la podremos usar para descomponer \(R_i\) en el Algoritmo de normalización en FNBC.
 
 **Prueba:**
 
 - Supongamos que \( R_i \) está en FNBC y \( \neg (R_i \subseteq \alpha^+) \):
 
-  - Toda \( \alpha \rightarrow \beta \) en \( F^+ \) con atributos en \( R_i \) es trivial.
+  - Toda \( \alpha \to \beta \) en \( F^+ \) con atributos en \( R_i \) es trivial.
   - Esto implica que para todo \( \beta \): \( \beta \cap (R_i - \alpha) = \emptyset \)
   - Se obtiene: \( \alpha^+ \cap (R_i - \alpha) = \emptyset \) (tomando \( \beta = \alpha^+ \))
   - Luego se cumple: \( \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+ \)
 
 - Supongamos que \( \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+ \):
-  - Sea \( \alpha \rightarrow \beta \) en \( F^+ \) con atributos en \( R_i \) y \( \neg (R_i \subseteq \alpha^+) \)
+  - Sea \( \alpha \to \beta \) en \( F^+ \) con atributos en \( R_i \) y \( \neg (R_i \subseteq \alpha^+) \)
   - Entonces se tiene que \( \beta \subseteq \alpha^+ \)
   - Entonces: \( \beta \cap (R_i - \alpha) \subseteq \alpha^+ \cap (R_i - \alpha) = \emptyset \)
-  - Luego \( \beta \subseteq \alpha \) y \( \alpha \rightarrow \beta \) es trivial.
+  - Luego \( \beta \subseteq \alpha \) y \( \alpha \to \beta \) es trivial.
 
-Si \( \alpha \subseteq R_i \) viola la condición:
-
-\[ \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+ \]
-
-entonces la siguiente dependencia funcional es testigo:
-
-\[ \alpha \rightarrow \alpha^+ \cap (R_i - \alpha) \]
-
-**Algoritmo de normalización en FNBC**
-
-Sea R esquema universal, F conjunto de DFs halla una descomposicion de R que está en FNBC.
+**Algoritmo de normalización en FNBC**: Sea R esquema universal, F conjunto de DFs halla una descomposicion de R que está en FNBC.
 
   <div style="text-align: center;">
       <img src="PNGs/image-22.png" width="500">
   </div>
-
-Algunas aclaraciones sobre el algoritmo anterior si se implementa automáticamente:
-
+  
 - Para buscar un esquema que no está en FNBC, se puede usar el algoritmo de comprobación de que un esquema está en FNBC:
   \[ \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+ \]
-
-- Este algoritmo encontrará un \( \alpha \) que no cumple la condición. A partir de ese \( \alpha \), se puede obtener la dependencia funcional testigo:
-  \[ \alpha \rightarrow \alpha^+ \cap (R_i - \alpha) \]
+- Este algoritmo encontrará un \( \alpha \) que viola la condición. A partir de ese \( \alpha \), se puede obtener la **DF testigo** (o **violacion**):
+  \[ \alpha \to \alpha^+ \cap (R_i - \alpha) \]
 
 ## Lenguajes de Consultas
 

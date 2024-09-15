@@ -136,49 +136,49 @@ Esquema universal: (nActor,dActor,nEstudio,dEstudio,titulo,año,presupuesto,rol,
 > - Una DF es **trivial** si es satisfecha por todas la relaciones de un esquema.
 >
 > Probar la siguiente afirmacion:
-> \[ \alpha \rightarrow \beta \text{ es trivial } \iff \beta \subseteq \alpha. \]
+> \[ \alpha \to \beta \text{ es trivial } \iff \beta \subseteq \alpha. \]
 
 Resuelto en el teorico/resumen
 
 > **7)** Sea \( R = (A, B, C, G, H, I) \) con el siguiente conjunto de dependencias funcionales:
 > \[
-> F = \{ A \rightarrow B; \; A \rightarrow C; \; CG \rightarrow H; \; CG \rightarrow I; \; B \rightarrow H \}.
+> F = \{ A \to B; \; A \to C; \; CG \to H; \; CG \to I; \; B \to H \}.
 > \]
 
 - Ejercicios: (Usare los axiomas y sus inferencias mencionadas donde su prueba este en el teorico/resumen)
 
-  - **a)** Derivar \( A \rightarrow BCH \) de \( F \).
-    \(F = \{ A \rightarrow B; \; A \rightarrow C; \; CG \rightarrow H; \; CG \rightarrow I; \; B \rightarrow H \}.\)
+  - **a)** Derivar \( A \to BCH \) de \( F \).
+    \(F = \{ A \to B; \; A \to C; \; CG \to H; \; CG \to I; \; B \to H \}.\)
 
-    1. \( A \rightarrow C \)
-    2. \( A \rightarrow B \)
-    3. \( B \rightarrow H \)
-    4. \( A \rightarrow H \text{ (Transitividad en b, c) }\)
-    5. \( A \rightarrow BC \text{ (Union en a, b) }\)
-    6. \( A \rightarrow HBC \text{ (Union en d, e) }\)
+    1. \( A \to C \)
+    2. \( A \to B \)
+    3. \( B \to H \)
+    4. \( A \to H \text{ (Transitividad en b, c) }\)
+    5. \( A \to BC \text{ (Union en a, b) }\)
+    6. \( A \to HBC \text{ (Union en d, e) }\)
 
-  - **b)** Derivar \( AG \rightarrow I \) de \( F \).
-    \(F = \{ A \rightarrow B; \; A \rightarrow C; \; CG \rightarrow H; \; CG \rightarrow I; \; B \rightarrow H \}.\)
+  - **b)** Derivar \( AG \to I \) de \( F \).
+    \(F = \{ A \to B; \; A \to C; \; CG \to H; \; CG \to I; \; B \to H \}.\)
 
-    1. \( A \rightarrow C \)
-    2. \( CG \rightarrow I \)
-    3. \( AG \rightarrow I \text{ (Pseudotransitividad en a, c) } \)
+    1. \( A \to C \)
+    2. \( CG \to I \)
+    3. \( AG \to I \text{ (Pseudotransitividad en a, c) } \)
 
   - **c)** Calcular \( A^+_F \) y \( (AG)^+_F \).
-    \(F = \{ A \rightarrow B; \; A \rightarrow C; \; CG \rightarrow H; \; CG \rightarrow I; \; B \rightarrow H \}.\)
+    \(F = \{ A \to B; \; A \to C; \; CG \to H; \; CG \to I; \; B \to H \}.\)
     - \( A^+_F \)
       1. \( \text{ res } = \{ A \} \)
-      2. \( A \in \text{ res } \land \{ A \rightarrow B; A \rightarrow C \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ B, C \} \)
-      3. \( B \in \text{ res } \land \{ B \rightarrow H \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ H \} \)
+      2. \( A \in \text{ res } \land \{ A \to B; A \to C \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ B, C \} \)
+      3. \( B \in \text{ res } \land \{ B \to H \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ H \} \)
       4. \( A^+_F = res = \{A, C, B, H\} \)
     - \( (AG)^+_F \)
       1. \( \text{ res } = \{ A, G \} \)
-      2. \( A \in \text{ res } \land \{ A \rightarrow B; A \rightarrow C \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ B, C \} \)
-      3. \( B \in \text{ res } \land \{ B \rightarrow H \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ H \} \)
-      4. \( CG \in \text{ res } \land \{ CG \rightarrow I\} \subseteq F \implies \text{ res } = \text{ res } \cup \{ I \} \)
+      2. \( A \in \text{ res } \land \{ A \to B; A \to C \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ B, C \} \)
+      3. \( B \in \text{ res } \land \{ B \to H \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ H \} \)
+      4. \( CG \in \text{ res } \land \{ CG \to I\} \subseteq F \implies \text{ res } = \text{ res } \cup \{ I \} \)
       5. \( (AG)^+_F = res = \{A, G, C, B, H, I\} \)
   - **d)** Calcular las claves candidatas de \( R \).
-    \(F = \{ A \rightarrow B; \; A \rightarrow C; \; CG \rightarrow H; \; CG \rightarrow I; \; B \rightarrow H \}.\)
+    \(F = \{ A \to B; \; A \to C; \; CG \to H; \; CG \to I; \; B \to H \}.\)
     \( R = (A, B, C, G, H, I) \)
     1. Propongo \( \alpha = \{ AG \}\)
     2. Verifico que sea superclave:
@@ -248,7 +248,7 @@ La cuota es constante para una instalacion dada en todos los clubes de la misma 
 
 a) Crear un conjunto de dependencias funcionales \(F\) para captar las restricciones de la base de datos.
 \(
-F = \{ubicacion \leftrightarrow gerente, instalacion \rightarrow cuota, (clubNro, ubicacion) \rightarrow gerente\}
+F = \{ubicacion \leftrightarrow gerente, instalacion \to cuota, (clubNro, ubicacion) \to gerente\}
 \)
 \(
 R = \{clubNro, ubicacion, gerente, instalacion, tamaño, cuota, prioridad\}
@@ -458,5 +458,108 @@ Por lo que NO esta en FNBC.
 
 **a)** Mostrar todas las violaciones FNBC con un solo atributo a la derecha.
 
+**\( F = \{AB \to C; C \to D; D \to A\} \)**:
+
+- \(\{C, A\}^+\)
+    - \( \{C, A\}^+ = \{C, D, A\} \nsupseteq R \)
+    - \( \{C, A\}^+ \cap (R - \{C, A\}) = \{D\} \neq \emptyset \)
+    - No se cumple ninguna de las condiciones!!
+    - Por lo tanto \( \{C, A\} \to \{D\} \) es testigo/violacion.
+    
+- \(\{D\}^+\)
+    - \( \{D\}^+ = \{D, A\} \nsupseteq R \)
+    - \( \{D\}^+ \cap (R - \{D\}) = \{A\} \neq \emptyset \)
+    - No se cumple ninguna de las condiciones!!
+    - Por lo tanto \( D \to \{A\} \) es testigo/violacion.
+    
+- \(\{D, C\}^+\)
+    - \( \{D, C\}^+ = \{C, D, A\} \nsupseteq R \)
+    - \( \{D, C\}^+ \cap (R - \{D, C\}) = \{A\} \neq \emptyset \)
+    - No se cumple ninguna de las condiciones!!
+    - Por lo tanto \( \{D, C\} \to \{A\} \) es testigo/violacion.
+
+... 
+
 **b)** Dar una descomposición \( R_1, \dots, R_n \) de \( R \) que esté en FNBC.
 
+**\( F = \{AB \to C; C \to D; D \to A\} \)**:
+
+- \( \{A, C\} \to \{D\} \) es testigo/violacion
+    - Por lo tanto descomponemos \( R = (A, B, C, D) \) en:
+        - \( R_1 = (A, C, B) \)
+        - \( R_2 = (A, C, D) \)
+...
+
+> **13)** Sea \( R = (A, B, C, D) \) un esquema relacional y sea \( F = \{ A \to BC; B \to C; AB \to D; AB \to C \} \). Se pide encontrar una descomposición en **FNBC** (Forma Normal de Boyce-Codd).
+
+Primero buscaos DF testigos:
+
+- \(\{A\}^+\)
+    - \( \{A\}^+ = \{A, B, C, D\} \supseteq R \)
+    - Por lo tanto, \(\{A\}\) es superclave y no hace falta chequear superconjuntos.
+
+- \(\{D\}^+\)
+    - \( \{D\}^+ = \{D\} \nsupseteq R \)
+    - \( \{D\}^+ \cap (R - \{D\}) = \emptyset \)
+
+- \(\{C\}^+\)
+    - \( \{C\}^+ = \{C\} \nsupseteq R \)
+    - \( \{C\}^+ \cap (R - \{C\}) = \emptyset \)
+
+- \(\{C, D\}^+\)
+    - \( \{C, D\}^+ = \{C, D\} \nsupseteq R \)
+    - \( \{C, D\}^+ \cap (R - \{C, D\}) = \emptyset \)
+    
+- \(\{B\}^+\)
+    - \( \{B\}^+ = \{B, C\} \nsupseteq R \)
+    - \( \{B\}^+ \cap (R - \{B\}) = \{C\} \neq \emptyset \)
+    - No se cumple ninguna de las condiciones!!
+    - Por lo tanto \( \{B\} \to \{C\} \) es **testigo/violacion**.
+
+Y creeria que es la unica ademas de \( \{B, D\} \to \{C\} \)
+
+Descomponemos \(R \text{ en } R_1 \text{ y } R_2\):
+
+- \( R_1 \) = (A, B, D)
+- \( R_2 \) = (B, C)
+
+Recordemos: \( F = \{
+A \to BC;
+B \to C ;
+AB \to D;
+AB \to C
+\} \)
+
+¿\(R_1 = (A, B, D)\) es FNBC?
+
+- \(\{A\}^+\)
+    - \( \{A\}^+ = \{A, B, C, D\} \supseteq R_1 \)
+    - Por lo tanto, \(\{A\}\) es superclave y no hace falta chequear superconjuntos.
+
+- \(\{B\}^+\)
+    - \( \{B\}^+ = \{B, C\} \nsupseteq R_1 \)
+    - \( \{B\}^+ \cap (R_1 - \{B\}) = \emptyset \)
+
+- \(\{D\}^+\)
+    - \( \{D\}^+ = \{D\} \nsupseteq R_1 \)
+    - \( \{D\}^+ \cap (R_1 - \{D\}) = \emptyset \)
+
+- \(\{D, B\}^+\)
+    - \( \{D, B\}^+ = \{D, B, C\} \nsupseteq R_1 \)
+    - \( \{D, B\}^+ \cap (R_1 - \{D, B\}) = \emptyset \)
+
+\(R_1\) es FNBC
+
+¿\(R_2 = (B, C)\) es FNBC?
+
+- \(\{B\}^+\)
+    - \( \{B\}^+ = \{B, C\} \supseteq R_2 \)
+    - Por lo tanto, \(\{B\}\) es superclave y no hace falta chequear superconjuntos.
+
+- \(\{C\}^+\)
+    - \( \{C\}^+ = \{C\} \nsupseteq R_2 \)
+    - \( \{C\}^+ \cap (R_2 - \{C\}) = \emptyset \)
+    
+\(R_2\) es FNBC
+
+La descomposicion esta en FNBC.
