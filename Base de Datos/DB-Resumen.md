@@ -68,7 +68,7 @@ Sea R un CR de CE's E1 a CE's E2:
 
 > **Obs:** En todos los casos pueden existir elementos pertenecientes a E1 que no están mapeados con elementos de E2 y viceversa.
 >
-> **Notación**:
+> **Notación de correspondencia de cardinalidades**:
 >
 > <div style="text-align: center;">
 >   <img src="PNGs/image-8.png" width="500">
