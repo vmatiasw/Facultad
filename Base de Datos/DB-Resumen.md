@@ -124,10 +124,14 @@ Sea R un CR de CE's E1 a CE's E2:
 >   <img src="PNGs/image-8.png" width="500">
 > </div>
 >
+> <div style="text-align: center;">
+>   <img src="PNGs/image-23.png" width="600">
+> </div>
+>
 > **Notación de intervalos o de cardinalidades**: [a..b] o [a..*]
 >
 > <div style="text-align: center;">
->   <img src="PNGs/image-11.png" width="700">
+>   <img src="PNGs/image-11.png" width="600">
 > </div>
 > Notar que el lugar donde se pone la información es al revés (o sea, del otro lado) que en correspondencia de cardinalidades.
 
