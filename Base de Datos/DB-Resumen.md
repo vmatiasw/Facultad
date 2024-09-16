@@ -60,7 +60,7 @@ Una **solucion** es obtener un buen diseño descomponiendo el esquema que contie
  
 ----
 
-## Diseño de Entidad-Relación (ER)
+## Diseño de Entidad Relación (ER)
 
 Es un enfoque de _modelado conceptual de alto nivel_ que se utiliza para representar datos y sus relaciones a través de entidades, atributos y relaciones sin implementar un estructura real.
 
