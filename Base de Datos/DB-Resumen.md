@@ -501,33 +501,20 @@ Chequear todos los \( \alpha \to \beta \) de \( F^+ \) con atributos en \( R \) 
 
 **Consulta**: en una base de datos es una expresión que describe una colección de datos deseada. Para expresar consultas se usan **lenguajes de consulta**.
 
-Para consultar los datos en modelo relacional es muy usado en la industria
-el lenguaje de consultas SQL.
+Para consultar los datos en modelo relacional es muy usado en la industria el lenguaje de consultas SQL.
 
-Para el modelo relacional existen lenguajes de consulta puros como
-álgebra relacional, cálculo de tuplas, etc.
+Para el modelo relacional existen lenguajes de consulta puros como álgebra relacional, cálculo de tuplas, etc.
 **álgebra de tablas**: variación más expresiva del álgebra relacional
 
 **sistema gestor de BD (SGBD) relacionales**: se compone de Gestor de almacenamiento, Procesamiento de consultas y Gestor de transacciones.
 
-----
-
 ## Gestión del almacenamiento
 
-Los datos deben ser organizados en archivos con estructuras apropiadas
-de modo que su acceso, modificación y retorno sea eficiente.
-• A nivel físico se explica cómo los registros de datos son almacenados en
-archivos.
-• Para acceso, modificación y almacenamiento eficiente a los datos se
-pueden usar índices (unas estructuras de acceso especiales).
-• A nivel lógico se describen los datos almacenados en la BD y las relaciones
-entre ellos.
-• El gestor de almacenamiento provee una interfaz para los datos a nivel
-físico para ser usada por los programas de aplicación y consultas enviadas
-al sistema. Se ocupa de: acceso al almacenamiento, organización en
-archivos de los datos, indexado.
-
-----
+Los datos deben ser organizados en archivos con estructuras apropiadas de modo que su acceso, modificación y retorno sea eficiente.
+- A nivel físico se explica cómo los registros de datos son almacenados en archivos.
+- Para acceso, modificación y almacenamiento eficiente a los datos se pueden usar índices (unas estructuras de acceso especiales).
+- A nivel lógico se describen los datos almacenados en la BD y las relaciones entre ellos.
+- El gestor de almacenamiento provee una interfaz para los datos a nivel físico para ser usada por los programas de aplicación y consultas enviadas al sistema. Se ocupa de: acceso al almacenamiento, organización en archivos de los datos, indexado.
 
 ## Procesamiento de consultas
 
@@ -539,8 +526,6 @@ El sistema gestor de BD procesa consultas para el modelo relacional.
 <div style="text-align: center;">
     <img src="PNGs/image-3.png" width="400">
 </div>
-
-----
 
 ## Transacciones
 
@@ -556,8 +541,6 @@ El sistema gestor de BD procesa consultas para el modelo relacional.
 
 **Gestor de concurrencia de transacciones**: controla la interacción entre transacciones concurrentes para asegurar la consistencia de la BD.
 
-----
-
 ## Retorno de la información
 
 **Retorno de la información**: proceso de retornar documentos a partir de una colección de documentos en respuesta a una consulta. Los documentos suelen estar en lenguaje natural no estructurado. Los resultados de una búsqueda pueden ser una lista de identificadores de documentos y también algunas piezas de texto. Los documentos suelen retornarse en orden decreciente de puntaje de relevancia.
@@ -567,19 +550,10 @@ El sistema gestor de BD procesa consultas para el modelo relacional.
 Sistemas de retorno de la información que trabajan con colecciones de archivos almacenados en una PC.
 Sistemas de retorno de la información que trabajan con la búsqueda en la web
 
-----
-
 ## Bot de chat conversacional inteligente
 
-**Bot de chat conversacional inteligente**: aplicación de software que usa la Inteligencia Artificial (IA) y el Procesamiento de Lenguaje Natural (PLN) para comprender los requerimientos de un ser humano y ayudarlo a cumplirlos. Los bots de chat de texto solo se comunican a través de palabras
-escritas. Los bots de chat multimedia, pueden incluir además de
-texto otras medias como imágenes, videos, voz.
+**Bot de chat conversacional inteligente**: aplicación de software que usa la Inteligencia Artificial (IA) y el Procesamiento de Lenguaje Natural (PLN) para comprender los requerimientos de un ser humano y ayudarlo a cumplirlos. Los bots de chat de texto solo se comunican a través de palabras escritas. Los bots de chat multimedia, pueden incluir además de texto otras medias como imágenes, videos, voz.
 
-Los bots de chat conversacionales de texto funcionan a partir de
-consultas claras y concisas llamadas prompts.
-• Para obtener las mejores respuestas se deben diseñar buenos
-prompts y para eso se recomienda seguir una cierta estructura para
-su construcción que estudiaremos en clase.
-• También estudiaremos la base de los bots de chats de texto que son:
-procesamiento de lenguaje natural, modelos grandes de lenguaje,
-arquitectura de motores de chat.
+Los bots de chat conversacionales de texto funcionan a partir de consultas claras y concisas llamadas prompts.
+- Para obtener las mejores respuestas se deben diseñar buenos prompts y para eso se recomienda seguir una cierta estructura para su construcción que estudiaremos en clase.
+- También estudiaremos la base de los bots de chats de texto que son: procesamiento de lenguaje natural, modelos grandes de lenguaje, arquitectura de motores de chat.
