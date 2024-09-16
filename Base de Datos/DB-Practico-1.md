@@ -242,15 +242,34 @@ Mejor la fecha como atributo de la transaccion, mejor que una tabla solo para es
 
 _Ejercicio 1_:
 
-<div style="text-align: center;">
-    <img src="PNGs/P1E8-1.png" width="700">
-</div>
+Materia(<u>Numero</u>, Programa, Titulo)
+Correlatividad(<u>Materia</u>, <u>Correlativa</u>)
+FOR Correlatividad FOREIGN KEY Materia REFERENCES Materia
+FOR Correlatividad FOREIGN KEY Correlativa REFERENCES Materia
+
+Estudiente(<u>Numero de matricula</u>, Nombre, Carrera)
+Inscrito(<u>Materia</u>,<u>Estudiente</u>, Nota)
+FOR Inscrito FOREIGN KEY Estudiente REFERENCES Estudiente
+FOR Inscrito FOREIGN KEY Materia REFERENCES Materia
+
+Profesor(<u>Numero de legajo</u>, Departamento, Nombre, Cargo)
+Oferta(<u>Codigo</u>, Año, Semestre, Profesor)
+FOR Oferta FOREIGN KEY Profesor REFERENCES Profesor
+Oferta-Clase(<u>Codigo</u>, <u>Horario</u>, Aula)
+FOR Oferta-Clase FOREIGN KEY Codigo REFERENCES Oferta
 
 _Ejercicio 3_:
 
-<div style="text-align: center;">
-    <img src="PNGs/P1E8-2.png" width="700">
-</div>
+Poliza(<u>Numero</u>, Tipo de cobertura)
+Pago(<u>Vencimiento</u>,<u>Numero de poliza</u>, Monto, Fecha de cobro)
+FOR Pago FOREIGN KEY Numero de poliza REFERENCES Poliza
+Cliente(<u>DNI</u>, Nombre)
+Auto(<u>Patente</u>, Marca, Modelo, Dueño)
+FOR Auto FOREIGN KEY Dueño REFERENCES Cliente
+Accidente(<u>Numero expediente</u>,<u>Ubicacion Expediente</u>,Gravedad, Lugar, Fecha)
+Auto-Accidente(<u>Patente</u>, <u>Numero expediente</u>, <u>Ubicacion Expediente</u>)
+FOR Auto-Accidente FOREIGN KEY Patente REFERENCES Auto
+FOR Auto-Accidente FOREIGN KEY Numero expediente, Ubicacion Expediente REFERENCES Accidente
 
 ### Ejercicio 9
 
