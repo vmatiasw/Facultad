@@ -8,8 +8,8 @@ integridad de la BD siguen siendo válidas.
 
 **Procesos de diseño de esquemas relacionales que veremos**:
 
-1. [Diseño de Entidad Relacion](#Diseño-de-Entidad-Relacion): Proceso que hace un diseño de entidad-relación primero y luego traduce ese diseño de entidad-relación a un conjunto de esquemas de relación.
-2. [Diseño de Normalizacion](#Diseño-de-Normalizacion): Proceso que comienza con esquema relacional con todos los atributos atómicos del problema y un conjunto de restricciones de integridad y calcula un esquema de la base de datos. A esto se le llama normalización.
+1. [Proceso de modelado Entidad Relacion y traduccion](#Proceso-de-Entidad-Relacion-y-traduccion): Proceso que hace un diseño de entidad-relación primero y luego traduce ese diseño de entidad-relación a un conjunto de esquemas de relación.
+2. [Proceso de Normalizacion](#Proceso-de-Normalizacion): Proceso que comienza con esquema relacional con todos los atributos atómicos del problema y un conjunto de restricciones de integridad y calcula un esquema de la base de datos. A esto se le llama normalización.
 
 ## Esquema relacional
 
@@ -60,12 +60,12 @@ Una **solucion** es obtener un buen diseño descomponiendo el esquema que contie
  
 ----
 
-## Diseño de Entidad Relacion
+## Proceso de modelado Entidad Relacion y traduccion
 
-Es un enfoque de _modelado conceptual de alto nivel_ que se utiliza para representar datos y sus relaciones a través de entidades, atributos y relaciones sin implementar un estructura real.
+Proceso que hace un diseño de entidad-relación primero y luego traduce ese diseño de entidad-relación a un conjunto de esquemas de relación.
 
+**Diseño de Entidad Relacion**: Es un enfoque de _modelado conceptual de alto nivel_ que se utiliza para representar datos y sus relaciones a través de entidades, atributos y relaciones sin implementar un estructura real.
 Se construye diagramáticamente usado un _diagrama de entidad-relación_.
-
 Se utiliza para visualizar la estructura de una base de datos antes de su **traducción** del modelo de entidad-relación a un conjunto de esquemas relacionales centrados en el esquema real (tablas y relaciones) con sus restricciones.
 Sirve como un plano, mientras que el modelo relacional realiza este plano en forma de base de datos. 
 
@@ -274,7 +274,7 @@ Una especialización se denota con un triángulo etiquetado ISA o ES, se llama t
 
 ----
 
-## Diseño de Normalizacion
+## Proceso de Normalizacion
 
 Proceso que comienza con esquema relacional con todos los atributos atómicos del problema y un conjunto de restricciones de integridad y calcula un esquema de la base de datos. A esto se le llama normalización.
 
