@@ -8,7 +8,7 @@ integridad de la BD siguen siendo válidas.
 
 **Procesos de diseño de esquemas relacionales que veremos**:
 
-1. [Diseño de Entidad Relación (ER)](#Diseño-de-Entidad-Relación-(ER)): Proceso que hace un diseño de entidad-relación primero y luego traduce ese diseño de entidad-relación a un conjunto de esquemas de relación.
+1. [Diseño de Entidad Relacion (ER)](#Diseño-de-Entidad-Relacion-(ER)): Proceso que hace un diseño de entidad-relación primero y luego traduce ese diseño de entidad-relación a un conjunto de esquemas de relación.
 2. [Diseño de Normalizacion](#Diseño-de-Normalizacion): Proceso que comienza con esquema relacional con todos los atributos atómicos del problema y un conjunto de restricciones de integridad y calcula un esquema de la base de datos. A esto se le llama normalización.
 
 ## Esquema relacional
@@ -60,7 +60,7 @@ Una **solucion** es obtener un buen diseño descomponiendo el esquema que contie
  
 ----
 
-## Diseño de Entidad Relación (ER)
+## Diseño de Entidad Relacion (ER)
 
 Es un enfoque de _modelado conceptual de alto nivel_ que se utiliza para representar datos y sus relaciones a través de entidades, atributos y relaciones sin implementar un estructura real.
 
