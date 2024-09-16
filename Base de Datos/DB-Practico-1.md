@@ -293,6 +293,8 @@ Puedo marcar a la editorial como proveedor?
     <img src="PNGs/P1E9-2.png" width="900">
 </div>
 
+Hay que hacer las tablas con relaciones en texto, no en diagramas de tablas. jeje
+
 ### Ejercicio 10
 
 > Diseñar una jerarquía de especialización-generalización para las ventas de una compañía de vehículos a motor. Un vehículo a motor tiene un número de patente, marca, modelo, antigüedad, cantidad de cilindros, kilometraje y precio. La compañía vende motocicletas, autos, furgonetas y ómnibus (con tamaño y cantidad de asientos). Los autos y las furgonetas tienen accesorios (p.ej. gps, apoya cabeza, aire acondicionado, etc.). Diseñe y justifique la colocación de los atributos en cada nivel de la jerarquía. Explicar por qué se deberían colocar en un nivel más alto o más bajo.
