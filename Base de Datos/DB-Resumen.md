@@ -6,10 +6,59 @@
 **Restricción de integridad**: es una propiedad que las instancias de la BD deben satisfacer. Al modificar una instancia se debe chequear que las restricciones de
 integridad de la BD siguen siendo válidas.
 
-**Procesos de diseño que veremos**:
+**Procesos de diseño de esquemas relacionales que veremos**:
 
-1. Proceso que hace un diseño de entidad-relación primero y luego traduce ese diseño de entidad-relación a un conjunto de esquemas de relación.
-2. Proceso que comienza con esquema relacional con todos los atributos atómicos del problema y un conjunto de restricciones de integridad y calcula un esquema de la base de datos. A esto se le llama normalización.
+1. [Diseño de Entidad-Relación (ER)](#Diseño-de-Entidad-Relación-(ER)): Proceso que hace un diseño de entidad-relación primero y luego traduce ese diseño de entidad-relación a un conjunto de esquemas de relación.
+2. [Diseño de Normalizacion](#Diseño-de-Normalizacion): Proceso que comienza con esquema relacional con todos los atributos atómicos del problema y un conjunto de restricciones de integridad y calcula un esquema de la base de datos. A esto se le llama normalización.
+
+## Esquema relacional
+
+Es una forma para estructurar una base de datos, utilizando relaciones (o tablas) que representan los datos y sus relaciones.
+Cada tabla tiene un nombre único, filas (tuplas o registros) y columnas (atributos), y las tablas pueden estar vinculadas a través de claves (primarias y foráneas).
+
+**Esquema relacional**: Lista de nombres de atributos (Nombre esquema = lista de atributos).
+**Instancia**: Datos que se almacenan en tablas para los esquemas de la misma.
+Las columnas representan atributos (o propiedades) para los elementos de la tabla (tuplas).
+
+<div style="text-align: center;">
+    <img src="PNGs/image-1.png" width="500">
+</div>
+
+> **Notación**: **r(R)** significa r es una relación con esquema de relación R. O sea, las columnas de r tienen como nombres los atributos de R.
+
+**Dominio del atributo**: conjunto de valores permitidos para cada atributo.
+Los valores de los atributos deben ser **atómicos** (indivisibles).
+O sea que en las consultas o restricciones de integridad no vamos a dividir el valor de un atributo en partes. Simplificando la descripción de consultas o restricciones de integridad.
+
+**Superclaves**: Sea K ⊆ R , R esquema de relación; K es una superclave de R si los valores para K son suficientes para identificar una tupla única en cada posible relación r(R).
+
+**Clave candidata**: Una superclave K **minimal**. Para todo atributo de K si se lo quito a K dejo de tener una superclave.
+
+**Clave primaria**: La clave candidata elegida.
+
+> **Notación**: Se indican los atributos de una clave primaria para un esquema de relación R **subrayando** los atributos de R que forman la clave primaria.
+
+**Restricción de clave foránea (o de integridad referencial)**: Los valores de uno o más atributos en una tupla de la **relación referenciante** aparecen en uno o más atributos de una tupla en la **relación referenciada**. Los atributos referenciados de la relación referenciada suelen formar una **clave candidata** del esquema de la relación referenciada.
+
+<div style="text-align: center;">
+    <img src="PNGs/image-2.png" width="500">
+</div>
+
+**Redundancia de datos**: La redundancia es un problema que ocurre cuando tienes tuplas en \( R \) que tienen los mismos valores en \( \alpha \) pero diferentes valores en \( \beta \). Esta repetición de los valores de \( \beta \) es innecesaria si no es una clave candidata.
+Una **solucion** es obtener un buen diseño descomponiendo el esquema que contiene todos los atributos en esquemas más chicos.
+
+**Criterios para tener un diseño de calidad:**
+
+- Evitar problemas de redundancia de información.
+- Evitar problemas de comprensibilidad.
+- Evitar problemas de incompletitud como:
+  - Restricciones de integridad incompletas.
+  - Relaciones entre atributos no contempladas por esquemas de BD.
+- Evitar problemas de ineficiencia como:
+  - Chequeo ineficiente de restricciones de integridad.
+  - Consultas ineficientes por tener un esquema inadecuado de BD.
+ 
+----
 
 ## Diseño de Entidad-Relación (ER)
 
@@ -17,7 +66,8 @@ Es un enfoque de _modelado conceptual de alto nivel_ que se utiliza para represe
 
 Se construye diagramáticamente usado un _diagrama de entidad-relación_.
 
-Se utiliza para visualizar la estructura de una base de datos antes de su **traducción** del modelo de entidad-relación a esquemas relacionales para su implementación. Sirve como un plano, mientras que el modelo relacional realiza este plano en forma de base de datos.
+Se utiliza para visualizar la estructura de una base de datos antes de su **traducción** del modelo de entidad-relación a un conjunto de esquemas relacionales centrados en el esquema real (tablas y relaciones) con sus restricciones.
+Sirve como un plano, mientras que el modelo relacional realiza este plano en forma de base de datos. 
 
 - **Entidad**: objeto distinguible de otros objetos. Descrito por medio de atributos.
 
@@ -54,9 +104,9 @@ Se utiliza para visualizar la estructura de una base de datos antes de su **trad
     <img src="PNGs/image-0.png" width="600">
 </div>
 
-## Restricciones en CR's
+### Restricciones en CR's
 
-### Correspondencias de Cardinalidades
+#### Correspondencias de Cardinalidades
 
 Propósito: Diagramar conjuntos de relaciones binarios.
 Sea R un CR de CE's E1 a CE's E2:
@@ -81,7 +131,7 @@ Sea R un CR de CE's E1 a CE's E2:
 > </div>
 > Notar que el lugar donde se pone la información es al revés (o sea, del otro lado) que en correspondencia de cardinalidades.
 
-### Restricciones de participación
+#### Restricciones de participación
 
 Dado un conjunto de relaciones R en el cual participa un conjunto de entidades A, dicha participación puede ser de dos tipos:
 
@@ -95,7 +145,7 @@ Dado un conjunto de relaciones R en el cual participa un conjunto de entidades A
     <img src="PNGs/image-10.png" width="500">
   </div>
 
-## Entidades fuertes y débiles
+### Entidades fuertes y débiles
 
 Cuando una entidad participa en una relación puede adquirir un papel fuerte o débil. Una entidad débil es aquella que no puede existir sin participar en la relación; es decir, aquella que no puede ser unívocamente identificada solamente por sus atributos.
 
@@ -113,7 +163,7 @@ Hay un CR varios-uno entre CE débil y CE identificador, donde el CE débil tien
   - Los atributos del discriminador se subrayan con línea de guiones
     La **clave primaria** de un CE débiles se forma con la clave primaria del CE identificador más el discriminador del CE débiles.
 
-## Especialización-Generalización
+### Especialización-Generalización
 
 **Especialización**: hace referencia a un proceso de diseño descendiente (top-down) donde designamos **subgrupos** dentro de un CE que son distintivos de otras entidades en el CE.
 
@@ -141,7 +191,7 @@ Una especialización se denota con un triángulo etiquetado ISA o ES, se llama t
   - Total: una entidad debe pertenecer a un CE de nivel más bajo (usar línea doble para indicarlo).
   - Parcial: una entidad puede no pertenecer a un CE de nivel más bajo
 
-## Reglas de Reducción a Esquemas Relacionales
+### Reglas de Reducción a Esquemas Relacionales
 
 - **Un CE fuerte que no involucra atributos compuestos ni atributos multi-valorados** se mapea a un esquema relacional con los mismos atributos.
 
@@ -222,55 +272,11 @@ Una especialización se denota con un triángulo etiquetado ISA o ES, se llama t
   <img src="PNGs/image-19.png" width="700">
 </div>
 
-## Diseño relacional
+----
 
-Es un método para estructurar una base de datos, a partir de un modelado E/R, utilizando relaciones (o tablas) que representan los datos y sus relaciones.
-Cada tabla tiene un nombre único, filas (tuplas o registros) y columnas (atributos), y las tablas pueden estar vinculadas a través de claves (primarias y foráneas).
-Es una implementación lógica del modelo E/R, centrándose en el esquema real (tablas y relaciones) y aplicando restricciones.
+## Diseño de Normalizacion
 
-**Esquema relacional**: lista de nombres de atributos (Nombre esquema = lista de atributos).
-**Instancia**: Datos que se almacenan en tablas para los esquemas de la misma.
-Las columnas representan atributos (o propiedades) para los elementos de la tabla (tuplas).
-
-<div style="text-align: center;">
-    <img src="PNGs/image-1.png" width="500">
-</div>
-
-> **Notación**: **r(R)** significa r es una relación con esquema de relación R. O sea, las columnas de r tienen como nombres los atributos de R.
-
-**Dominio del atributo**: conjunto de valores permitidos para cada atributo.
-Los valores de los atributos deben ser **atómicos** (indivisibles).
-O sea que en las consultas o restricciones de integridad no vamos a dividir el valor de un atributo en partes. Simplificando la descripción de consultas o restricciones de integridad.
-
-**Superclaves**: Sea K ⊆ R , R esquema de relación; K es una superclave de R si los valores para K son suficientes para identificar una tupla única en cada posible relación r(R).
-
-**Clave candidata**: Una superclave K **minimal**. Para todo atributo de K si se lo quito a K dejo de tener una superclave.
-
-**Clave primaria**: La clave candidata elegida.
-
-> **Notación**: Se indican los atributos de una clave primaria para un esquema de relación R **subrayando** los atributos de R que forman la clave primaria.
-
-**Restricción de clave foránea (o de integridad referencial)**: Los valores de uno o más atributos en una tupla de la **relación referenciante** aparecen en uno o más atributos de una tupla en la **relación referenciada**. Los atributos referenciados de la relación referenciada suelen formar una **clave candidata** del esquema de la relación referenciada.
-
-<div style="text-align: center;">
-    <img src="PNGs/image-2.png" width="500">
-</div>
-
-**Redundancia de datos**: La redundancia es un problema que ocurre cuando tienes tuplas en \( R \) que tienen los mismos valores en \( \alpha \) pero diferentes valores en \( \beta \). Esta repetición de los valores de \( \beta \) es innecesaria si no es una clave candidata.
-Una **solucion** es obtener un buen diseño descomponiendo el esquema que contiene todos los atributos en esquemas más chicos.
-
-**Criterios para tener un diseño de calidad:**
-
-- Evitar problemas de redundancia de información.
-- Evitar problemas de comprensibilidad.
-- Evitar problemas de incompletitud como:
-  - Restricciones de integridad incompletas.
-  - Relaciones entre atributos no contempladas por esquemas de BD.
-- Evitar problemas de ineficiencia como:
-  - Chequeo ineficiente de restricciones de integridad.
-  - Consultas ineficientes por tener un esquema inadecuado de BD.
-
-### Proceso de diseño
+Proceso que comienza con esquema relacional con todos los atributos atómicos del problema y un conjunto de restricciones de integridad y calcula un esquema de la base de datos. A esto se le llama normalización.
 
 **Fases**:
 
@@ -489,6 +495,8 @@ Chequear todos los \( \alpha \to \beta \) de \( F^+ \) con atributos en \( R \) 
 - Este algoritmo encontrará un \( \alpha \) que viola la condición. A partir de ese \( \alpha \), se puede obtener la **DF testigo** (o **violacion**):
   \[ \alpha \to \alpha^+ \cap (R_i - \alpha) \]
 
+----
+
 ## Lenguajes de Consultas
 
 **Consulta**: en una base de datos es una expresión que describe una colección de datos deseada. Para expresar consultas se usan **lenguajes de consulta**.
@@ -501,6 +509,8 @@ Para el modelo relacional existen lenguajes de consulta puros como
 **álgebra de tablas**: variación más expresiva del álgebra relacional
 
 **sistema gestor de BD (SGBD) relacionales**: se compone de Gestor de almacenamiento, Procesamiento de consultas y Gestor de transacciones.
+
+----
 
 ## Gestión del almacenamiento
 
@@ -517,6 +527,8 @@ físico para ser usada por los programas de aplicación y consultas enviadas
 al sistema. Se ocupa de: acceso al almacenamiento, organización en
 archivos de los datos, indexado.
 
+----
+
 ## Procesamiento de consultas
 
 El sistema gestor de BD procesa consultas para el modelo relacional.
@@ -527,6 +539,8 @@ El sistema gestor de BD procesa consultas para el modelo relacional.
 <div style="text-align: center;">
     <img src="PNGs/image-3.png" width="400">
 </div>
+
+----
 
 ## Transacciones
 
@@ -542,6 +556,8 @@ El sistema gestor de BD procesa consultas para el modelo relacional.
 
 **Gestor de concurrencia de transacciones**: controla la interacción entre transacciones concurrentes para asegurar la consistencia de la BD.
 
+----
+
 ## Retorno de la información
 
 **Retorno de la información**: proceso de retornar documentos a partir de una colección de documentos en respuesta a una consulta. Los documentos suelen estar en lenguaje natural no estructurado. Los resultados de una búsqueda pueden ser una lista de identificadores de documentos y también algunas piezas de texto. Los documentos suelen retornarse en orden decreciente de puntaje de relevancia.
@@ -550,6 +566,8 @@ El sistema gestor de BD procesa consultas para el modelo relacional.
 
 Sistemas de retorno de la información que trabajan con colecciones de archivos almacenados en una PC.
 Sistemas de retorno de la información que trabajan con la búsqueda en la web
+
+----
 
 ## Bot de chat conversacional inteligente
 
