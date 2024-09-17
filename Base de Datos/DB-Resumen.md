@@ -1,10 +1,12 @@
 # Base de Datos
 
 **Base de datos (BD)**: contiene datos generalmente interrelacionados.
+
 **Esquema**: La estructura de entidades y relaciones de la BD.
+
 **Instancia**: contenido actual de la BD en un momento del tiempo.
-**Restricción de integridad**: es una propiedad que las instancias de la BD deben satisfacer. Al modificar una instancia se debe chequear que las restricciones de
-integridad de la BD siguen siendo válidas.
+
+**Restricción de integridad**: es una propiedad que las instancias de la BD deben satisfacer. Al modificar una instancia se debe chequear que las restricciones de integridad de la BD siguen siendo válidas.
 
 **Procesos de diseño de esquemas relacionales que veremos**:
 
