@@ -52,7 +52,7 @@ Esquema universal:
 Restaurante(numero, capacidad; numero de telefono, nombre, DNI; menu, fecha, hora)
 
 > **2)** Para la siguiente relación, ¿por qué no se cumplen las siguientes dependencias?
-> **Una DF \(\alpha \to \beta\) se cumple si**, para cualquier par de tuplas en la relación, si las tuplas tienen los mismos valores en los atributos de \(\alpha\), también deben tener los mismos valores en los atributos de \(\beta\).
+> **Una DF $\alpha \to \beta$ se cumple si**, para cualquier par de tuplas en la relación, si las tuplas tienen los mismos valores en los atributos de $\alpha$, también deben tener los mismos valores en los atributos de $\beta$.
 
 <!-- Atributos: A, B, C -->
 
@@ -65,22 +65,22 @@ Restaurante(numero, capacidad; numero de telefono, nombre, DNI; menu, fecha, hor
 
 <!-- Tuplas (a1,b1,c1),... donde a1, b1,... son instancias-->
 
-- ¿\( A \to B \)?
+- ¿$ A \to B $?
   En la fila 1 y 4 A tiene a1, pero en B varia por lo que no se cumple.
-- ¿\( B \to C \)?
+- ¿$ B \to C $?
   En la fila 1 y 3 se cumple una dependencia funcional.
   En la 2 y 4 no. Por lo que no se cumple.
-- ¿\( CB \to A \)?
+- ¿$ CB \to A $?
   En la fila 1 y 3 B y C tienen los mismos valores pero en A varia, por lo que no se cumple.
 
 > **3)** Hallar todas las dependencias funcionales que si cumple la relacion del ejercicio anterior.
 
-- \( C \to B \) Si se cumple
+- $ C \to B $ Si se cumple
   En C se repite c1 en las filas 1 y 3 y en B tienen b1.
   Luego no se repite otro valor en C.
-- \( AC \to B \) Si se cumple
+- $ AC \to B $ Si se cumple
   No se repite ningun valor en AC.
-- \( AB \to C \) Si se cumple
+- $ AB \to C $ Si se cumple
   No se repite ningun valor en AB.
 
 > **4)** Considere el siguiente esquema de un estudio de cine
@@ -117,19 +117,19 @@ Esquema universal: (nActor,dActor,nEstudio,dEstudio,titulo,año,presupuesto,rol,
 
 - Basado en las afirmaciones, determine el listado de todas las DFs (dependencias funcionales) no triviales. Indique de cual afirmacion extrae cada una de ellas.
 
-  - \( nActor \leftrightarrow dActor \): Esto proviene de la afirmación (A), donde se especifica que cada actor tiene una única dirección, lo que implica una dependencia funcional entre nActor y dActor.
-  - \( nEstudio \leftrightarrow dEstudio \): De la afirmación (B), se deduce que un estudio tiene una única dirección, por lo que esta dependencia no genera redundancias en sí misma.
-  - \( titulo, Año \to nEstudio, dEstudio, presupuesto\): De la afirmación (C), sabemos que no puede haber dos películas con el mismo título en un mismo año, lo que implica que titulo y año determinan el estudio, su dirección y el presupuesto de la película.
-  - \( rol \to salario\): De la afirmación (E), se deduce que un mismo rol tiene un salario único, lo que genera esta dependencia funcional entre rol y salario.
+  - $ nActor \leftrightarrow dActor $: Esto proviene de la afirmación (A), donde se especifica que cada actor tiene una única dirección, lo que implica una dependencia funcional entre nActor y dActor.
+  - $ nEstudio \leftrightarrow dEstudio $: De la afirmación (B), se deduce que un estudio tiene una única dirección, por lo que esta dependencia no genera redundancias en sí misma.
+  - $ titulo, Año \to nEstudio, dEstudio, presupuesto$: De la afirmación (C), sabemos que no puede haber dos películas con el mismo título en un mismo año, lo que implica que titulo y año determinan el estudio, su dirección y el presupuesto de la película.
+  - $ rol \to salario$: De la afirmación (E), se deduce que un mismo rol tiene un salario único, lo que genera esta dependencia funcional entre rol y salario.
 
 > **5)** Explicar el modo en que las dependencias funcionales se pueden utilizar para indicar lo siguiente:
 
 - Existe un conjunto de relaciones de uno a uno entre los conjuntos de entidades decano y facultad.
 
-  - \( decano \leftrightarrow facultad \): Si establecemos una DF entre decano y facultad en ambas direcciones, cada vez que aparezca uno debera si o si aparecer el otro.
+  - $ decano \leftrightarrow facultad $: Si establecemos una DF entre decano y facultad en ambas direcciones, cada vez que aparezca uno debera si o si aparecer el otro.
 
 - Existe un conjunto de relaciones de varios a uno entre los conjuntos de entidades alumno y supervisor
-  - \( alumno \to supervisor\): Si establecemos una DF entre alumno y supervisor pero solo en esa dirrecion, cada alumno tendra un solo supervisor pero el supervisor sera libre de tener muchos alumnos.
+  - $ alumno \to supervisor$: Si establecemos una DF entre alumno y supervisor pero solo en esa dirrecion, cada alumno tendra un solo supervisor pero el supervisor sera libre de tener muchos alumnos.
 
 > **6)** Usar la siguiente definicion:
 >
@@ -140,68 +140,68 @@ Esquema universal: (nActor,dActor,nEstudio,dEstudio,titulo,año,presupuesto,rol,
 
 Resuelto en el teorico/resumen
 
-> **7)** Sea \( R = (A, B, C, G, H, I) \) con el siguiente conjunto de dependencias funcionales:
+> **7)** Sea $ R = (A, B, C, G, H, I) $ con el siguiente conjunto de dependencias funcionales:
 > \[
 > F = \{ A \to B; \; A \to C; \; CG \to H; \; CG \to I; \; B \to H \}.
 > \]
 
 - Ejercicios: (Usare los axiomas y sus inferencias mencionadas donde su prueba este en el teorico/resumen)
 
-  - **a)** Derivar \( A \to BCH \) de \( F \).
-    \(F = \{ A \to B; \; A \to C; \; CG \to H; \; CG \to I; \; B \to H \}.\)
+  - **a)** Derivar $ A \to BCH $ de $ F $.
+    $F = \{ A \to B; \; A \to C; \; CG \to H; \; CG \to I; \; B \to H \}.$
 
-    1. \( A \to C \)
-    2. \( A \to B \)
-    3. \( B \to H \)
-    4. \( A \to H \text{ (Transitividad en b, c) }\)
-    5. \( A \to BC \text{ (Union en a, b) }\)
-    6. \( A \to HBC \text{ (Union en d, e) }\)
+    1. $ A \to C $
+    2. $ A \to B $
+    3. $ B \to H $
+    4. $ A \to H \text{ (Transitividad en b, c) }$
+    5. $ A \to BC \text{ (Union en a, b) }$
+    6. $ A \to HBC \text{ (Union en d, e) }$
 
-  - **b)** Derivar \( AG \to I \) de \( F \).
-    \(F = \{ A \to B; \; A \to C; \; CG \to H; \; CG \to I; \; B \to H \}.\)
+  - **b)** Derivar $ AG \to I $ de $ F $.
+    $F = \{ A \to B; \; A \to C; \; CG \to H; \; CG \to I; \; B \to H \}.$
 
-    1. \( A \to C \)
-    2. \( CG \to I \)
-    3. \( AG \to I \text{ (Pseudotransitividad en a, c) } \)
+    1. $ A \to C $
+    2. $ CG \to I $
+    3. $ AG \to I \text{ (Pseudotransitividad en a, c) } $
 
-  - **c)** Calcular \( A^+_F \) y \( (AG)^+_F \).
-    \(F = \{ A \to B; \; A \to C; \; CG \to H; \; CG \to I; \; B \to H \}.\)
-    - \( A^+_F \)
-      1. \( \text{ res } = \{ A \} \)
-      2. \( A \in \text{ res } \land \{ A \to B; A \to C \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ B, C \} \)
-      3. \( B \in \text{ res } \land \{ B \to H \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ H \} \)
-      4. \( A^+_F = res = \{A, C, B, H\} \)
-    - \( (AG)^+_F \)
-      1. \( \text{ res } = \{ A, G \} \)
-      2. \( A \in \text{ res } \land \{ A \to B; A \to C \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ B, C \} \)
-      3. \( B \in \text{ res } \land \{ B \to H \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ H \} \)
-      4. \( CG \in \text{ res } \land \{ CG \to I\} \subseteq F \implies \text{ res } = \text{ res } \cup \{ I \} \)
-      5. \( (AG)^+_F = res = \{A, G, C, B, H, I\} \)
-  - **d)** Calcular las claves candidatas de \( R \).
-    \(F = \{ A \to B; \; A \to C; \; CG \to H; \; CG \to I; \; B \to H \}.\)
-    \( R = (A, B, C, G, H, I) \)
-    1. Propongo \( \alpha = \{ AG \}\)
+  - **c)** Calcular $ A^+_F $ y $ (AG)^+_F $.
+    $F = \{ A \to B; \; A \to C; \; CG \to H; \; CG \to I; \; B \to H \}.$
+    - $ A^+_F $
+      1. $ \text{ res } = \{ A \} $
+      2. $ A \in \text{ res } \land \{ A \to B; A \to C \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ B, C \} $
+      3. $ B \in \text{ res } \land \{ B \to H \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ H \} $
+      4. $ A^+_F = res = \{A, C, B, H\} $
+    - $ (AG)^+_F $
+      1. $ \text{ res } = \{ A, G \} $
+      2. $ A \in \text{ res } \land \{ A \to B; A \to C \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ B, C \} $
+      3. $ B \in \text{ res } \land \{ B \to H \} \subseteq F \implies \text{ res } = \text{ res } \cup \{ H \} $
+      4. $ CG \in \text{ res } \land \{ CG \to I\} \subseteq F \implies \text{ res } = \text{ res } \cup \{ I \} $
+      5. $ (AG)^+_F = res = \{A, G, C, B, H, I\} $
+  - **d)** Calcular las claves candidatas de $ R $.
+    $F = \{ A \to B; \; A \to C; \; CG \to H; \; CG \to I; \; B \to H \}.$
+    $ R = (A, B, C, G, H, I) $
+    1. Propongo $ \alpha = \{ AG \}$
     2. Verifico que sea superclave:
-    - \( \alpha^+_F = (AG)^+_F = R \text{ (como vimos en el ejercicio anterior) } \)
+    - $ \alpha^+_F = (AG)^+_F = R \text{ (como vimos en el ejercicio anterior) } $
     3. Verifico que sea clave candidata:
-    - Si \( A \notin \alpha \implies \{ B, C \} \nsubseteq \alpha^+_F \neq R\) por lo que no seria superclave.
-    - Si \( G \notin \alpha \implies \{ I \} \nsubseteq \alpha^+_F \neq R\) por lo que no seria superclave.
+    - Si $ A \notin \alpha \implies \{ B, C \} \nsubseteq \alpha^+_F \neq R$ por lo que no seria superclave.
+    - Si $ G \notin \alpha \implies \{ I \} \nsubseteq \alpha^+_F \neq R$ por lo que no seria superclave.
 
-> **8)** Sea el esquema \( R = (A, B, C, D, E, F, G) \) y el conjunto de dependencias funcionales:
+> **8)** Sea el esquema $ R = (A, B, C, D, E, F, G) $ y el conjunto de dependencias funcionales:
 > \[ 
     G = \{A \to CD; CE \to AD; CF \to EB; E \to F ; CD \to E; G \to E\}
   \]
-> Mostrar una dependencia funcional que no es derivable de \( G \). Probar que no es derivable de \( G \) indicando todos los pasos de la prueba.
+> Mostrar una dependencia funcional que no es derivable de $ G $. Probar que no es derivable de $ G $ indicando todos los pasos de la prueba.
 
-**Proposición**: \( F \vdash \alpha \to \beta \iff \beta \subseteq \alpha^+_F \)
+**Proposición**: $ F \vdash \alpha \to \beta \iff \beta \subseteq \alpha^+_F $
 
-\( E \in R\), calculo \( E^+_G \):
+$ E \in R$, calculo $ E^+_G $:
 
-\( res = {E} \)
-\( E \in \text{ res } \land E \to F \implies \text{ res } = \text{ res }  \cup F \)
-\( E^+_G = {E, F}\)
+$ res = {E} $
+$ E \in \text{ res } \land E \to F \implies \text{ res } = \text{ res }  \cup F $
+$ E^+_G = {E, F}$
 
-Por lo tanto, \( E \to A \) por ejemplo, no es derivable de \( G \) ya que \( G \notin E^+_G\)
+Por lo tanto, $ E \to A $ por ejemplo, no es derivable de $ G $ ya que $ G \notin E^+_G$
 > **9)** Los registros de un club deportivo son tuplas de la forma
 > (clubNro, ubicacion, gerente, instalacion, tamaño, cuota, prioridad).
 > Un club deportivo se divide en varios clubes que pueden estar o no en diferentes ciudades.
@@ -246,13 +246,13 @@ La cuota es constante para una instalacion dada en todos los clubes de la misma 
 (clubNro, ubicacion, gerente, instalacion, tamaño, cuota, prioridad).
 -->
 
-a) Crear un conjunto de dependencias funcionales \(F\) para captar las restricciones de la base de datos.
-\(
+a) Crear un conjunto de dependencias funcionales $F$ para captar las restricciones de la base de datos.
+$
 F = \{ubicacion \leftrightarrow gerente, instalacion \to cuota, (clubNro, ubicacion) \to gerente\}
-\)
-\(
+$
+$
 R = \{clubNro, ubicacion, gerente, instalacion, tamaño, cuota, prioridad\}
-\)
+$
 b) Aplicar el algoritmo de normalizacion de FNBC al esquema universal
 
 
@@ -280,286 +280,286 @@ b) Aplicar el algoritmo de normalizacion de FNBC al esquema universal
 >**Del teorico:**
 >**Ejercicio**: Sea el esquema universal:
 BibLibs = (nomBib, calle, número, numInv, ISBN, título, editorial, autores, edición)
-> Sea \( F \) dado por:
->- \( \text{nomBib} \to \text{calle}, \text{número} \)
->- \( \text{calle}, \text{número} \to \text{nomBib} \)
->- \( \text{ISBN} \to \text{título}, \text{editorial}, \text{autores}, \text{edición} \)
->- \( \text{nomBib}, \text{numInv} \to \text{ISBN} \)
+> Sea $ F $ dado por:
+>- $ \text{nomBib} \to \text{calle}, \text{número} $
+>- $ \text{calle}, \text{número} \to \text{nomBib} $
+>- $ \text{ISBN} \to \text{título}, \text{editorial}, \text{autores}, \text{edición} $
+>- $ \text{nomBib}, \text{numInv} \to \text{ISBN} $
 >
 Aplicar el algoritmo de normalización en FNBC:
-- ¿\( \text{nomBib} \to \text{calle}, \text{número} \) es testigo?
+- ¿$ \text{nomBib} \to \text{calle}, \text{número} $ es testigo?
   - Sí, porque no es trivial y 
-  - \( \text{nomBib}^+ = \{\text{nomBib}, \text{calle}, \text{número}\} \neq R \) por lo que \( \text{nomBib} \) no es superclave de \( BibLibs \).
+  - $ \text{nomBib}^+ = \{\text{nomBib}, \text{calle}, \text{número}\} \neq R $ por lo que $ \text{nomBib} $ no es superclave de $ BibLibs $.
     
 - ¿Cómo queda la descomposición de BibLibs?
-  - \( \text{BibLibs2} = (\text{nomBib}, \text{numInv}, \text{ISBN}, \text{título}, \text{editorial}, \text{autores}, \text{edición}) \)
-  - \( R1 = (\text{nomBib}, \text{calle}, \text{número}) \)
+  - $ \text{BibLibs2} = (\text{nomBib}, \text{numInv}, \text{ISBN}, \text{título}, \text{editorial}, \text{autores}, \text{edición}) $
+  - $ R1 = (\text{nomBib}, \text{calle}, \text{número}) $
     
-- ¿\( \text{ISBN} \to \text{título}, \text{editorial}, \text{autores}, \text{edición} \) es testigo?
+- ¿$ \text{ISBN} \to \text{título}, \text{editorial}, \text{autores}, \text{edición} $ es testigo?
   - Sí, porque no es trivial y 
-  - \( \text{ISBN}^+ = \{\text{ISBN}, \text{título}, \text{editorial}, \text{edición}, \text{autores}\} \neq \text{BibLibs2} \) por lo que \( \text{ISBN} \) no es superclave de \( \text{BibLibs2} \).
+  - $ \text{ISBN}^+ = \{\text{ISBN}, \text{título}, \text{editorial}, \text{edición}, \text{autores}\} \neq \text{BibLibs2} $ por lo que $ \text{ISBN} $ no es superclave de $ \text{BibLibs2} $.
     
-- ¿Cómo queda la descomposición de \( \text{BibLibs2} \)?
-  - \( \text{BibLibs3} = (\text{nomBib}, \text{numInv}, \text{ISBN}) \)
-  - \( R2 = (\text{ISBN}, \text{título}, \text{editorial}, \text{edición}, \text{autores}) \)
+- ¿Cómo queda la descomposición de $ \text{BibLibs2} $?
+  - $ \text{BibLibs3} = (\text{nomBib}, \text{numInv}, \text{ISBN}) $
+  - $ R2 = (\text{ISBN}, \text{título}, \text{editorial}, \text{edición}, \text{autores}) $
 
 - ¿Estan en FNBC?
   - R1 y R2 se comprobo en el ejercio del teorico anterior.
-  - comprobemos que \( BibLibs3 \) está en FNBC a traves del siguiente algoritmo:
+  - comprobemos que $ BibLibs3 $ está en FNBC a traves del siguiente algoritmo:
       \[
         \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+
       \]
 
-Aplicamos el algoritmo de comprobacion FNBC en \( R_i = BibLibs3 \) testeando sus subconjuntos \(\alpha\):
-- \(\{numInv, nomBib\}^+\)
-    - \(\{numInv, nomBib\}^+ = \text{BibLibs} \supseteq \text{ BibLibs3 } = R_i \)
-    - Por lo tanto, \(\{numInv, nomBib\}\) es superclave y no hace falta chequear superconjuntos.
-- \(\{ISBN, numInv\}^+\)
-    - \(\{ISBN, numInv\}^+ = R2 \cup \{numInv\} \nsupseteq \text{ BibLibs3 } = R_i \)
-    - \(\{ISBN, numInv\}^+ \cap (\text{BibLibs3} - \{ISBN, numInv\}) = R2 \cap \{nomBib\} = \emptyset\)
-- \(\{ISBN, nomBib\}^+\)
-    - \(\{ISBN, nomBib\}^+ = R2 \cup R1 \nsupseteq \text{ BibLibs3 } = R_i \)
-    - \(\{ISBN, nomBib\}^+ \cap (\text{BibLibs3} - \{ISBN, nomBib\}) = (R2 \cup R1) \cap \{numInv\} = \emptyset \)
-- \(\text{nomBib}^+\)
-    - \(\text{nomBib}^+ = \{nomBib, calle, numero\} \nsupseteq \text{ BibLibs3 } = R_i \)
-    - \(\text{nomBib}^+ \cap (\text{BibLibs3} - \{nomBib\}) = \{nomBib, calle, numero\} \cap \{numInv, ISBN\} = \emptyset\)
-- \(\text{numinv}^+\)
-    - \(\text{numinv}^+ = \text{numinv} \nsupseteq \text{ BibLibs3 } = R_i \)
-    - \(\text{numinv}^+ \cap (\text{BibLibs3} - \{numinv\}) = \emptyset\).
-- \(\text{ISBN}^+\)
-    - \(\text{ISBN}^+ = R2 \nsupseteq \text{ BibLibs3 } = R_i \)
-    - \(\text{ISBN}^+ \cap (\text{BibLibs3} - \{ISBN\}) = \emptyset \)
+Aplicamos el algoritmo de comprobacion FNBC en $ R_i = BibLibs3 $ testeando sus subconjuntos $\alpha$:
+- $\{numInv, nomBib\}^+$
+    - $\{numInv, nomBib\}^+ = \text{BibLibs} \supseteq \text{ BibLibs3 } = R_i $
+    - Por lo tanto, $\{numInv, nomBib\}$ es superclave y no hace falta chequear superconjuntos.
+- $\{ISBN, numInv\}^+$
+    - $\{ISBN, numInv\}^+ = R2 \cup \{numInv\} \nsupseteq \text{ BibLibs3 } = R_i $
+    - $\{ISBN, numInv\}^+ \cap (\text{BibLibs3} - \{ISBN, numInv\}) = R2 \cap \{nomBib\} = \emptyset$
+- $\{ISBN, nomBib\}^+$
+    - $\{ISBN, nomBib\}^+ = R2 \cup R1 \nsupseteq \text{ BibLibs3 } = R_i $
+    - $\{ISBN, nomBib\}^+ \cap (\text{BibLibs3} - \{ISBN, nomBib\}) = (R2 \cup R1) \cap \{numInv\} = \emptyset $
+- $\text{nomBib}^+$
+    - $\text{nomBib}^+ = \{nomBib, calle, numero\} \nsupseteq \text{ BibLibs3 } = R_i $
+    - $\text{nomBib}^+ \cap (\text{BibLibs3} - \{nomBib\}) = \{nomBib, calle, numero\} \cap \{numInv, ISBN\} = \emptyset$
+- $\text{numinv}^+$
+    - $\text{numinv}^+ = \text{numinv} \nsupseteq \text{ BibLibs3 } = R_i $
+    - $\text{numinv}^+ \cap (\text{BibLibs3} - \{numinv\}) = \emptyset$.
+- $\text{ISBN}^+$
+    - $\text{ISBN}^+ = R2 \nsupseteq \text{ BibLibs3 } = R_i $
+    - $\text{ISBN}^+ \cap (\text{BibLibs3} - \{ISBN\}) = \emptyset $
 - Hemos chequeado todos los casos, por lo tanto, BibLibs3 está en FNBC.
 
-> **10)** Para \( R = (I, S, C, D, A, O) \) y \( F = \{S \to D; I \to A; IS \to C; A \to O\} \), analizar para cada descomposición si cumple la FNBC justificando su respuesta:
+> **10)** Para $ R = (I, S, C, D, A, O) $ y $ F = \{S \to D; I \to A; IS \to C; A \to O\} $, analizar para cada descomposición si cumple la FNBC justificando su respuesta:
 
-**a)** \( R_1 = (I, S, C, D); R_2 = (I, A, O) \).
+**a)** $ R_1 = (I, S, C, D); R_2 = (I, A, O) $.
 
-- **Comprobemos \( R_1 = (I, S, C, D) \)**:
-    - \(\{I,S\}^+\)
-        - \( \{I,S\}^+ = \{S, I, D, A, C, O\} \supseteq R_1 \)
-        - Por lo tanto, \(\{I, S\}\) es superclave y no hace falta chequear superconjuntos.
+- **Comprobemos $ R_1 = (I, S, C, D) $**:
+    - $\{I,S\}^+$
+        - $ \{I,S\}^+ = \{S, I, D, A, C, O\} \supseteq R_1 $
+        - Por lo tanto, $\{I, S\}$ es superclave y no hace falta chequear superconjuntos.
     
-    - \(\{S\}^+\)
-        - \( \{S\}^+ = \{S, D\} \nsupseteq R_1 \)
-        - \( \{S\}^+ \cap (R_1 - \{S\}) = \{D\} \neq \emptyset \)
+    - $\{S\}^+$
+        - $ \{S\}^+ = \{S, D\} \nsupseteq R_1 $
+        - $ \{S\}^+ \cap (R_1 - \{S\}) = \{D\} \neq \emptyset $
         - No se cumple ninguna de las condiciones!!
     
 Por lo que esta descomposicion no esta en FNBC.
 
-**b)** \( R_1 = (S, D); R_2 = (I, A); R_3 = (I, S, C); R_4 = (A, O) \).
+**b)** $ R_1 = (S, D); R_2 = (I, A); R_3 = (I, S, C); R_4 = (A, O) $.
 
-- **Comprobemos \( R_1 = (S, D) \)**:
-    - \(\{S\}^+\)
-        - \( \{S\}^+ = \{S, D\} \supseteq R_1 \)
-        - Por lo tanto, \(\{S\}\) es superclave y no hace falta chequear superconjuntos.
+- **Comprobemos $ R_1 = (S, D) $**:
+    - $\{S\}^+$
+        - $ \{S\}^+ = \{S, D\} \supseteq R_1 $
+        - Por lo tanto, $\{S\}$ es superclave y no hace falta chequear superconjuntos.
 
-    - \(\{D\}^+\)
-        - \( \{D\}^+ = \{D\} \nsupseteq R_1 \)
-        - \( \{D\}^+ \cap (R_1 - \{D\}) = \emptyset \)
+    - $\{D\}^+$
+        - $ \{D\}^+ = \{D\} \nsupseteq R_1 $
+        - $ \{D\}^+ \cap (R_1 - \{D\}) = \emptyset $
 
-    - \( R_1 \) es FNBC
+    - $ R_1 $ es FNBC
 
-- **Comprobemos \( R_2 = (I, A) \)**:
-    - \(\{I\}^+\)
-        - \( \{I\}^+ = \{I, A\} \supseteq R_2 \)
-        - Por lo tanto, \(\{I\}\) es superclave y no hace falta chequear superconjuntos.
+- **Comprobemos $ R_2 = (I, A) $**:
+    - $\{I\}^+$
+        - $ \{I\}^+ = \{I, A\} \supseteq R_2 $
+        - Por lo tanto, $\{I\}$ es superclave y no hace falta chequear superconjuntos.
 
-    - \(\{A\}^+\)
-        - \( \{A\}^+ = \{A\} \nsupseteq R_2 \)
-        - \( \{A\}^+ \cap (R_2 - \{A\}) = \emptyset \)
+    - $\{A\}^+$
+        - $ \{A\}^+ = \{A\} \nsupseteq R_2 $
+        - $ \{A\}^+ \cap (R_2 - \{A\}) = \emptyset $
 
-    - \( R_2 \) es FNBC
+    - $ R_2 $ es FNBC
 
-- **Comprobemos \( R_3 = (I, S, C) \)**:
-    - \(\{I, S\}^+\)
-        - \( \{I, S\}^+ = \{I, S, C\} \supseteq R_3 \)
-      - Por lo tanto, \(\{I, S\}\) es superclave y no hace falta chequear superconjuntos.
+- **Comprobemos $ R_3 = (I, S, C) $**:
+    - $\{I, S\}^+$
+        - $ \{I, S\}^+ = \{I, S, C\} \supseteq R_3 $
+      - Por lo tanto, $\{I, S\}$ es superclave y no hace falta chequear superconjuntos.
 
-    - \(\{I\}^+\)
-        - \( \{I\}^+ = \{I, A, O\} \nsupseteq R_3 \)
-        - \( \{I\}^+ \cap (R_3 - \{I\}) = \emptyset \)
+    - $\{I\}^+$
+        - $ \{I\}^+ = \{I, A, O\} \nsupseteq R_3 $
+        - $ \{I\}^+ \cap (R_3 - \{I\}) = \emptyset $
     
-    - \(\{S\}^+\)
-        - \( \{S\}^+ = \{S, D\} \nsupseteq R_3 \)
-        - \( \{S\}^+ \cap (R_3 - \{S\}) = \emptyset \)
+    - $\{S\}^+$
+        - $ \{S\}^+ = \{S, D\} \nsupseteq R_3 $
+        - $ \{S\}^+ \cap (R_3 - \{S\}) = \emptyset $
     
-    - \(\{C\}^+\)
-        - \( \{C\}^+ = \{A\} \nsupseteq R_3 \)
-        - \( \{C\}^+ \cap (R_3 - \{C\}) = \emptyset \)
+    - $\{C\}^+$
+        - $ \{C\}^+ = \{A\} \nsupseteq R_3 $
+        - $ \{C\}^+ \cap (R_3 - \{C\}) = \emptyset $
     
-    - \(\{I, C\}^+\)
-        - \( \{I, C\}^+ = \{I, C, A, O\} \nsupseteq R_3 \)
-        - \( \{I, C\}^+ \cap (R_3 - \{I, C\}) = \emptyset \)
+    - $\{I, C\}^+$
+        - $ \{I, C\}^+ = \{I, C, A, O\} \nsupseteq R_3 $
+        - $ \{I, C\}^+ \cap (R_3 - \{I, C\}) = \emptyset $
     
-    - \(\{S, C\}^+\)
-        - \( \{S, C\}^+ = \{S, C, D\} \nsupseteq R_3 \)
-        - \( \{S, C\}^+ \cap (R_3 - \{S, C\}) = \emptyset \)
+    - $\{S, C\}^+$
+        - $ \{S, C\}^+ = \{S, C, D\} \nsupseteq R_3 $
+        - $ \{S, C\}^+ \cap (R_3 - \{S, C\}) = \emptyset $
 
-    - \( R_3 \) es FNBC
+    - $ R_3 $ es FNBC
 
-- **Comprobemos \( R_4 = (A, O) \)**:
+- **Comprobemos $ R_4 = (A, O) $**:
 
-    - \(\{A\}^+\)
-        - \( \{A\}^+ = \{A, O\} \supseteq R_4 \)
-        - Por lo tanto, \(\{A\}\) es superclave y no hace falta chequear superconjuntos.
+    - $\{A\}^+$
+        - $ \{A\}^+ = \{A, O\} \supseteq R_4 $
+        - Por lo tanto, $\{A\}$ es superclave y no hace falta chequear superconjuntos.
 
-    - \(\{O\}^+\)
-        - \( \{O\}^+ = \{O\} \nsupseteq R_4 \)
-        - \( \{O\}^+ \cap (R_4 - \{O\}) = \emptyset \)
+    - $\{O\}^+$
+        - $ \{O\}^+ = \{O\} \nsupseteq R_4 $
+        - $ \{O\}^+ \cap (R_4 - \{O\}) = \emptyset $
 
-    - \( R_4 \) es FNBC
+    - $ R_4 $ es FNBC
 
 Por lo tanto la descomposicion es FNBC
 
 > **11)** Resolver:
 
-**a)** Sea \( R = (A, B, C, D, E, G) \) con las dependencias funcionales \( F = \{A \to BC; D \to EG; G \to B; E \to C; B \to A\} \). ¿Está \( (D, E, G) \) en FNBC? Justifique su respuesta.
+**a)** Sea $ R = (A, B, C, D, E, G) $ con las dependencias funcionales $ F = \{A \to BC; D \to EG; G \to B; E \to C; B \to A\} $. ¿Está $ (D, E, G) $ en FNBC? Justifique su respuesta.
 
-- \(\{D\}^+\)
-    - \( \{D\}^+ = \{D, E, G, C, B, A\} \supseteq (D, E, G) \)
-    - Por lo tanto, \(\{D\}\) es superclave y no hace falta chequear superconjuntos.
+- $\{D\}^+$
+    - $ \{D\}^+ = \{D, E, G, C, B, A\} \supseteq (D, E, G) $
+    - Por lo tanto, $\{D\}$ es superclave y no hace falta chequear superconjuntos.
 
-- \(\{G\}^+\)
-    - \( \{G\}^+ = \{G, B, A, C\} \nsupseteq (D, E, G) \)
-    - \( \{G\}^+ \cap ((D, E, G) - \{G\}) = \emptyset \)
+- $\{G\}^+$
+    - $ \{G\}^+ = \{G, B, A, C\} \nsupseteq (D, E, G) $
+    - $ \{G\}^+ \cap ((D, E, G) - \{G\}) = \emptyset $
 
-- \(\{G, E\}^+\)
-    - \( \{G, E\}^+ = \{G, E, B, A, C\} \nsupseteq (D, E, G) \)
-    - \( \{G, E\}^+ \cap ((D, E, G) - \{G, E\}) = \emptyset \)
+- $\{G, E\}^+$
+    - $ \{G, E\}^+ = \{G, E, B, A, C\} \nsupseteq (D, E, G) $
+    - $ \{G, E\}^+ \cap ((D, E, G) - \{G, E\}) = \emptyset $
     
-- \(\{E\}^+\)
-    - \( \{E\}^+ = \{E, C\} \nsupseteq (D, E, G) \)
-    - \( \{E\}^+ \cap ((D, E, G) - \{E\}) = \emptyset \)
+- $\{E\}^+$
+    - $ \{E\}^+ = \{E, C\} \nsupseteq (D, E, G) $
+    - $ \{E\}^+ \cap ((D, E, G) - \{E\}) = \emptyset $
 
 Por lo que esta en FNBC.
     
-**b)** Sea \( R = (A, B, C, D, E) \) con el conjunto de dependencias funcionales \( F = \{B \to EA; C \to E; DA \to B; E \to AC\} \). ¿Está \( (B, E, A) \) en FNBC? Justifique su respuesta.
+**b)** Sea $ R = (A, B, C, D, E) $ con el conjunto de dependencias funcionales $ F = \{B \to EA; C \to E; DA \to B; E \to AC\} $. ¿Está $ (B, E, A) $ en FNBC? Justifique su respuesta.
 
-- \(\{A\}^+\)
-    - \( \{A\}^+ = \{A\} \nsupseteq (B, E, A) \)
-    - \( \{A\}^+ \cap ((B, E, A)- \{A\}) = \emptyset \)
+- $\{A\}^+$
+    - $ \{A\}^+ = \{A\} \nsupseteq (B, E, A) $
+    - $ \{A\}^+ \cap ((B, E, A)- \{A\}) = \emptyset $
 
-- \(\{B\}^+\)
-    - \( \{B\}^+ = \{A, B, C, E\} \supseteq (B, E, A) \)
-    - Por lo tanto, \(\{B\}\) es superclave y no hace falta chequear superconjuntos.
+- $\{B\}^+$
+    - $ \{B\}^+ = \{A, B, C, E\} \supseteq (B, E, A) $
+    - Por lo tanto, $\{B\}$ es superclave y no hace falta chequear superconjuntos.
     
-- \(\{E\}^+\)
-    - \( \{E\}^+ = \{A, C, E\} \nsupseteq (B, E, A) \)
-    - \( \{E\}^+ \cap ((B, E, A)- \{E\}) \neq \emptyset \)
+- $\{E\}^+$
+    - $ \{E\}^+ = \{A, C, E\} \nsupseteq (B, E, A) $
+    - $ \{E\}^+ \cap ((B, E, A)- \{E\}) \neq \emptyset $
     - No se cumple ninguna de las condiciones!!
 
 Por lo que NO esta en FNBC.
 
-> **12)** Sea \( R = (A, B, C, D) \) un esquema, para cada uno de los siguientes conjuntos de dependencias funcionales:
-\( F = \{AB \to C; C \to D; D \to A\} \),
-\( F = \{B \to C; B \to D\} \),
-\( F = \{AB \to C; BC \to D; CD \to A; AD \to B\} \).
+> **12)** Sea $ R = (A, B, C, D) $ un esquema, para cada uno de los siguientes conjuntos de dependencias funcionales:
+$ F = \{AB \to C; C \to D; D \to A\} $,
+$ F = \{B \to C; B \to D\} $,
+$ F = \{AB \to C; BC \to D; CD \to A; AD \to B\} $.
 
 **a)** Mostrar todas las violaciones FNBC con un solo atributo a la derecha.
 
-**\( F = \{AB \to C; C \to D; D \to A\} \)**:
+**$ F = \{AB \to C; C \to D; D \to A\} $**:
 
-- \(\{C, A\}^+\)
-    - \( \{C, A\}^+ = \{C, D, A\} \nsupseteq R \)
-    - \( \{C, A\}^+ \cap (R - \{C, A\}) = \{D\} \neq \emptyset \)
+- $\{C, A\}^+$
+    - $ \{C, A\}^+ = \{C, D, A\} \nsupseteq R $
+    - $ \{C, A\}^+ \cap (R - \{C, A\}) = \{D\} \neq \emptyset $
     - No se cumple ninguna de las condiciones!!
-    - Por lo tanto \( \{C, A\} \to \{D\} \) es testigo/violacion.
+    - Por lo tanto $ \{C, A\} \to \{D\} $ es testigo/violacion.
     
-- \(\{D\}^+\)
-    - \( \{D\}^+ = \{D, A\} \nsupseteq R \)
-    - \( \{D\}^+ \cap (R - \{D\}) = \{A\} \neq \emptyset \)
+- $\{D\}^+$
+    - $ \{D\}^+ = \{D, A\} \nsupseteq R $
+    - $ \{D\}^+ \cap (R - \{D\}) = \{A\} \neq \emptyset $
     - No se cumple ninguna de las condiciones!!
-    - Por lo tanto \( D \to \{A\} \) es testigo/violacion.
+    - Por lo tanto $ D \to \{A\} $ es testigo/violacion.
     
-- \(\{D, C\}^+\)
-    - \( \{D, C\}^+ = \{C, D, A\} \nsupseteq R \)
-    - \( \{D, C\}^+ \cap (R - \{D, C\}) = \{A\} \neq \emptyset \)
+- $\{D, C\}^+$
+    - $ \{D, C\}^+ = \{C, D, A\} \nsupseteq R $
+    - $ \{D, C\}^+ \cap (R - \{D, C\}) = \{A\} \neq \emptyset $
     - No se cumple ninguna de las condiciones!!
-    - Por lo tanto \( \{D, C\} \to \{A\} \) es testigo/violacion.
+    - Por lo tanto $ \{D, C\} \to \{A\} $ es testigo/violacion.
 
 ... 
 
-**b)** Dar una descomposición \( R_1, \dots, R_n \) de \( R \) que esté en FNBC.
+**b)** Dar una descomposición $ R_1, \dots, R_n $ de $ R $ que esté en FNBC.
 
-**\( F = \{AB \to C; C \to D; D \to A\} \)**:
+**$ F = \{AB \to C; C \to D; D \to A\} $**:
 
-- \( \{A, C\} \to \{D\} \) es testigo/violacion
-    - Por lo tanto descomponemos \( R = (A, B, C, D) \) en:
-        - \( R_1 = (A, C, B) \)
-        - \( R_2 = (A, C, D) \)
+- $ \{A, C\} \to \{D\} $ es testigo/violacion
+    - Por lo tanto descomponemos $ R = (A, B, C, D) $ en:
+        - $ R_1 = (A, C, B) $
+        - $ R_2 = (A, C, D) $
 ...
 
-> **13)** Sea \( R = (A, B, C, D) \) un esquema relacional y sea \( F = \{ A \to BC; B \to C; AB \to D; AB \to C \} \). Se pide encontrar una descomposición en **FNBC** (Forma Normal de Boyce-Codd).
+> **13)** Sea $ R = (A, B, C, D) $ un esquema relacional y sea $ F = \{ A \to BC; B \to C; AB \to D; AB \to C \} $. Se pide encontrar una descomposición en **FNBC** (Forma Normal de Boyce-Codd).
 
 Primero buscaos DF testigos:
 
-- \(\{A\}^+\)
-    - \( \{A\}^+ = \{A, B, C, D\} \supseteq R \)
-    - Por lo tanto, \(\{A\}\) es superclave y no hace falta chequear superconjuntos.
+- $\{A\}^+$
+    - $ \{A\}^+ = \{A, B, C, D\} \supseteq R $
+    - Por lo tanto, $\{A\}$ es superclave y no hace falta chequear superconjuntos.
 
-- \(\{D\}^+\)
-    - \( \{D\}^+ = \{D\} \nsupseteq R \)
-    - \( \{D\}^+ \cap (R - \{D\}) = \emptyset \)
+- $\{D\}^+$
+    - $ \{D\}^+ = \{D\} \nsupseteq R $
+    - $ \{D\}^+ \cap (R - \{D\}) = \emptyset $
 
-- \(\{C\}^+\)
-    - \( \{C\}^+ = \{C\} \nsupseteq R \)
-    - \( \{C\}^+ \cap (R - \{C\}) = \emptyset \)
+- $\{C\}^+$
+    - $ \{C\}^+ = \{C\} \nsupseteq R $
+    - $ \{C\}^+ \cap (R - \{C\}) = \emptyset $
 
-- \(\{C, D\}^+\)
-    - \( \{C, D\}^+ = \{C, D\} \nsupseteq R \)
-    - \( \{C, D\}^+ \cap (R - \{C, D\}) = \emptyset \)
+- $\{C, D\}^+$
+    - $ \{C, D\}^+ = \{C, D\} \nsupseteq R $
+    - $ \{C, D\}^+ \cap (R - \{C, D\}) = \emptyset $
     
-- \(\{B\}^+\)
-    - \( \{B\}^+ = \{B, C\} \nsupseteq R \)
-    - \( \{B\}^+ \cap (R - \{B\}) = \{C\} \neq \emptyset \)
+- $\{B\}^+$
+    - $ \{B\}^+ = \{B, C\} \nsupseteq R $
+    - $ \{B\}^+ \cap (R - \{B\}) = \{C\} \neq \emptyset $
     - No se cumple ninguna de las condiciones!!
-    - Por lo tanto \( \{B\} \to \{C\} \) es **testigo/violacion**.
+    - Por lo tanto $ \{B\} \to \{C\} $ es **testigo/violacion**.
 
-Y creeria que es la unica ademas de \( \{B, D\} \to \{C\} \)
+Y creeria que es la unica ademas de $ \{B, D\} \to \{C\} $
 
-Descomponemos \(R \text{ en } R_1 \text{ y } R_2\):
+Descomponemos $R \text{ en } R_1 \text{ y } R_2$:
 
-- \( R_1 \) = (A, B, D)
-- \( R_2 \) = (B, C)
+- $ R_1 $ = (A, B, D)
+- $ R_2 $ = (B, C)
 
-Recordemos: \( F = \{
+Recordemos: $ F = \{
 A \to BC;
 B \to C ;
 AB \to D;
 AB \to C
-\} \)
+\} $
 
-¿\(R_1 = (A, B, D)\) es FNBC?
+¿$R_1 = (A, B, D)$ es FNBC?
 
-- \(\{A\}^+\)
-    - \( \{A\}^+ = \{A, B, C, D\} \supseteq R_1 \)
-    - Por lo tanto, \(\{A\}\) es superclave y no hace falta chequear superconjuntos.
+- $\{A\}^+$
+    - $ \{A\}^+ = \{A, B, C, D\} \supseteq R_1 $
+    - Por lo tanto, $\{A\}$ es superclave y no hace falta chequear superconjuntos.
 
-- \(\{B\}^+\)
-    - \( \{B\}^+ = \{B, C\} \nsupseteq R_1 \)
-    - \( \{B\}^+ \cap (R_1 - \{B\}) = \emptyset \)
+- $\{B\}^+$
+    - $ \{B\}^+ = \{B, C\} \nsupseteq R_1 $
+    - $ \{B\}^+ \cap (R_1 - \{B\}) = \emptyset $
 
-- \(\{D\}^+\)
-    - \( \{D\}^+ = \{D\} \nsupseteq R_1 \)
-    - \( \{D\}^+ \cap (R_1 - \{D\}) = \emptyset \)
+- $\{D\}^+$
+    - $ \{D\}^+ = \{D\} \nsupseteq R_1 $
+    - $ \{D\}^+ \cap (R_1 - \{D\}) = \emptyset $
 
-- \(\{D, B\}^+\)
-    - \( \{D, B\}^+ = \{D, B, C\} \nsupseteq R_1 \)
-    - \( \{D, B\}^+ \cap (R_1 - \{D, B\}) = \emptyset \)
+- $\{D, B\}^+$
+    - $ \{D, B\}^+ = \{D, B, C\} \nsupseteq R_1 $
+    - $ \{D, B\}^+ \cap (R_1 - \{D, B\}) = \emptyset $
 
-\(R_1\) es FNBC
+$R_1$ es FNBC
 
-¿\(R_2 = (B, C)\) es FNBC?
+¿$R_2 = (B, C)$ es FNBC?
 
-- \(\{B\}^+\)
-    - \( \{B\}^+ = \{B, C\} \supseteq R_2 \)
-    - Por lo tanto, \(\{B\}\) es superclave y no hace falta chequear superconjuntos.
+- $\{B\}^+$
+    - $ \{B\}^+ = \{B, C\} \supseteq R_2 $
+    - Por lo tanto, $\{B\}$ es superclave y no hace falta chequear superconjuntos.
 
-- \(\{C\}^+\)
-    - \( \{C\}^+ = \{C\} \nsupseteq R_2 \)
-    - \( \{C\}^+ \cap (R_2 - \{C\}) = \emptyset \)
+- $\{C\}^+$
+    - $ \{C\}^+ = \{C\} \nsupseteq R_2 $
+    - $ \{C\}^+ \cap (R_2 - \{C\}) = \emptyset $
     
-\(R_2\) es FNBC
+$R_2$ es FNBC
 
 La descomposicion esta en FNBC.

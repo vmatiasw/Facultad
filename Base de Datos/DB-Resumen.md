@@ -46,7 +46,7 @@ O sea que en las consultas o restricciones de integridad no vamos a dividir el v
     <img src="PNGs/image-2.png" width="500">
 </div>
 
-**Redundancia de datos**: La redundancia es un problema que ocurre cuando tienes tuplas en \( R \) que tienen los mismos valores en \( \alpha \) pero diferentes valores en \( \beta \). Esta repetición de los valores de \( \beta \) es innecesaria si no es una clave candidata.
+**Redundancia de datos**: La redundancia es un problema que ocurre cuando tienes tuplas en $ R $ que tienen los mismos valores en $ \alpha $ pero diferentes valores en $ \beta $. Esta repetición de los valores de $ \beta $ es innecesaria si no es una clave candidata.
 Una **solucion** es obtener un buen diseño descomponiendo el esquema que contiene todos los atributos en esquemas más chicos.
 
 **Criterios para tener un diseño de calidad:**
@@ -77,10 +77,10 @@ Sirve como un plano, mientras que el modelo relacional realiza este plano en for
 
 - **Relación**: asociación entre varias entidades.
 
-  - **Conjunto de relaciones (CR)**: es una relación matemática entre \( n \geq 2 \) conjuntos de entidades (CE), definida como:
+  - **Conjunto de relaciones (CR)**: es una relación matemática entre $ n \geq 2 $ conjuntos de entidades (CE), definida como:
     \[
     \{ (e_1, e_2, \ldots, e_n) \mid e_1 \in E_1, e_2 \in E_2, \ldots, e_n \in E_n \}
-    \] donde \( (e_1, e_2, \ldots, e_n) \) es una relación. Un atributo puede ser también una propiedad de un CR.
+    \] donde $ (e_1, e_2, \ldots, e_n) $ es una relación. Un atributo puede ser también una propiedad de un CR.
 
   - **Roles**: Los CE en un CR, no necesariamente son distintos.
   <div style="text-align: center;">
@@ -301,20 +301,20 @@ Proceso que comienza con esquema relacional con todos los atributos atómicos de
 **Esquema universal**: Es el conjunto de todos los atributos (atómicos) del problema actual.
 Usualmente tiene problemas de calidad, como redundancia de información. Por lo que se debe descomponer el esquema universal para eliminarlos.
 
-**Descomposición**: Sea \( R \) un esquema de relación. Un conjunto de esquemas de relación \( \{ R_1, \ldots, R_n \} \) es una descomposición de \( R \) si y solo si \( R = R_1 \cup \ldots \cup R_n \).
+**Descomposición**: Sea $ R $ un esquema de relación. Un conjunto de esquemas de relación $ \{ R_1, \ldots, R_n \} $ es una descomposición de $ R $ si y solo si $ R = R_1 \cup \ldots \cup R_n $.
 
-1. El esquema \( R \) tiene atributos redundantes \( J \).
-2. Encontramos la propiedad del tipo \( K \to J \).
-3. Usamos \( K \to J \) para descomponer \( R \) en: \( K \cup J \) y \( R_1 = R - J \).
+1. El esquema $ R $ tiene atributos redundantes $ J $.
+2. Encontramos la propiedad del tipo $ K \to J $.
+3. Usamos $ K \to J $ para descomponer $ R $ en: $ K \cup J $ y $ R_1 = R - J $.
 
-**\( A \to B, C, ... \) (determinacion)**: Sea \( R \) una relacion con valores redundantes \( J \) que se pueden inferir por un valor \( K \) , se dice que un valor de \( K \) **determina unívocamente** uno o mas valores de \( J \) si se puede descomponer eliminando la redundancia y lo indicamos de la siguiente forma: \( A \to B, C, ... \).
+**$ A \to B, C, ... $ (determinacion)**: Sea $ R $ una relacion con valores redundantes $ J $ que se pueden inferir por un valor $ K $ , se dice que un valor de $ K $ **determina unívocamente** uno o mas valores de $ J $ si se puede descomponer eliminando la redundancia y lo indicamos de la siguiente forma: $ A \to B, C, ... $.
 
-**Dependencias funcionales**: Propiedades del tipo \( \alpha \to \beta \), con \( \alpha \) y \( \beta \) conjuntos de atributos.
-En otras palabras, \( \alpha \) es un determinante funcional de \( \beta \) si para cada valor de \( \alpha \) en una tabla, hay un único valor posible correspondiente de \( \beta \).
+**Dependencias funcionales**: Propiedades del tipo $ \alpha \to \beta $, con $ \alpha $ y $ \beta $ conjuntos de atributos.
+En otras palabras, $ \alpha $ es un determinante funcional de $ \beta $ si para cada valor de $ \alpha $ en una tabla, hay un único valor posible correspondiente de $ \beta $.
 
 #### 2) Conjunto de restricciones de integridad
 
-Una vez que tenemos el esquema universal \( K \), el siguiente paso es definir un conjunto de restricciones de integridad \( I \) para el conjunto de tablas legales.
+Una vez que tenemos el esquema universal $ K $, el siguiente paso es definir un conjunto de restricciones de integridad $ I $ para el conjunto de tablas legales.
 
 **Restricciones de integridad**: Reglas que el esquema de la base de datos debe cumplir para asegurar la consistencia y validez de los datos.
 
@@ -326,7 +326,7 @@ Una vez que tenemos el esquema universal \( K \), el siguiente paso es definir u
 
 **Tablas legales**: Tablas con las que la empresa quiere poder trabajar; donde las tuplas cumplen con ciertas propiedades obligatorias (reglas y restricciones definidas por el negocio o la aplicación) y tienen significado dentro del contexto del problema que está modelando la base de datos.
 
-Sea \( R \) un esquema relacional, \( \alpha \subseteq R \) y \( \beta \subseteq R \). La dependencia funcional \( \alpha \to \beta \) se cumple en \( R \) si y solo si, para todas las relaciones legales \( r(R) \), cada vez que dos tuplas \( t_1 \) y \( t_2 \) de \( r \) coinciden en los atributos \( \alpha \), también coinciden en los atributos \( \beta \). Formalmente:
+Sea $ R $ un esquema relacional, $ \alpha \subseteq R $ y $ \beta \subseteq R $. La dependencia funcional $ \alpha \to \beta $ se cumple en $ R $ si y solo si, para todas las relaciones legales $ r(R) $, cada vez que dos tuplas $ t_1 $ y $ t_2 $ de $ r $ coinciden en los atributos $ \alpha $, también coinciden en los atributos $ \beta $. Formalmente:
 
 \[
 t_1[\alpha] = t2[\alpha] \implies t_1[\beta] = t_2[\beta]
@@ -339,156 +339,156 @@ Proposicion: \[ \alpha \to \beta \text{ es trivial } \iff \beta \subseteq \alpha
 
 - **Prueba**:
 
-  - \( \alpha \to \beta \text{ es trivial} \implies \beta \subseteq \alpha. \):
+  - $ \alpha \to \beta \text{ es trivial} \implies \beta \subseteq \alpha. $:
 
-    - Supongamos que \( \alpha \to \beta \) es trivial.
-    - Si \( \beta \nsubseteq \alpha \), podría haber una relación \( R \) en la que existen valores para \( \alpha \) que no determinan completamente a \( \beta \), violando así la propiedad de trivialidad.
-    - Por lo tanto, si \( \alpha \to \beta \) es trivial, necesariamente \( \beta \subseteq \alpha \).
+    - Supongamos que $ \alpha \to \beta $ es trivial.
+    - Si $ \beta \nsubseteq \alpha $, podría haber una relación $ R $ en la que existen valores para $ \alpha $ que no determinan completamente a $ \beta $, violando así la propiedad de trivialidad.
+    - Por lo tanto, si $ \alpha \to \beta $ es trivial, necesariamente $ \beta \subseteq \alpha $.
 
-  - \( \beta \subseteq \alpha \implies \alpha \to \beta \text{ es trivial}\):
+  - $ \beta \subseteq \alpha \implies \alpha \to \beta \text{ es trivial}$:
 
-    - Supongamos que \( \beta \subseteq \alpha \).
-    - Dado que \( \beta \subseteq \alpha \), cada valor de \( \alpha \) puede determinar a todos los valores de \( \beta \).
-    - En otras palabras, en cualquier relación \( R \) que contenga atributos de \( \alpha \) y \( \beta \), la información sobre \( \beta \) está siempre presente dentro de \( \alpha \).
-    - Por lo tanto, la dependencia \( \alpha \to \beta \) se satisface en todas las relaciones posibles del esquema, lo que confirma que es trivial.
+    - Supongamos que $ \beta \subseteq \alpha $.
+    - Dado que $ \beta \subseteq \alpha $, cada valor de $ \alpha $ puede determinar a todos los valores de $ \beta $.
+    - En otras palabras, en cualquier relación $ R $ que contenga atributos de $ \alpha $ y $ \beta $, la información sobre $ \beta $ está siempre presente dentro de $ \alpha $.
+    - Por lo tanto, la dependencia $ \alpha \to \beta $ se satisface en todas las relaciones posibles del esquema, lo que confirma que es trivial.
 
 **Axiomas de Armstrong**: (Conjunto de reglas de inferencia al derivar)
 
-1. **Reflexividad**: Si \( \beta \subseteq \alpha \), entonces \( \alpha \to \beta \). (y, recordemos, \( \alpha \to \beta \) es trivial)
-2. **Aumentatividad** (o Augmentación): Si \( \alpha \to \beta \), entonces \( \gamma\alpha \to \gamma\beta \) para cualquier conjunto de atributos \( \gamma \).
-3. **Transitividad**: Si \( \alpha \to \beta \) y \( \beta \to \gamma \), entonces \( \alpha \to \gamma \).
+1. **Reflexividad**: Si $ \beta \subseteq \alpha $, entonces $ \alpha \to \beta $. (y, recordemos, $ \alpha \to \beta $ es trivial)
+2. **Aumentatividad** (o Augmentación): Si $ \alpha \to \beta $, entonces $ \gamma\alpha \to \gamma\beta $ para cualquier conjunto de atributos $ \gamma $.
+3. **Transitividad**: Si $ \alpha \to \beta $ y $ \beta \to \gamma $, entonces $ \alpha \to \gamma $.
 
 y se puede inferir de ellas las siguientes:
 
-- **Unión**: Si \( \alpha \to \beta \) y \( \alpha \to \gamma \), entonces \( \alpha \to \beta \gamma \).
+- **Unión**: Si $ \alpha \to \beta $ y $ \alpha \to \gamma $, entonces $ \alpha \to \beta \gamma $.
   - **Prueba**:
-    1. \( \alpha \to \beta \)
-    2. \( \alpha \to \gamma \)
-    3. \( \alpha \gamma \to \beta \gamma \text{ (Aumentatividad en a.) } \)
-    4. \( \alpha \alpha \to \gamma \alpha \text{ (Aumentatividad en b.) } \)
-    5. \( \alpha \alpha \subseteq \alpha \implies \alpha \to \alpha \alpha \text{ (Reflexividad) }\)
-    6. \( \alpha \to \beta \gamma \text{ (Transitividad en e, d, c) }\)
-- **Descomposición**: Si \( \alpha \to \beta \gamma \), entonces \( \alpha \to \beta \) y \( \alpha \to \gamma \).
+    1. $ \alpha \to \beta $
+    2. $ \alpha \to \gamma $
+    3. $ \alpha \gamma \to \beta \gamma \text{ (Aumentatividad en a.) } $
+    4. $ \alpha \alpha \to \gamma \alpha \text{ (Aumentatividad en b.) } $
+    5. $ \alpha \alpha \subseteq \alpha \implies \alpha \to \alpha \alpha \text{ (Reflexividad) }$
+    6. $ \alpha \to \beta \gamma \text{ (Transitividad en e, d, c) }$
+- **Descomposición**: Si $ \alpha \to \beta \gamma $, entonces $ \alpha \to \beta $ y $ \alpha \to \gamma $.
   - **Prueba**:
-    1. \( \alpha \to \beta \gamma \)
-    2. \( \beta \subseteq \beta \gamma \implies \beta \gamma \to \beta \text{ (Reflexividad) }\)
-    3. \( \gamma \subseteq \beta \gamma \implies \beta \gamma \to \gamma \text{ (Reflexividad) }\)
-    4. \( \alpha \to \beta \text{ (Transitividad de a, b) }\)
-    5. \( \alpha \to \gamma \text{ (Transitividad de a, c) }\)
-- **Pseudotransitividad**: Si \( \alpha \to \beta \) y \( \gamma \beta \to \delta \), entonces \( \alpha \gamma \to \delta \).
+    1. $ \alpha \to \beta \gamma $
+    2. $ \beta \subseteq \beta \gamma \implies \beta \gamma \to \beta \text{ (Reflexividad) }$
+    3. $ \gamma \subseteq \beta \gamma \implies \beta \gamma \to \gamma \text{ (Reflexividad) }$
+    4. $ \alpha \to \beta \text{ (Transitividad de a, b) }$
+    5. $ \alpha \to \gamma \text{ (Transitividad de a, c) }$
+- **Pseudotransitividad**: Si $ \alpha \to \beta $ y $ \gamma \beta \to \delta $, entonces $ \alpha \gamma \to \delta $.
   - **Prueba**:
-    1. \( \alpha \to \beta \)
-    2. \( \gamma \beta \to \delta \)
-    3. \( \alpha \gamma \to \beta \gamma \text{ (Aumentatividad en a.) } \)
-    4. \( \alpha \gamma \to \delta \text{ (Transitividad en c, b.) } \)
+    1. $ \alpha \to \beta $
+    2. $ \gamma \beta \to \delta $
+    3. $ \alpha \gamma \to \beta \gamma \text{ (Aumentatividad en a.) } $
+    4. $ \alpha \gamma \to \delta \text{ (Transitividad en c, b.) } $
 
-**Deduccion**: Dado un esquema relacional \( R \), una dependencia funcional \( f \) con atributos en \( R \) se deduce de un conjunto de dependencias funcionales \( F \) con atributos en \( R \) si existe una lista de dependencias funcionales \( f_1, f_2, \ldots, f_n \) tales que \( f_n = f \) y para todo \( 1 \leq i \leq n \):
+**Deduccion**: Dado un esquema relacional $ R $, una dependencia funcional $ f $ con atributos en $ R $ se deduce de un conjunto de dependencias funcionales $ F $ con atributos en $ R $ si existe una lista de dependencias funcionales $ f_1, f_2, \ldots, f_n $ tales que $ f_n = f $ y para todo $ 1 \leq i \leq n $:
 
-1. \( f_i \in F \), o
-2. \( f_i \) se obtiene aplicando la regla de reflexividad, o
-3. \( f_i \) se obtiene aplicando las propiedades de aumentatividad o transitividad a pasos anteriores en la lista.
+1. $ f_i \in F $, o
+2. $ f_i $ se obtiene aplicando la regla de reflexividad, o
+3. $ f_i $ se obtiene aplicando las propiedades de aumentatividad o transitividad a pasos anteriores en la lista.
 
-**\( F \vdash f \)**: Indica que \( f \) se deduce de \( F \).
+**$ F \vdash f $**: Indica que $ f $ se deduce de $ F $.
 
 **F+ (Cierre (o clausura) de un conjunto de DFs F)**: todas las dependencias que se deducen de F.
 Sirve para:
 
 - Calcular F+ y ver si f está en F+; Si está, no se agrega a F; Si no está, hay que agregarla.
-  > En la práctica, calcular la clausura \( F^+ \) suele ser inviable debido al gran número de atributos en un esquema universal. Una razón es que para un conjunto de atributos \( \alpha \), existen \( 2^{|\alpha|} \) dependencias triviales. Además, si \( \alpha \to \beta \) está en \( F \), hay \( 2^{|R|} \) maneras de aplicar la aumentatividad a \( \alpha \to \beta \) (donde \( R \) es el esquema universal) y algunas de estas aplicaciones ni cambiarán el resultado.
+  > En la práctica, calcular la clausura $ F^+ $ suele ser inviable debido al gran número de atributos en un esquema universal. Una razón es que para un conjunto de atributos $ \alpha $, existen $ 2^{|\alpha|} $ dependencias triviales. Además, si $ \alpha \to \beta $ está en $ F $, hay $ 2^{|R|} $ maneras de aplicar la aumentatividad a $ \alpha \to \beta $ (donde $ R $ es el esquema universal) y algunas de estas aplicaciones ni cambiarán el resultado.
 - Intentar deducir f de F y si lo logramos: no se agrega f a F.
   > Si no lo logramos no quiere decir que no se pueda, no nos dice nada.
-- Para saber si \( \alpha \to \beta \) es deducible de \( F \).
-  - Si tenemos las dependencias de \( F^+ \) con el lado izquierdo \( \alpha \), este conjunto es mucho más pequeño que \( F^+ \) (porque hay \( 2^n \) tales \( \alpha \)).
-  Por lo tanto, para responder si \( F \vdash \alpha \to \beta \), podríamos contestar \( \alpha \to \beta \in \{ \alpha \to \phi \mid F \vdash \alpha \to \phi \} \).
-- Para obtener solo el conjunto de dependencias funcionales \( \alpha \to A \) (deducibles de \( F \)) donde \( A \) es un atributo:
-  1. Primero, consideramos el conjunto \( \{ A \in R \mid F \vdash \alpha \to A \} \). Esto representa todos los atributos \( A \) que están relacionados con \( \alpha \) mediante una dependencia funcional deducida de \( F \).
-  2. Si se cumple que \( \beta \subseteq \{ A \in R \mid F \vdash \alpha \to A \} \), entonces, aplicando la regla de unión finitas veces a todos los atributos de \( \beta \), obtenemos que \( F \vdash \alpha \to \beta \).
+- Para saber si $ \alpha \to \beta $ es deducible de $ F $.
+  - Si tenemos las dependencias de $ F^+ $ con el lado izquierdo $ \alpha $, este conjunto es mucho más pequeño que $ F^+ $ (porque hay $ 2^n $ tales $ \alpha $).
+  Por lo tanto, para responder si $ F \vdash \alpha \to \beta $, podríamos contestar $ \alpha \to \beta \in \{ \alpha \to \phi \mid F \vdash \alpha \to \phi \} $.
+- Para obtener solo el conjunto de dependencias funcionales $ \alpha \to A $ (deducibles de $ F $) donde $ A $ es un atributo:
+  1. Primero, consideramos el conjunto $ \{ A \in R \mid F \vdash \alpha \to A \} $. Esto representa todos los atributos $ A $ que están relacionados con $ \alpha $ mediante una dependencia funcional deducida de $ F $.
+  2. Si se cumple que $ \beta \subseteq \{ A \in R \mid F \vdash \alpha \to A \} $, entonces, aplicando la regla de unión finitas veces a todos los atributos de $ \beta $, obtenemos que $ F \vdash \alpha \to \beta $.
   - De esta manera, llegamos a un conjunto conocido como **cierre de un conjunto de atributos**, que es el conjunto a la derecha de la inclusión.
 
-**\( \alpha^+_F \) (cierre de \( \alpha \) bajo \( F \))**: Sea \( R \) el esquema universal y \( F \) el conjunto de dependencias funcionales del problema del mundo real (con atributos en el esquema universal \( R \)). Sea \( \alpha \subseteq R \). El cierre de \( \alpha \) bajo \( F \) se define como:
+**$ \alpha^+_F $ (cierre de $ \alpha $ bajo $ F $)**: Sea $ R $ el esquema universal y $ F $ el conjunto de dependencias funcionales del problema del mundo real (con atributos en el esquema universal $ R $). Sea $ \alpha \subseteq R $. El cierre de $ \alpha $ bajo $ F $ se define como:
 
 \[ \alpha^+_F = \{ A \in R \mid F \vdash \alpha \to A \} \]
 
-**Proposición**: \( F \vdash \alpha \to \alpha^+_F \)
+**Proposición**: $ F \vdash \alpha \to \alpha^+_F $
    - **Prueba**: Esta proposición se demuestra aplicando la regla de unión finitas veces.
 
-**Proposición**: \( F \vdash \alpha \to \beta \iff \beta \subseteq \alpha^+_F \)
+**Proposición**: $ F \vdash \alpha \to \beta \iff \beta \subseteq \alpha^+_F $
 
-Para **decidir si es util agregar \( \alpha \to \beta \) a \( F \)** (osea, no es redundante, agrega nueva información), utilizamos la proposición anterior:
+Para **decidir si es util agregar $ \alpha \to \beta $ a $ F $** (osea, no es redundante, agrega nueva información), utilizamos la proposición anterior:
 
-1. Si \( \beta \subseteq \alpha^+_F \): La respuesta es sí; por lo tanto, no es necesario agregar \( \alpha \to \beta \) a \( F \).
-2. Si no, \( \alpha \to \beta \) no se deduce de \( F \), por lo tanto, agregamos \( \alpha \to \beta \) a \( F \).
+1. Si $ \beta \subseteq \alpha^+_F $: La respuesta es sí; por lo tanto, no es necesario agregar $ \alpha \to \beta $ a $ F $.
+2. Si no, $ \alpha \to \beta $ no se deduce de $ F $, por lo tanto, agregamos $ \alpha \to \beta $ a $ F $.
 
 <div style="text-align: center;">
     <img src="PNGs/image-21.png" width="500">
 </div>
 
-**Superclave**: Dado un esquema relacional \( R \) y un conjunto de dependencias funcionales \( F \), un conjunto de atributos \( \alpha \) es una superclave de \( R \) si y solo si \( \alpha \to R \) está en \( F^+ \).
+**Superclave**: Dado un esquema relacional $ R $ y un conjunto de dependencias funcionales $ F $, un conjunto de atributos $ \alpha $ es una superclave de $ R $ si y solo si $ \alpha \to R $ está en $ F^+ $.
 
-**Clave Candidata**: Un conjunto de atributos \( \alpha \) es una clave candidata de \( R \) si y solo si:
+**Clave Candidata**: Un conjunto de atributos $ \alpha $ es una clave candidata de $ R $ si y solo si:
 
-- \( \alpha \) es una superclave de \( R \).
-- Para todo atributo \( A \) en \( \alpha \), el conjunto \( \alpha - \{A\} \) no es una superclave de \( R \).
+- $ \alpha $ es una superclave de $ R $.
+- Para todo atributo $ A $ en $ \alpha $, el conjunto $ \alpha - \{A\} $ no es una superclave de $ R $.
 
-**Verificación de Superclave**: Para verificar que \( \alpha \) es una superclave de \( R \):
-  1. Calcula \( \alpha^+ \) (el cierre de \( \alpha \) bajo \( F \)).
-  2. Chequea si \( \alpha^+ \) contiene todos los atributos de \( R \).
+**Verificación de Superclave**: Para verificar que $ \alpha $ es una superclave de $ R $:
+  1. Calcula $ \alpha^+ $ (el cierre de $ \alpha $ bajo $ F $).
+  2. Chequea si $ \alpha^+ $ contiene todos los atributos de $ R $.
 
-**Redundancia**: Si el esquema relacional \( R \) tiene redundancia en un conjunto de atributos \( \beta \) y se cumple en \( R \) una dependencia funcional \( \alpha \to \beta \) (donde \( \alpha \) y \( \beta \) son disjuntos y por lo tanto \( \alpha \to \beta \) una DF no trivial ), entonces:
-- **Como \( \alpha \to \beta \) es no trivial, si \( \alpha \) no determina todos los atributos de \( R \)**:
-  1. Entonces existen 2 tuplas distintas de \( R \) que coinciden en \( \alpha \).
-  2. Entonces para esas tuplas se van a repetir los valores de \( \beta \).
-  3. Por lo tanto, tenemos redundancia de información en esas tuplas para los atributos de \( \beta \), a menos que \( \beta \) sea **clave candidata** para el conjunto de atributos de un concepto del problema.
-        - I.E: Si \( \beta \) es *clave candidata*, aunque sus valores se repitan en diferentes tuplas con el mismo valor de \( \alpha \), no son redundancia innecesaria. Sirven para identificar unívocamente las tuplas de acuerdo con las reglas del modelo relacional.
-- **Como \( \alpha \) no determina todos los atributos de \( R \)**:
-  - La dependencia \( \alpha \to \beta \) puede ser usada para eliminar redundancia de información para los atributos de \( \beta \) por medio de la *descomposición* de \( R \) en  \( R - \{\beta\} \) y \( \alpha \cup \beta \).
-  - Sea \( R \), \( F \) (conjunto de dependencias funcionales). Decir que \( \alpha \) no determina todos los atributos de \( R \) es lo mismo que decir:
-    - Que \( \alpha \to R \) no se deduce de \( F \).
-    - O, equivalentemente, que **\( \alpha \) no es superclave de \( R \)**.
+**Redundancia**: Si el esquema relacional $ R $ tiene redundancia en un conjunto de atributos $ \beta $ y se cumple en $ R $ una dependencia funcional $ \alpha \to \beta $ (donde $ \alpha $ y $ \beta $ son disjuntos y por lo tanto $ \alpha \to \beta $ una DF no trivial ), entonces:
+- **Como $ \alpha \to \beta $ es no trivial, si $ \alpha $ no determina todos los atributos de $ R $**:
+  1. Entonces existen 2 tuplas distintas de $ R $ que coinciden en $ \alpha $.
+  2. Entonces para esas tuplas se van a repetir los valores de $ \beta $.
+  3. Por lo tanto, tenemos redundancia de información en esas tuplas para los atributos de $ \beta $, a menos que $ \beta $ sea **clave candidata** para el conjunto de atributos de un concepto del problema.
+        - I.E: Si $ \beta $ es *clave candidata*, aunque sus valores se repitan en diferentes tuplas con el mismo valor de $ \alpha $, no son redundancia innecesaria. Sirven para identificar unívocamente las tuplas de acuerdo con las reglas del modelo relacional.
+- **Como $ \alpha $ no determina todos los atributos de $ R $**:
+  - La dependencia $ \alpha \to \beta $ puede ser usada para eliminar redundancia de información para los atributos de $ \beta $ por medio de la *descomposición* de $ R $ en  $ R - \{\beta\} $ y $ \alpha \cup \beta $.
+  - Sea $ R $, $ F $ (conjunto de dependencias funcionales). Decir que $ \alpha $ no determina todos los atributos de $ R $ es lo mismo que decir:
+    - Que $ \alpha \to R $ no se deduce de $ F $.
+    - O, equivalentemente, que **$ \alpha $ no es superclave de $ R $**.
 
 #### 3) Normalizacion
 
-Un esquema \( R \) está en **Forma Normal de Boyce-Codd (FNBC)** con respecto a un conjunto \( F \) de dependencias funcionales (DFs) si para todas las DFs en \( F^+ \) de la forma \( \alpha \to \beta \), donde \( \alpha \subseteq R \) y \( \beta \subseteq R \), al menos una de las siguientes propiedades se cumple:
+Un esquema $ R $ está en **Forma Normal de Boyce-Codd (FNBC)** con respecto a un conjunto $ F $ de dependencias funcionales (DFs) si para todas las DFs en $ F^+ $ de la forma $ \alpha \to \beta $, donde $ \alpha \subseteq R $ y $ \beta \subseteq R $, al menos una de las siguientes propiedades se cumple:
 
-- \( \alpha \to \beta \) es trivial (i.e., \( \beta \subseteq \alpha \)).
-- \( \alpha \) es una superclave de \( R \) (i.e., \( \alpha \to R \in F^+ \)).
+- $ \alpha \to \beta $ es trivial (i.e., $ \beta \subseteq \alpha $).
+- $ \alpha $ es una superclave de $ R $ (i.e., $ \alpha \to R \in F^+ $).
 
-Es decir, cumple la propiedad de no tener redundancia de información proveniente de DFs. La propiedad expresa la negación de la existencia de DFs que cumplen: \( \alpha \to \beta \) es no trivial, y \( \alpha \) no es superclave de \( R \) (i.e: redundancia).
+Es decir, cumple la propiedad de no tener redundancia de información proveniente de DFs. La propiedad expresa la negación de la existencia de DFs que cumplen: $ \alpha \to \beta $ es no trivial, y $ \alpha $ no es superclave de $ R $ (i.e: redundancia).
 
-Sea \( R \) el esquema universal, \( F \) el conjunto de dependencias funcionales. Una descomposición \( \{ R_1, \dots, R_n \} \) de \( R \) está en FNBC con respecto a \( F \) si y solo si cada \( R_i \) está en FNBC con respecto a \( F \).
+Sea $ R $ el esquema universal, $ F $ el conjunto de dependencias funcionales. Una descomposición $ \{ R_1, \dots, R_n \} $ de $ R $ está en FNBC con respecto a $ F $ si y solo si cada $ R_i $ está en FNBC con respecto a $ F $.
 
-**¿Cómo comprobar que un esquema \( R \) con respecto a \( F \) no está en FNBC?**
+**¿Cómo comprobar que un esquema $ R $ con respecto a $ F $ no está en FNBC?**
 
-- Una DF de \( F^+ \) que no cumple la condición de FNBC se llama **violación** o **DF testigo**.
-  - Es una DF \( \alpha \to \beta \) no trivial en \( F^+ \) tal que \( \alpha \to R \notin F^+ \).
-- Para probar que \( R \) no está en FNBC con respecto a \( F \), basta con encontrar una DF testigo en \( F^+ \).
-  - A veces (pero no siempre) la DF testigo está en \( F \).
+- Una DF de $ F^+ $ que no cumple la condición de FNBC se llama **violación** o **DF testigo**.
+  - Es una DF $ \alpha \to \beta $ no trivial en $ F^+ $ tal que $ \alpha \to R \notin F^+ $.
+- Para probar que $ R $ no está en FNBC con respecto a $ F $, basta con encontrar una DF testigo en $ F^+ $.
+  - A veces (pero no siempre) la DF testigo está en $ F $.
 
-**¿Cómo comprobar que un esquema \( R \) con respecto a \( F \) está en FNBC?**
+**¿Cómo comprobar que un esquema $ R $ con respecto a $ F $ está en FNBC?**
 
-Chequear todos los \( \alpha \to \beta \) de \( F^+ \) con atributos en \( R \) es demasiado costoso.
+Chequear todos los $ \alpha \to \beta $ de $ F^+ $ con atributos en $ R $ es demasiado costoso.
 
-**Comprobación de FNBC**: Sea \( R_U \) universal, con DFs \( F \) y sea \( R_i \) que forma parte de la descomposición de \( R_U \); para probar que \( R_i \) está en FNBC se puede hacer la siguiente comprobación:
+**Comprobación de FNBC**: Sea $ R_U $ universal, con DFs $ F $ y sea $ R_i $ que forma parte de la descomposición de $ R_U $; para probar que $ R_i $ está en FNBC se puede hacer la siguiente comprobación:
 \[
 \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+
 \]
-- La primera condición del V significa: todas las DF con lado izquierdo \( \alpha \) son triviales.
-- Si \( \alpha \subseteq R_i \) viola la condición, entonces la siguiente DF es testigo: \( \alpha \to \alpha^+ \cap (R_i - \alpha) \) y la podremos usar para descomponer \(R_i\) en el Algoritmo de normalización en FNBC.
+- La primera condición del V significa: todas las DF con lado izquierdo $ \alpha $ son triviales.
+- Si $ \alpha \subseteq R_i $ viola la condición, entonces la siguiente DF es testigo: $ \alpha \to \alpha^+ \cap (R_i - \alpha) $ y la podremos usar para descomponer $R_i$ en el Algoritmo de normalización en FNBC.
 
 **Prueba:**
 
-- Supongamos que \( R_i \) está en FNBC y \( \neg (R_i \subseteq \alpha^+) \):
+- Supongamos que $ R_i $ está en FNBC y $ \neg (R_i \subseteq \alpha^+) $:
 
-  - Toda \( \alpha \to \beta \) en \( F^+ \) con atributos en \( R_i \) es trivial.
-  - Esto implica que para todo \( \beta \): \( \beta \cap (R_i - \alpha) = \emptyset \)
-  - Se obtiene: \( \alpha^+ \cap (R_i - \alpha) = \emptyset \) (tomando \( \beta = \alpha^+ \))
-  - Luego se cumple: \( \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+ \)
+  - Toda $ \alpha \to \beta $ en $ F^+ $ con atributos en $ R_i $ es trivial.
+  - Esto implica que para todo $ \beta $: $ \beta \cap (R_i - \alpha) = \emptyset $
+  - Se obtiene: $ \alpha^+ \cap (R_i - \alpha) = \emptyset $ (tomando $ \beta = \alpha^+ $)
+  - Luego se cumple: $ \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+ $
 
-- Supongamos que \( \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+ \):
-  - Sea \( \alpha \to \beta \) en \( F^+ \) con atributos en \( R_i \) y \( \neg (R_i \subseteq \alpha^+) \)
-  - Entonces se tiene que \( \beta \subseteq \alpha^+ \)
-  - Entonces: \( \beta \cap (R_i - \alpha) \subseteq \alpha^+ \cap (R_i - \alpha) = \emptyset \)
-  - Luego \( \beta \subseteq \alpha \) y \( \alpha \to \beta \) es trivial.
+- Supongamos que $ \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+ $:
+  - Sea $ \alpha \to \beta $ en $ F^+ $ con atributos en $ R_i $ y $ \neg (R_i \subseteq \alpha^+) $
+  - Entonces se tiene que $ \beta \subseteq \alpha^+ $
+  - Entonces: $ \beta \cap (R_i - \alpha) \subseteq \alpha^+ \cap (R_i - \alpha) = \emptyset $
+  - Luego $ \beta \subseteq \alpha $ y $ \alpha \to \beta $ es trivial.
 
 **Algoritmo de normalización en FNBC**: Sea R esquema universal, F conjunto de DFs halla una descomposicion de R que está en FNBC.
 
@@ -498,7 +498,7 @@ Chequear todos los \( \alpha \to \beta \) de \( F^+ \) con atributos en \( R \) 
   
 - Para buscar un esquema que no está en FNBC, se puede usar el algoritmo de comprobación de que un esquema está en FNBC:
   \[ \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i - \alpha) = \emptyset \vee R_i \subseteq \alpha^+ \]
-- Este algoritmo encontrará un \( \alpha \) que viola la condición. A partir de ese \( \alpha \), se puede obtener la **DF testigo** (o **violacion**):
+- Este algoritmo encontrará un $ \alpha $ que viola la condición. A partir de ese $ \alpha $, se puede obtener la **DF testigo** (o **violacion**):
   \[ \alpha \to \alpha^+ \cap (R_i - \alpha) \]
 
 ----
