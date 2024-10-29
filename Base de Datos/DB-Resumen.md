@@ -8,11 +8,13 @@
 
 **Restricción de integridad**: es una propiedad que las instancias de la BD deben satisfacer. Al modificar una instancia se debe chequear que las restricciones de integridad de la BD siguen siendo válidas.
 
-**Procesos de diseño de esquemas relacionales que veremos**:
+**Parte 1 de la materia: Procesos de diseño de esquemas relacionales**:
+1. [Proceso de modelado Entidad Relación y traducción](#Proceso-de-Entidad-Relacion-y-traduccion): Proceso que hace un diseño de entidad- relación primero y luego traduce ese diseño de entidad- relación a un conjunto de esquemas de relación.
+2. [Proceso de Normalizacion](#Proceso-de-Normalizacion): Proceso que comienza con esquema relacional con todos los atributos atómicos del problema y un conjunto de restricciones de integridad y calcula un esquema de la base de datos. A esto se le llama normalización.
 
-1. [Proceso de modelado Entidad Relacion y traduccion](#Proceso- de- Entidad- Relacion- y- traduccion): Proceso que hace un diseño de entidad- relación primero y luego traduce ese diseño de entidad- relación a un conjunto de esquemas de relación.
-2. [Proceso de Normalizacion](#Proceso- de- Normalizacion): Proceso que comienza con esquema relacional con todos los atributos atómicos del problema y un conjunto de restricciones de integridad y calcula un esquema de la base de datos. A esto se le llama normalización.
-
+**Parte 2 de la materia**: 
+- [Gestión del almacenamiento](#Gestión-del-almacenamiento)
+- [Procesamiento de consultas](#Procesamiento-de-consultas)
 ## Esquema relacional
 
 Es una forma para estructurar una base de datos, utilizando relaciones (o tablas) que representan los datos y sus relaciones.
@@ -21,10 +23,8 @@ Cada tabla tiene un nombre único, filas (tuplas o registros) y columnas (atribu
 **Esquema relacional**: Lista de nombres de atributos (Nombre esquema = lista de atributos).
 **Instancia**: Datos que se almacenan en tablas para los esquemas de la misma.
 Las columnas representan atributos (o propiedades) para los elementos de la tabla (tuplas).
+![500](PNGs/image-1.png)
 
-<div style="text- align: center;">
-    <img src="PNGs/image- 1.png" width="500">
-</div>
 
 > **Notación**: **r(R)** significa r es una relación con esquema de relación R. O sea, las columnas de r tienen como nombres los atributos de R.
 
@@ -42,9 +42,7 @@ O sea que en las consultas o restricciones de integridad no vamos a dividir el v
 
 **Restricción de clave foránea (o de integridad referencial)**: Los valores de uno o más atributos en una tupla de la **relación referenciante** aparecen en uno o más atributos de una tupla en la **relación referenciada**. Los atributos referenciados de la relación referenciada suelen formar una **clave candidata** del esquema de la relación referenciada.
 
-<div style="text- align: center;">
-    <img src="PNGs/image- 2.png" width="500">
-</div>
+![450](PNGs/image-2.png)
 
 **Redundancia de datos**: La redundancia es un problema que ocurre cuando tienes tuplas en$R$que tienen los mismos valores en$\alpha$pero diferentes valores en$\beta$. Esta repetición de los valores de$\beta$es innecesaria si no es una clave candidata.
 Una **solucion** es obtener un buen diseño descomponiendo el esquema que contiene todos los atributos en esquemas más chicos.
@@ -54,15 +52,15 @@ Una **solucion** es obtener un buen diseño descomponiendo el esquema que contie
 -  Evitar problemas de redundancia de información.
 -  Evitar problemas de comprensibilidad.
 -  Evitar problemas de incompletitud como:
-  -  Restricciones de integridad incompletas.
-  -  Relaciones entre atributos no contempladas por esquemas de BD.
+	-  Restricciones de integridad incompletas.
+	- Relaciones entre atributos no contempladas por esquemas de BD.
 -  Evitar problemas de ineficiencia como:
-  -  Chequeo ineficiente de restricciones de integridad.
-  -  Consultas ineficientes por tener un esquema inadecuado de BD.
+	  -  Chequeo ineficiente de restricciones de integridad.
+	  -  Consultas ineficientes por tener un esquema inadecuado de BD.
  
 - - - - 
 
-## Proceso de modelado Entidad Relacion y traduccion
+## Proceso de modelado Entidad Relación y traducción
 
 Proceso que hace un diseño de entidad- relación primero y luego traduce ese diseño de entidad- relación a un conjunto de esquemas de relación.
 
@@ -83,29 +81,24 @@ Sirve como un plano, mientras que el modelo relacional realiza este plano en for
     $$ donde$(e_1, e_2, \ldots, e_n)$es una relación. Un atributo puede ser también una propiedad de un CR.
 
   -  **Roles**: Los CE en un CR, no necesariamente son distintos.
-  <div style="text- align: center;">
-    <img src="PNGs/image- 12.png" width="500">
-  </div>
+![500](PNGs/image-12.png)
 
 -  **Atributo**: propiedad de una entidad; esa propiedad tiene un valor en un **dominio**: _conjunto de valores permitidos para cada atributo_.
 
-  -  Atributos **Simples**: atributos hoja, no se siguen descomponiendo.
-  -  Atributos **compuestos**: atributos rama, se siguen descomponiendo.
-  -  Atributos **uni- valorados**: toman un valor.
-  -  Atributos **multi- valorados**: pueden tomar varios valores.
-  -  Atributos **derivados**: pueden computarse de otros atributos.
+	  -  Atributos **Simples**: atributos hoja, no se siguen descomponiendo.
+	  -  Atributos **compuestos**: atributos rama, se siguen descomponiendo.
+	  -  Atributos **uni- valorados**: toman un valor.
+	  -  Atributos **multi- valorados**: pueden tomar varios valores.
+	  -  Atributos **derivados**: pueden computarse de otros atributos.
 
 -  **Clave**: Es un subconjunto del conjunto de atributos comunes en una colección de entidades, que permite identificar inequívocamente cada una de las entidades pertenecientes a dicha colección. Asimismo, permiten distinguir entre sí las relaciones de un conjunto de relaciones.
-  Dentro de los conjuntos de entidades existen los siguientes tipos de claves:
-  -  **Superclave de un CE**: conjunto de uno o más atributos cuyos valores unívocamente determinan cada entidad.
-  -  **Clave candidata (CC) de un CE**: superclave minimal (i.e. si se quita atributo dejamos de tener superclave). Una clave candidata no necesariamente tiene cardinalidad mínima.
-  -  **Clave primaria**: Aunque varias claves candidatas pueden existir, una de las claves candidatas es seleccionada para ser la clave primaria. No necesariamente es la de menor cantidad de atributos.
+	  Dentro de los conjuntos de entidades existen los siguientes tipos de claves:
+	  -  **Superclave de un CE**: conjunto de uno o más atributos cuyos valores unívocamente determinan cada entidad.
+	  -  **Clave candidata (CC) de un CE**: superclave minimal (i.e. si se quita atributo dejamos de tener superclave). Una clave candidata no necesariamente tiene cardinalidad mínima.
+	  -  **Clave primaria**: Aunque varias claves candidatas pueden existir, una de las claves candidatas es seleccionada para ser la clave primaria. No necesariamente es la de menor cantidad de atributos.
     > **Notación**: Se indican los atributos de una clave primaria para un esquema de relación R **subrayando** los atributos de R que forman la clave primaria.
 
-<div style="text- align: center;">
-    <img src="PNGs/image- 0.png" width="600">
-</div>
-
+![500](PNGs/image-0.png)
 ### Restricciones en CR's
 
 #### Correspondencias de Cardinalidades
@@ -121,20 +114,12 @@ Sea R un CR de CE's E1 a CE's E2:
 > **Obs:** En todos los casos pueden existir elementos pertenecientes a E1 que no están mapeados con elementos de E2 y viceversa.
 >
 > **Notación de correspondencia de cardinalidades**:
->
-> <div style="text- align: center;">
->   <img src="PNGs/image- 8.png" width="500">
-> </div>
->
-> <div style="text- align: center;">
->   <img src="PNGs/image- 23.png" width="600">
-> </div>
+>   ![500](PNGs/image-8.png)
+>   ![500](PNGs/image-23.png)
 >
 > **Notación de intervalos o de cardinalidades**: [a..b] o [a..*]
 >
-> <div style="text- align: center;">
->   <img src="PNGs/image- 11.png" width="600">
-> </div>
+> ![500](PNGs/image-11.png)
 > Notar que el lugar donde se pone la información es al revés (o sea, del otro lado) que en correspondencia de cardinalidades.
 
 #### Restricciones de participación
@@ -142,14 +127,10 @@ Sea R un CR de CE's E1 a CE's E2:
 Dado un conjunto de relaciones R en el cual participa un conjunto de entidades A, dicha participación puede ser de dos tipos:
 
 -  **Participación total**: (indicada por línea doble) toda entidad en el conjunto de entidades participa en al menos una relación en el conjunto de relaciones.
-  <div style="text- align: center;">
-    <img src="PNGs/image- 9.png" width="600">
-  </div>
+![500](PNGs/image-9.png)
 
 -  **Participación parcial**: (indicada por línea simple) algunas entidades no participan en alguna relación en el conjunto de relaciones.
-  <div style="text- align: center;">
-    <img src="PNGs/image- 10.png" width="500">
-  </div>
+![500](PNGs/image-10.png)
 
 ### Entidades fuertes y débiles
 
@@ -165,11 +146,11 @@ Hay un CR varios- uno entre CE débil y CE identificador, donde el CE débil tie
 -  A este CR se le llama CR de identificación.
 -  El mismo se representa con un diamante doble.
   El **discriminador** de un CE débiles es un conjunto de atributos que
-  -  Permite distinguir entre todas las entidades de un CE débiles asociadas a la misma entidad fuerte.
-  -  Los atributos del discriminador se subrayan con línea de guiones
-    La **clave primaria** de un CE débiles se forma con la clave primaria del CE identificador más el discriminador del CE débiles.
+	  -  Permite distinguir entre todas las entidades de un CE débiles asociadas a la misma entidad fuerte.
+	  -  Los atributos del discriminador se subrayan con línea de guiones
+	    La **clave primaria** de un CE débiles se forma con la clave primaria del CE identificador más el discriminador del CE débiles.
 
-### Especialización- Generalización
+### Especialización Generalización
 
 **Especialización**: hace referencia a un proceso de diseño descendiente (top- down) donde designamos **subgrupos** dentro de un CE que son distintivos de otras entidades en el CE.
 
@@ -188,95 +169,66 @@ Una especialización se denota con un triángulo etiquetado ISA o ES, se llama t
 
 **Generalización**: hace referencia a un proceso de diseño ascendiente (bottom up) que generaliza unos cuantos CE que comparten las mismas propiedades en un CE de más alto nivel.
 
-**Restricciones de integridad**:
+#### Restricciones de integridad
 
--  Para indicar si una entidad pertenece o no a más de un CE de nivel más bajo dentro de la generalización.
+Para indicar si una entidad pertenece o no a más de un CE de nivel más bajo dentro de la generalización.
   -  Disjunto: una entidad puede pertenecer a solo un CE de nivel más bajo. Usar palabra reservada disj.
   -  Solapado: una entidad puede pertenecer a más de un CE de nivel más bajo.
--  **Restricción de completitud**: para indicar si una entidad en el CE de nivel más alto debe pertenecer a al menos uno de los CE de nivel más bajo en la generalización.
+
+**Restricción de completitud**: para indicar si una entidad en el CE de nivel más alto debe pertenecer a al menos uno de los CE de nivel más bajo en la generalización.
   -  Total: una entidad debe pertenecer a un CE de nivel más bajo (usar línea doble para indicarlo).
   -  Parcial: una entidad puede no pertenecer a un CE de nivel más bajo
 
 ### Reglas de Reducción a Esquemas Relacionales
 
 -  **Un CE fuerte que no involucra atributos compuestos ni atributos multi- valorados** se mapea a un esquema relacional con los mismos atributos.
-
-  -  La clave primaria del CE se convierte en la clave primaria del esquema relacional.
-  <div style="text- align: center;">
-    <img src="PNGs/image- 6.png" width="400">
-  </div>
+	  -  La clave primaria del CE se convierte en la clave primaria del esquema relacional.
+![500](PNGs/image-6.png)
 
 -  **Un CE fuerte que no involucra atributos/subatributos multivalorados** se mapea a un esquema relacional con los mismos atributos simples y los subatributos hoja de los atributos compuestos. Cada valor del atributo multivalorado mapea a una tupla separada en la tabla del esquema EM.
-
-  -  Solo nos quedamos con los atributos simples/hojas y eliminamos los compuestos/ramas.
-  <div style="text- align: center;">
-    <img src="PNGs/image- 5.png" width="400">
-  </div>
+	  -  Solo nos quedamos con los atributos simples/hojas y eliminamos los compuestos/ramas.
+![500](PNGs/image-5.png)
 
 -  **Un atributo multivalorado M simple de un CE** E es representado por un esquema separado EM.
-
-  -  EM tiene atributos correspondientes a la clave primaria de E y un atributo correspondiente al atributo multivalorado M.
-  -  Todos los atributos de EM forman su clave primaria.
-  -  Se pone una restricción de clave foránea desde EM que referencia a la clave primaria de E.
-  <div style="text- align: center;">
-    <img src="PNGs/image- 7.png" width="400">
-  </div>
+	  -  EM tiene atributos correspondientes a la clave primaria de E y un atributo correspondiente al atributo multivalorado M.
+	  -  Todos los atributos de EM forman su clave primaria.
+	  -  Se pone una restricción de clave foránea desde EM que referencia a la clave primaria de E.
+![500](PNGs/image-7.png)
 
 -  **Los atributos derivados** no son explícitamente representados en el modelo de datos relacional. Si se los necesita, una forma de computarlos es por medio de consultas.
 
 -  **Un CR varios- varios** es representado con un esquema con atributos para las claves primarias de los dos CE participantes y todos los atributos descriptivos del CR (que no son multivalorados).
-
-  -  La clave primaria del esquema del CR es la unión de las claves primarias de los CEs que participan en el CR.
-  -  Para cada CE que participa en el CR se crea restricción de clave foránea que referencia clave primaria de CE.
-  <div style="text- align: center;">
-    <img src="PNGs/image- 13.png" width="400">
-  </div>
+	  -  La clave primaria del esquema del CR es la unión de las claves primarias de los CEs que participan en el CR.
+	  -  Para cada CE que participa en el CR se crea restricción de clave foránea que referencia clave primaria de CE.
+![500](PNGs/image-13.png)
 
 -  **Un CR varios a uno o uno a varios que es total en el lado varios** puede ser representado agregando atributos extra en el CE del lado varios, conteniendo la clave primaria del lado uno.
-
-  -  La clave primaria del CR es la clave primaria del CE del lado varios.
-  -  Se crea restricción de clave foránea de CR que referencia a clave primaria de CE de lado varios.
-  -  Si la participación es parcial en el lado varios, aplicar la regla anterior puede resultar en valores nulos. Esto sucede cuando a una entidad del CE del lado varios no le corresponde ninguna entidad del CE del lado uno.
-  <div style="text- align: center;">
-    <img src="PNGs/image- 14.png" width="500">
-  </div>
+	  -  La clave primaria del CR es la clave primaria del CE del lado varios.
+	  -  Se crea restricción de clave foránea de CR que referencia a clave primaria de CE de lado varios.
+	  -  Si la participación es parcial en el lado varios, aplicar la regla anterior puede resultar en valores nulos. Esto sucede cuando a una entidad del CE del lado varios no le corresponde ninguna entidad del CE del lado uno.
+![500](PNGs/image-14.png)
 
 -  **Un CR uno a uno con participación total en ambos lados** puede ser mapeado agregando al esquema resultante de traducir uno de los CE participantes los atributos de la clave primaria del otro CE.
-
-  -  La clave primaria de cualquier CE puede ser elegida como la clave primaria del CR.
-  -  Se crea restricción de clave foránea de esquema relacional asociado al CR que referencia clave primaria de otro CE (el que no se tomo de base para hallar el esquema asociado al CR).
-  <div style="text- align: center;">
-    <img src="PNGs/image- 15.png" width="600">
-  </div>
+	  -  La clave primaria de cualquier CE puede ser elegida como la clave primaria del CR.
+	  -  Se crea restricción de clave foránea de esquema relacional asociado al CR que referencia clave primaria de otro CE (el que no se tomo de base para hallar el esquema asociado al CR).
+![500](PNGs/image-15.png)
 
 -  **Un CE débiles** se mapea a una tabla que incluye columnas para la clave primaria del CE identificador más los atributos (no multivalorados) del CE débiles (achatando jerarquías de atributos compuestos si es necesario).
-
-  -  La clave primaria del CE identificador más el discriminador del CE débil forman la clave primaria del esquema relacional de la traducción.
-  -  Para atributos de esquema de CE débil que provienen de CE identificadora se agrega restricción de clave foránea desde esquema de CE débil a CE identificador.
-  -  El CR identificador no se mapea.
-  <div style="text- align: center;">
-    <img src="PNGs/image- 16.png" width="500">
-  </div>
+	  -  La clave primaria del CE identificador más el discriminador del CE débil forman la clave primaria del esquema relacional de la traducción.
+	  -  Para atributos de esquema de CE débil que provienen de CE identificadora se agrega restricción de clave foránea desde esquema de CE débil a CE identificador.
+	  -  El CR identificador no se mapea.
+![500](PNGs/image-16.png)
 
 -  **Cuando el CE generalización no está relacionado con otros CE** hay tres posibles guias:
-
-1. **Si es una generalización total y disjunta**: Formar una tabla para cada CE especialización con los atributos locales y heredados; no formar tabla para la generalización.
-<div style="text- align: center;">
-  <img src="PNGs/image- 17.png" width="700">
-</div>
-
-2. **Si es una generalización no total y disjunta**: Formar una tabla para cada CE especialización con los atributos locales y heredados del CE generalización.
-
-   -  No va a haber redundancia entre los CE especializaciones.
-   -  No hay que consultar dos tablas para obtener toda la información de una especialización.
-   <div style="text- align: center;">
-     <img src="PNGs/image- 18.png" width="700">
-   </div>
-
-3. **Si es una generalización no disjunta**: Formar una tabla para el CE de nivel más alto (la generalización); Formar una tabla para cada CE especialización que incluye la clave primaria del CE generalización y los atributos locales.
-<div style="text- align: center;">
-  <img src="PNGs/image- 19.png" width="700">
-</div>
+	1. **Si es una generalización total y disjunta**: Formar una tabla para cada CE especialización con los atributos locales y heredados; no formar tabla para la generalización.
+		![500](PNGs/image-17.png)
+	2. **Si es una generalización no total y disjunta**: Formar una tabla para cada CE especialización con los atributos locales y heredados del CE generalización.
+		 -  No va a haber redundancia entre los CE especializaciones.
+		-  No hay que consultar dos tablas para obtener toda la información de una especialización.
+		![500](PNGs/image-18.png)
+	
+	3. **Si es una generalización no disjunta**: Formar una tabla para el CE de nivel más alto (la generalización); Formar una tabla para cada CE especialización que incluye la clave primaria del CE generalización y los atributos locales.
+		![500](PNGs/image-19.png)
 
 - - - - 
 
@@ -289,9 +241,7 @@ Proceso que comienza con esquema relacional con todos los atributos atómicos de
 1. Identificar el esquema universal K.
 2. A partir de K y para el problema actual definir un conjunto de restricciones de integridad I, que servirán de guía para hacer un buen diseño.
 3. Se aplica un algoritmo llamado de normalización que calcula un esquema de BD relacional a partir de K y de I.
-<div style="text- align: center;">
-    <img src="PNGs/image- 20.png" width="500">
-</div>
+![500](PNGs/image-20.png)
 
 > La **teoría de normalización** estudia cómo descomponer esquemas universales para eliminar sus problemas.
 > No se enfoca principalmente en modelado o diseño; sino en encontrar las restricciones de integridad necesarias (i.e. dependencias funcionales) y el esquema universal.
@@ -307,26 +257,26 @@ Usualmente tiene problemas de calidad, como redundancia de información. Por lo 
 2. Encontramos la propiedad del tipo$K \to J$.
 3. Usamos$K \to J$para descomponer$R$en:$K \cup J$y$R_1 = R -  J$.
 
-**$A \to B, C, ...$ (determinacion)**: Sea$R$una relacion con valores redundantes$J$que se pueden inferir por un valor$K$, se dice que un valor de$K$**determina unívocamente** uno o mas valores de$J$si se puede descomponer eliminando la redundancia y lo indicamos de la siguiente forma: $A \to B, C, ...$.
+**$A \to B, C, ...$ (determinacion)**: Sea$R$una relacion con valores redundantes$J$que se pueden inferir por un valor $K$, se dice que un valor de $K$ **determina unívocamente** uno o mas valores de$J$si se puede descomponer eliminando la redundancia y lo indicamos de la siguiente forma: $A \to B, C, ...$.
 
-**Dependencias funcionales**: Propiedades del tipo$\alpha \to \beta$, con$\alpha$y$\beta$conjuntos de atributos.
-En otras palabras,$\alpha$es un determinante funcional de$\beta$si para cada valor de$\alpha$en una tabla, hay un único valor posible correspondiente de$\beta$.
+**Dependencias funcionales**: Propiedades del tipo $\alpha \to \beta$, con $\alpha$ y $\beta$ conjuntos de atributos.
+En otras palabras,$\alpha$es un determinante funcional de $\beta$ si para cada valor de $\alpha$ en una tabla, hay un único valor posible correspondiente de $\beta$.
 
 #### 2) Conjunto de restricciones de integridad
 
-Una vez que tenemos el esquema universal$K$, el siguiente paso es definir un conjunto de restricciones de integridad$I$para el conjunto de tablas legales.
+Una vez que tenemos el esquema universal $K$, el siguiente paso es definir un conjunto de restricciones de integridad $I$ para el conjunto de tablas legales.
 
 **Restricciones de integridad**: Reglas que el esquema de la base de datos debe cumplir para asegurar la consistencia y validez de los datos.
 
 -  Pueden incluir:
-  -  Dependencias Funcionales (DFs),
-  -  Reglas de Integridad de Entidad: Cada entidad debe tener una clave primaria única,
-  -  Reglas de Integridad Referencial: Las claves foráneas deben hacer referencia a claves primarias válidas en otras relaciones.
+	  -  Dependencias Funcionales (DFs),
+	  -  Reglas de Integridad de Entidad: Cada entidad debe tener una clave primaria única,
+	  -  Reglas de Integridad Referencial: Las claves foráneas deben hacer referencia a claves primarias válidas en otras relaciones.
 -  Necesitan ser chequeadas cada vez que cambia la base de datos. Y esto tiene su costo computacional. Cuantas menos restricciones de integridad necesiten ser chequeadas, mejor.
 
 **Tablas legales**: Tablas con las que la empresa quiere poder trabajar; donde las tuplas cumplen con ciertas propiedades obligatorias (reglas y restricciones definidas por el negocio o la aplicación) y tienen significado dentro del contexto del problema que está modelando la base de datos.
 
-Sea$R$un esquema relacional,$\alpha \subseteq R$y$\beta \subseteq R$. La dependencia funcional$\alpha \to \beta$se cumple en$R$si y solo si, para todas las relaciones legales$r(R)$, cada vez que dos tuplas$t_1$y$t_2$de$r$coinciden en los atributos$\alpha$, también coinciden en los atributos$\beta$. Formalmente:
+Sea $R$ un esquema relacional, $\alpha \subseteq R$ y $\beta \subseteq R$. La dependencia funcional $\alpha \to \beta$ se cumple en $R$ si y solo si, para todas las relaciones legales $r(R)$, cada vez que dos tuplas $t_1$ y $t_2$ de $r$ coinciden en los atributos $\alpha$, también coinciden en los atributos $\beta$. Formalmente:
 
 $$
 t_1[\alpha] = t2[\alpha] \implies t_1[\beta] = t_2[\beta]
@@ -398,12 +348,12 @@ Sirve para:
 -  Intentar deducir f de F y si lo logramos: no se agrega f a F.
   > Si no lo logramos no quiere decir que no se pueda, no nos dice nada.
 -  Para saber si$\alpha \to \beta$es deducible de$F$.
-  -  Si tenemos las dependencias de$F^+$con el lado izquierdo$\alpha$, este conjunto es mucho más pequeño que$F^+$(porque hay$2^n$tales$\alpha$).
+	  -  Si tenemos las dependencias de$F^+$con el lado izquierdo$\alpha$, este conjunto es mucho más pequeño que$F^+$(porque hay$2^n$tales$\alpha$).
   Por lo tanto, para responder si$F \vdash \alpha \to \beta$, podríamos contestar$\alpha \to \beta \in \{ \alpha \to \phi \mid F \vdash \alpha \to \phi \}$.
 -  Para obtener solo el conjunto de dependencias funcionales$\alpha \to A$(deducibles de$F$) donde$A$es un atributo:
-  1. Primero, consideramos el conjunto$\{ A \in R \mid F \vdash \alpha \to A \}$. Esto representa todos los atributos$A$que están relacionados con$\alpha$mediante una dependencia funcional deducida de$F$.
-  2. Si se cumple que$\beta \subseteq \{ A \in R \mid F \vdash \alpha \to A \}$, entonces, aplicando la regla de unión finitas veces a todos los atributos de$\beta$, obtenemos que$F \vdash \alpha \to \beta$.
-  -  De esta manera, llegamos a un conjunto conocido como **cierre de un conjunto de atributos**, que es el conjunto a la derecha de la inclusión.
+	  1. Primero, consideramos el conjunto$\{ A \in R \mid F \vdash \alpha \to A \}$. Esto representa todos los atributos$A$que están relacionados con$\alpha$mediante una dependencia funcional deducida de$F$.
+	  2. Si se cumple que$\beta \subseteq \{ A \in R \mid F \vdash \alpha \to A \}$, entonces, aplicando la regla de unión finitas veces a todos los atributos de$\beta$, obtenemos que$F \vdash \alpha \to \beta$.
+	  -  De esta manera, llegamos a un conjunto conocido como **cierre de un conjunto de atributos**, que es el conjunto a la derecha de la inclusión.
 
 **$\alpha^+_F$(cierre de$\alpha$bajo$F$)**: Sea$R$el esquema universal y$F$el conjunto de dependencias funcionales del problema del mundo real (con atributos en el esquema universal$R$). Sea$\alpha \subseteq R$. El cierre de$\alpha$bajo$F$se define como:
 
@@ -419,9 +369,7 @@ Para **decidir si es util agregar$\alpha \to \beta$a$F$** (osea, no es redundant
 1. Si$\beta \subseteq \alpha^+_F$: La respuesta es sí; por lo tanto, no es necesario agregar$\alpha \to \beta$a$F$.
 2. Si no,$\alpha \to \beta$no se deduce de$F$, por lo tanto, agregamos$\alpha \to \beta$a$F$.
 
-<div style="text- align: center;">
-    <img src="PNGs/image- 21.png" width="500">
-</div>
+![500](PNGs/image-21.png)
 
 **Superclave**: Dado un esquema relacional$R$y un conjunto de dependencias funcionales$F$, un conjunto de atributos$\alpha$es una superclave de$R$si y solo si$\alpha \to R$está en$F^+$.
 
@@ -441,10 +389,10 @@ Para **decidir si es util agregar$\alpha \to \beta$a$F$** (osea, no es redundant
   3. Por lo tanto, tenemos redundancia de información en esas tuplas para los atributos de$\beta$, a menos que$\beta$sea **clave candidata** para el conjunto de atributos de un concepto del problema.
         -  I.E: Si$\beta$es *clave candidata*, aunque sus valores se repitan en diferentes tuplas con el mismo valor de$\alpha$, no son redundancia innecesaria. Sirven para identificar unívocamente las tuplas de acuerdo con las reglas del modelo relacional.
 -  **Como$\alpha$no determina todos los atributos de$R$**:
-  -  La dependencia$\alpha \to \beta$puede ser usada para eliminar redundancia de información para los atributos de$\beta$por medio de la *descomposición* de$R$en $R -  \{\beta\}$y$\alpha \cup \beta$.
-  -  Sea$R$,$F$(conjunto de dependencias funcionales). Decir que$\alpha$no determina todos los atributos de$R$es lo mismo que decir:
-    -  Que$\alpha \to R$no se deduce de$F$.
-    -  O, equivalentemente, que **$\alpha$no es superclave de$R$**.
+	  -  La dependencia$\alpha \to \beta$puede ser usada para eliminar redundancia de información para los atributos de$\beta$por medio de la *descomposición* de$R$en $R -  \{\beta\}$y$\alpha \cup \beta$.
+	  -  Sea$R$,$F$(conjunto de dependencias funcionales). Decir que$\alpha$no determina todos los atributos de$R$es lo mismo que decir:
+	    -  Que$\alpha \to R$no se deduce de$F$.
+	    -  O, equivalentemente, que **$\alpha$no es superclave de$R$**.
 
 #### 3) Normalizacion
 
@@ -460,9 +408,9 @@ Sea$R$el esquema universal,$F$el conjunto de dependencias funcionales. Una desco
 **¿Cómo comprobar que un esquema$R$con respecto a$F$no está en FNBC?**
 
 -  Una DF de$F^+$que no cumple la condición de FNBC se llama **violación** o **DF testigo**.
-  -  Es una DF$\alpha \to \beta$no trivial en$F^+$tal que$\alpha \to R \notin F^+$.
+	  -  Es una DF$\alpha \to \beta$no trivial en$F^+$tal que$\alpha \to R \notin F^+$.
 -  Para probar que$R$no está en FNBC con respecto a$F$, basta con encontrar una DF testigo en$F^+$.
-  -  A veces (pero no siempre) la DF testigo está en$F$.
+	  -  A veces (pero no siempre) la DF testigo está en$F$.
 
 **¿Cómo comprobar que un esquema$R$con respecto a$F$está en FNBC?**
 
@@ -479,22 +427,20 @@ $$
 
 -  Supongamos que$R_i$está en FNBC y$\neg (R_i \subseteq \alpha^+)$:
 
-  -  Toda$\alpha \to \beta$en$F^+$con atributos en$R_i$es trivial.
-  -  Esto implica que para todo$\beta$:$\beta \cap (R_i -  \alpha) = \emptyset$
-  -  Se obtiene:$\alpha^+ \cap (R_i -  \alpha) = \emptyset$(tomando$\beta = \alpha^+$)
-  -  Luego se cumple:$\forall \alpha \subseteq R_i : \alpha^+ \cap (R_i -  \alpha) = \emptyset \vee R_i \subseteq \alpha^+$
+	  -  Toda$\alpha \to \beta$en$F^+$con atributos en$R_i$es trivial.
+	  -  Esto implica que para todo$\beta$:$\beta \cap (R_i -  \alpha) = \emptyset$
+	  -  Se obtiene:$\alpha^+ \cap (R_i -  \alpha) = \emptyset$(tomando$\beta = \alpha^+$)
+	  -  Luego se cumple:$\forall \alpha \subseteq R_i : \alpha^+ \cap (R_i -  \alpha) = \emptyset \vee R_i \subseteq \alpha^+$
 
 -  Supongamos que$\forall \alpha \subseteq R_i : \alpha^+ \cap (R_i -  \alpha) = \emptyset \vee R_i \subseteq \alpha^+$:
-  -  Sea$\alpha \to \beta$en$F^+$con atributos en$R_i$y$\neg (R_i \subseteq \alpha^+)$
-  -  Entonces se tiene que$\beta \subseteq \alpha^+$
-  -  Entonces:$\beta \cap (R_i -  \alpha) \subseteq \alpha^+ \cap (R_i -  \alpha) = \emptyset$
-  -  Luego$\beta \subseteq \alpha$y$\alpha \to \beta$es trivial.
+	  -  Sea$\alpha \to \beta$en$F^+$con atributos en$R_i$y$\neg (R_i \subseteq \alpha^+)$
+	  -  Entonces se tiene que$\beta \subseteq \alpha^+$
+	  -  Entonces:$\beta \cap (R_i -  \alpha) \subseteq \alpha^+ \cap (R_i -  \alpha) = \emptyset$
+	  -  Luego$\beta \subseteq \alpha$y$\alpha \to \beta$es trivial.
 
 **Algoritmo de normalización en FNBC**: Sea R esquema universal, F conjunto de DFs halla una descomposicion de R que está en FNBC.
 
-  <div style="text- align: center;">
-      <img src="PNGs/image- 22.png" width="500">
-  </div>
+![500](PNGs/image-22.png)
   
 -  Para buscar un esquema que no está en FNBC, se puede usar el algoritmo de comprobación de que un esquema está en FNBC:
   $$ \forall \alpha \subseteq R_i : \alpha^+ \cap (R_i -  \alpha) = \emptyset \vee R_i \subseteq \alpha^+ $$
@@ -506,13 +452,12 @@ $$
 ## Lenguajes de Consultas
 
 **Consulta**: en una base de datos es una expresión que describe una colección de datos deseada. Para expresar consultas se usan **lenguajes de consulta**.
-
 Para consultar los datos en modelo relacional es muy usado en la industria el lenguaje de consultas SQL.
 
 Para el modelo relacional existen lenguajes de consulta puros como álgebra relacional, cálculo de tuplas, etc.
 **álgebra de tablas**: variación más expresiva del álgebra relacional
 
-**sistema gestor de BD (SGBD) relacionales**: se compone de Gestor de almacenamiento, Procesamiento de consultas y Gestor de transacciones.
+**sistema gestor de BD (SGBD) relacionales**: se compone de [Gestor de almacenamiento](#Gestión-del-almacenamiento), [Procesamiento de consultas](#Procesamiento-de-consultas) y [Gestor de transacciones](#Transacciones).
 
 ## Gestión del almacenamiento
 
@@ -523,16 +468,12 @@ Los datos deben ser organizados en archivos con estructuras apropiadas de modo q
 -  El gestor de almacenamiento provee una interfaz para los datos a nivel físico para ser usada por los programas de aplicación y consultas enviadas al sistema. Se ocupa de: acceso al almacenamiento, organización en archivos de los datos, indexado.
 
 ## Procesamiento de consultas
-
 El sistema gestor de BD procesa consultas para el modelo relacional.
 
 1. Parseo de la consulta y su traducción (p.ej. a álgebra relacional o álgebra de tablas)
 2. Optimización: Encontrar la manera “más eficiente” (o plan) para obtener la información descrita por la consulta.
 3. Evaluación (siguiendo el plan optimizado)
-<div style="text- align: center;">
-    <img src="PNGs/image- 3.png" width="400">
-</div>
-
+![500](PNGs/image-3.png)
 ## Transacciones
 
 > **Preguntas importantes**:
