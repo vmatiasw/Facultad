@@ -1,15 +1,16 @@
 
-1. [Codificación](#Codificación)
+1) [Codificación](#Codificación)
 	Objetivo: **implementar el diseño** de la mejor manera posible **minimizando los costos de testing y mantenimiento**.
-	- [Programación-estructurada](#Programación-estructurada)
-		- Objetivo: escribir programas cuya estructura **dinámica** sea lo mas similar a la **estática**. i.e: desarrollar programas cuyo flujo de control (dinámico) sea **lineal** así como se puede leer y entender en el código.
+	- [Programación-estructurada](#Programación-estructurada) (sentencias = bloques de control)
+		- Busca escribir programas cuyo **flujo de control** (estructura **dinámica**) sea lo mas similar al **orden lineal** de las **sentencias** en el código (estructura **estática**). Para ello utiliza **constructores** de una **única entrada y una única salida** para que la ejecución de las sentencias se realice en el orden en el que aparecen en el código.
+		- Objetivo: **Razonar sobre la estructura estática fácilmente la dinámica** ya que la dinámica es la que sucede y sobre ella se comprueba la **correctitud**.
 			- Estructura **dinámica**: orden el cual las sentencias se **ejecutan**.
-			- Estructura **estática**: orden de las sentencias en el código (**orden lineal**)
-		- Tiene **constructores** de una **única entrada y una única salida**.
-			- De esta manera, la ejecución de las sentencias se realizan en el orden en el que aparecen en el código.
+			- Estructura **estática**: orden de las sentencias en el código (**orden lineal**).
 	- [Procesos-de-codificación](#Procesos-de-codificación)
-		- [Proceso-de-codificación-incremental](#Proceso-de-codificación-incremental) <-- grafico
-		- [Desarrollo dirigido por test (TDD)](#Desarrollo-dirigido-por-test) <-- grafico
+		- [Proceso-de-codificación-incremental](#Proceso-de-codificación-incremental)
+			![340](PNGs/proceso-codificacion-incremental.png)
+		- [Desarrollo dirigido por test (TDD)](#Desarrollo-dirigido-por-test)
+		![340](PNGs/TDD.png)
 		- [Programación-de-a-pares](#Programación-de-a-pares)
 			- El código se escribe de a dos programadores, que van **alternando el rol** de escritura y de revisor (--> hay **revisión continua**, mayor **detección de errores** y **mejor diseño**).
 	- [Refactorización ](#Refactorización) (Mantenimiento del diseño)
@@ -17,82 +18,87 @@
 		 Hace el SW mas comprensible, testeable y mantenible --> **aumenta la C&P en la realización de cambios**.
 		 Metodo: **- acoplamiento**,**+ cohesión**, **+ abierto-cerrado**.
 		Refactorizaciones más comunes:
-		- [Mejoras-de-métodos](#Mejoras-de-métodos)
-			- **Agregar/Eliminar parámetros**: que todos los parámetros provean la información necesaria y ninguno provea información que otro ya provee.
-			- **Extracción de métodos**: separar en métodos cortos cuya **signatura** indique lo que el método hace.
-		- [Mejoras-de-clases](#Mejoras-de-clases)
-			- **Desplazamiento de métodos**: Mover métodos de una clase a otra tal que se reduzca el acoplamiento y aumente la cohesión de las clases.
-				(ej: cuando el método actúa demasiado con los objetos de la otra clase.)
-			- **Desplazamiento de atributos**: Mover atributos de una clase a otra tal que se reduzca el acoplamiento y aumente la cohesión de las clases.
-				(ej: cuando el atributo se usa más en la otra clase)
-			- **Extracción de clases**: Si una clase agrupa múltiples conceptos, separar cada concepto en una clase distinta mejorando la cohesión.
-			- **Remplazar valores de datos por objetos**: Si una colección de atributos forman parte de una misma entidad lógica, separarlos como una clase y definir objetos para accederlos.
-		- [Mejoras-de-jerarquías](#Mejoras-de-jerarquías)
-			- **Remplazar condicionales con polimorfismos**: Si el comportamiento depende de alguna condicional (if,else,switch) de tipo, aprovechar las capacidades de la POO, en particular el **polimorfismo**, para que cada tipo de objeto **decida cómo comportarse**.
-			- **Subir métodos/atributos**: Si la funcionalidad o atributo esta duplicado en las subclases, pueden subirse a la superclase.
-2. [Procesos-de-desarrollo](#Procesos-de-desarrollo)
+		1) [Mejoras-de-métodos](#Mejoras-de-métodos)
+			1. **Agregar/Eliminar parámetros**: Simplificar la interface, eliminar redundancia y solo dejar los necesarios.
+			2. **Extracción de métodos** (Modularizar): Separar en métodos cortos cuya **signatura** indique lo que el método hace.
+		2) [Mejoras-de-clases](#Mejoras-de-clases)
+			1. **Desplazamiento de métodos/atributos**: Si hay mayor acoplamiento del método/atributo con otra clase que cohesión con la propia, moverlo a la otra.
+				(ej método: cuando el método actúa demasiado con los objetos de la otra clase.)
+				(ej atributo: cuando el atributo se usa más en la otra clase)
+			2. **Extracción de clases**: Si existe baja cohesión entre dos partes de una clase, dividirla en dos.
+			3. **Remplazar valores de datos por objetos**: Si una colección de atributos forman parte de una misma entidad lógica, separarlos como una clase y definir objetos para accederlos.
+		3) [Mejoras-de-jerarquías](#Mejoras-de-jerarquías)
+			1. **Remplazar condicionales de tipo con polimorfismos**: Si el comportamiento depende de alguna condicional (if,else,switch) de tipo, aprovechar las capacidades de la POO, en particular el **polimorfismo**, para que cada tipo de objeto **decida cómo comportarse**.
+			2. **Subir métodos/atributos**: Si la funcionalidad o atributo esta duplicado en las subclases, pueden subirse a la superclase.
+2) [Procesos-de-desarrollo](#Procesos-de-desarrollo)
 	Modelos comunes:
 	1. [Modelo-Cascada](#Modelo-Cascada)
-		- Divide claramente la solución en una secuencia de fases ordenadas, conectadas por un **producto de trabajo** definido. Ideal para proyectos con requisitos claros desde el inicio, pero menos adaptable a cambios.
+		- Divide claramente la solución en una **secuencia** de fases, donde cada una produce y pasa a la siguiente un **producto de trabajo** definido.
 		- Ventajas: Fácil de administrar y ejecutar. Conceptualmente **simple**, Intuitivo y lógico.
-		- Desventajas: Mayores **riesgos de requerimientos**.
+		- Desventajas: Mayores **riesgos de requerimientos** y menos adaptable a cambios.
 		 - Uso: Proyectos con **requerimientos bien comprendidos** y **tecnología definida al inicio**.
 		 - **Variante**: con feedback a la fase anterior a lo sumo.
 	2. [Prototipado](#Prototipado)
-		- Remplaza la etapa de análisis de requerimientos del [Modelo-Cascada](#Modelo-Cascada) con una **‘’mini-cascada’’** para construir rápidamente un prototipo económico (de calidad sin cuidado) que permita al cliente tener una idea de lo que sería el SW y así conseguir **mejor feedback** de él. **El prototipo se descarta**.
+		- Remplaza la etapa de análisis de requerimientos del [Modelo-Cascada](#Modelo-Cascada) con una **‘’mini-cascada’’** para **construir rápidamente un prototipo económico** (de calidad sin cuidado), con las **características que necesitan mejor comprensión**, que permita al cliente tener una idea de lo que sería el SW y así conseguir **mejor feedback** de él. **El prototipo se descarta**.
 		- Ventajas: Ayuda a **comprender y reducir riesgos de los requerimientos**.
 		- Desventajas: Posiblemente **mayores costos y tiempos**.
 		- Uso: Cuando hay mucha **incertidumbre en los requerimientos**.
 	4. [Iterativo](#Iterativo)
-		- Desarrolla y entrega el SW incrementalmente en una **“secuencia de cascadas”**  completas en sí mismas (con testing, feedback, ...). En cada secuencia se actualiza y se realiza un subconjunto de la **LCP** hasta terminar el proyecto.
+		- Desarrolla y entrega el SW incrementalmente en una **“secuencia de cascadas”**  completas en sí mismas (con testing, feedback, ...). En cada secuencia se actualiza y se realiza en orden una parte de la **LCP** hasta terminar el proyecto.
 			- **LCP** (lista de control del proyecto):  Contiene ordenadamente las tareas necesarias para terminar el proyecto.
 		- Ventajas: **Entregas regulares y rápidas**. **Permite feedback** del usuario para mejorar lo desarrollado. **Acepta cambios** naturalmente.
-		- Desventajas: **Mayor costo** en refactorizacion (o si no, en C&P en los cambios) y en **revisión** o **descarte** del trabajo ya hecho.
+		- Desventajas: **Mayor costo** en refactorizacion (o si no, en C&P en los cambios) y en **cambio** o **descarte** del trabajo ya hecho.
 		- Uso: Donde se requiere **tiempos de respuesta rápidos**, **no puede enfrentarse el riesgo de proyectos largos**  “todo o nada”, y/o **los requerimientos sólo se comprenderán con el tiempo**.
 	5. [Timeboxing](#Timeboxing)
-		- Divide la iteración en **“time boxes”** iguales y usa **pipelining** para ejecutar iteraciones en paralelo de **diferentes etapas y proyectos** independientes.
+		- Ejecuta iteraciones con **pipelining** de **proyectos independientes** en paralelo.
+			- **Iteracion**: **‘’mini-cascada’’** completa dividida en **fases de igual duración** (“time boxe”) donde cada fase tiene un **equipo especializado** que la ejecuta.
 		- Ventajas: Las del **iterativo**, y **Ciclo de entrega muy corto**.
 		- Desventajas: **Muy grandes equipos de trabajo** distribuidos/parelelizados -->  **Mayor costo**, y **Administración mucho mas compleja**.
 		 - Uso: Donde es necesario **tiempos de entrega muy cortos**.
-3. [Proceso-de-Software](#Proceso-de-Software)
+3) [Proceso-de-Software](#Proceso-de-Software)
 	- **[Enfoque ETVX](#Enfoque-“ETVX”)**: Cada fase produce un **producto de trabajo** (**Task**), tal que el **criterio de entrada** (**Entry**) de la siguiente fase sea consistente con el **criterio de salida** (**Exit**) de la fase actual. Verificando la calidad del producto (**Verificación**) para reducir el riesgo de errores acumulativos y lograr alta C&P.
 	- **¿Por qué dividir fases?**: **Cada fase ataca distintas partes del problema** (Dividir y conquistar), lo que ayuda a **validar continuamente el proyecto**.
 	- **¿Por que ser predecible?**: El proceso debe ser predecible para estimar, **bajo control estadístico**, los costos, esfuerzos, calidad y desempeño, asegurando **consistencia en la C&P** al desarrollar software.
 	Procesos/**componentes**:
 	1. **Proceso de la ingeniería del producto**: 
-		1. [Proceso de desarrollo de software](#Proceso-de-desarrollo-de-software): Son las **fases** a seguir, **planeadas** para construir un sistema de SW dentro de los **costos** y **cronograma**, con **alta C&P** tal que **satisfaga al cliente**.
+		1. [Proceso de desarrollo de software](#Proceso-de-desarrollo-de-software): Se enfoca en las actividades para el desarrollo **planeadas**. Busca construir un sistema de SW dentro de los **costos** y **cronograma**, con **alta C&P** tal que **satisfaga al cliente**.
 		2. [Proceso para la administración del proyecto](#Proceso-para-la-administración-del-proyecto): Se enfoca en el **planeamiento** y **control** del proceso de desarrollo para **ejecutar** eficientemente las fases y actividades del **proyecto**.
 			Fases:
-			1) **[Planeamiento](#Planeamiento-del-proyecto-de-software)**: **Antes de comenzar el proyecto**, esta fase produce el plan que guiara el **Seguimiento y control**.
-				- **Entrada**: requerimientos y la arquitectura básicos.
+			1) **[Planeamiento](#Planeamiento-del-proyecto-de-software)**: **Antes de comenzar el desarrollo**, partir de los requerimientos y la arquitectura básica, esta fase produce el plan que guiara el **Seguimiento y control**.
 				Tareas claves:
-				- **Estima** esfuerzo, costos, tiempos y recursos.
-				- **Selecciona** el personal.
-				- **Planea** todas las tareas que la [administración del proyecto](#Proceso-para-la-administración-del-proyecto) necesita realizar durante el **seguimiento y control**. i.e: seguimiento del proyecto, control de calidad, y la [administración de la configuración](#Proceso-para-la-administración-de-la-configuración).
-				- **Administra** el riesgo.
+				1. [Planeamiento del proceso](#Planeamiento-del-proceso)
+				2. [Estimación del esfuerzo](#Estimación-del-esfuerzo)
+				3. [Planificación y recursos humanos](#Planificación-y-recursos-humanos)
+				4. [Planeamiento de la administración de la configuración del software](#Planeamiento-de-la-administración-de-la-configuración-del-software)
+				5. [Planeamiento del Control de Calidad](#Planeamiento-del-Control-de-Calidad)
+				6. [Administración de riesgos](#Administración-de-riesgos)
+				7. [Planificación del seguimiento del proyecto](#Planificación-del-seguimiento-del-proyecto)
 			2) **Seguimiento y Control**: **Durante el proceso de desarrollo**, esta fase **ejecuta el plan inicial** y lo **actualiza en función de las necesidades**. i.e: toma **acciones correctivas** cuando sea necesario, observando **métricas** de parámetros clave como costo, tiempos, y riesgo así como los factores que los afectan.
 			3) **Análisis de terminación**: **Al finalizar el proceso de desarrollo**, esta fase **analiza el desempeño del proceso** e identifica las lecciones aprendidas para mejorar en el futuro.
 		3. [Proceso de inspección](#Proceso-de-inspección): Es una **revisión estructurada con roles definidos** con el objetivo de **detectar defectos** en los productos de trabajo, **sin enfocarse en resolverlos**. La información recolectada en la revisión es registrada y utilizada para monitorear la efectividad de la solución.
+			Luego de aceptarse el producto de trabajo este pasa a estar bajo el [Proceso para la administración de la configuración](#Proceso-para-la-administración-de-la-configuración).
 			Roles y responsabilidades:
-			- **Moderador**: Está a cargo de la reunión y juega un rol central
-				- Asegura que el foco permanece sobre la identificación de defectos en el producto de trabajo (y no en su autor).
-				- Debe garantizar que la reunión se ejecute ordenada y amigablemente, y evitar que se prolonguen o se discutan soluciones.
-				- Utiliza el resumen para analizar la efectividad de la revisión.
+			- **Moderador**: Está **a cargo** de la reunión, asegura el **foco sobre la identificación de defectos en el producto de trabajo** (y no en su autor o que se discutan soluciones, ...), garantiza que la reunión sea ordenada, amigable, y **que no se prolongue**, y **analiza la efectividad de la revisión con el resumen**.
 			- **Autor**: quien realizó el producto de trabajo.
 			- **Revisor**: quien identifica los defectos.
 			- **Lector**: lee línea a línea el producto de trabajo para enfocar el progreso de la reunión.
 			- **Escriba**: registra las observaciones indicadas
 			Fases: 
-			![400](proceso-inspeccion.png)
-			
-		4. [Proceso para la administración de la configuración](#Proceso-para-la-administración-de-la-configuración) (SCM): es el **control sistemático de los cambios** en los **ítems de configuración** en la **evolución** de un proyecto de SW (**los cambios de requerimientos se manejan aparte**), asegurando que las distintas versiones se combinen correctamente, sin pérdidas. **Controla solo el producto** del proceso de desarrollo (es **independiente del proceso de desarrollo**).
+			1. **Planeamiento**: Se selecciona al equipo de revisión y se prepara el material necesario: producto de trabajo a revisar, su especificación, listas de control de items relevantes y estándares.
+			2. **Preparación y repaso**: Todos los miembros del equipo **revisan individualmente** el producto de trabajo para identificar defectos potenciales en un **registro individual**.
+			3. **Reunión de revisión grupal**:
+				1. El lector lee línea a línea el producto de trabajo, mientras se realizan las observaciones y se discute para identificar los defectos. Toda decisión es registrada por el escriba.
+				2. Se evalúan los defectos y se decide si se acepta o se requiere otra revisión.
+				3. Se prepara un resumen para que el moderador revise la efectividad de la revisión.
+			4. **Corrección y seguimiento**: Los defectos en la lista de defectos son posteriormente corregidos por el autor y el moderador evalúa aceptar el producto de trabajo o requerir otra revisión. 
+		4. [Proceso para la administración de la configuración](#Proceso-para-la-administración-de-la-configuración) (SCM): es el **control sistemático de los cambios** del **producto del proceso de desarrollo** en los **ítems de configuración** del repositorio en la **evolución** de un proyecto de SW, asegurando que las **distintas versiones se combinen correctamente**, sin pérdidas.
 			- **Control de acceso**: Establece procedimientos check-in, check-out para controlar el acceso del personal a los items del repositorio.
 				![400](control-acceso.png)
 			- **Items de la configuración**: unidades individuales sujetas a cambios, los cuales se rastrean rigurosamente. Una **baseline** es un conjunto de estos ítems que representan un estado estable, sirviendo como referencia para cambios futuros.
-		6. [Proceso para la administración de cambios de requisitos](#Proceso-para-la-administración-de-cambios): Permite **de manera controlada** los **requerimientos de cambio** evaluando su impacto, en esfuerzo, cronograma y costo, en los productos de trabajo y distintos ítems de configuración, manteniendo un **registro** de todos los requerimientos de cambio.
-	2. **[Proceso para la administración del proceso](#Proceso-para-la-administración-del-proceso)**: se enfoca en la **evaluación y mejora** del **proceso**.
+		5. [Proceso para la administración de cambios de requisitos](#Proceso-para-la-administración-de-cambios): Permite **de manera controlada** los **requerimientos de cambio** evaluando su impacto, en esfuerzo, cronograma y costo, en los productos de trabajo y distintos ítems de configuración, manteniendo un **registro** de todos los requerimientos de cambio.
+	2. **[Proceso para la administración del proceso](#Proceso-para-la-administración-del-proceso)**: se enfoca en la **evaluación y mejora** continua e incremental del **proceso**.
 		-  **CMM** (Capability Maturity Model): ofrece un marco que especifica por niveles **áreas en las cual enfocarse** para la **mejora del proceso**.
-4. [Testing](#Testing)
+4) [Testing](#Testing)
 	- **Desperfecto** (failure): Un desperfecto de SW ocurre si su **comportamiento es distinto del esperado/especificado**. **Implica la presencia de algún defecto** que lo provoca.
 	- **Defecto** (fault): es lo que tiene el **potencial para causar un desperfecto**.
 	- **[Registro de defectos y seguimiento](#Registro-de-defectos-y-seguimiento)**:
@@ -106,7 +112,7 @@
 	- Conjunto de casos de test bueno: que detecte la mayor cantidad de defectos y que ningún conjunto más pequeño también lo encuentre.
 	- **[Testing incremental](#Testing-incremental)**: agregar partes no testeadas incrementalmente a la parte ya testeada. Ayuda a encontrar, identificar y eliminar más defectos. El testing de grandes sistemas se realiza siempre de manera incremental.
 	- **[Testing de regresión](#Testing-de-regresión)**: Verifica que las funcionalidades previas continúen funcionando bien cuando se introduce algún cambio al software.
-	- **[Especificación de los casos de test](#Especificación-de-los-casos-de-test)**: Especificación de casos de test: Establece los casos (entradas, condiciones que testeará y salidas esperadas) a testear de cada unidad separadamente, se revisa para garantizar su **efectividad** y **costo factible**, y una vez especificados se ejecuta y verifica.
+	- **[Especificación de los casos de test](#Especificación-de-los-casos-de-test)**: Establece los casos (entradas, condiciones que testeará y salidas esperadas) a testear de cada unidad **separadamente**, se revisa para garantizar su **efectividad** y **factibilidad**, y una vez especificados se ejecuta y verifica.
 	
 	Dos enfoques complementarios para diseñar casos de test:
 	1. **[Caja negra](#Testing-de-caja-negra)**: bueno para **detectar errores funcionales (de entrada-salida)**. **Útil a alto nivel**.
@@ -132,20 +138,22 @@
 	2. **[Caja blanca](#Testing-de-caja-blanca)**: bueno para **detectar errores estructurales (de lógica) del programa**. **Útil a bajo nivel solamente**, donde el programa es mas “manejable”.
 		- **Deriva los test del código**: El objetivo es ejecutar las distintas **estructuras** del programa con el fin de descubrir errores.
 		- **Criterios de selección de los casos de test**:
-			1. [Criterio basado en el flujo de control](#Criterio-basado-en-el-flujo-de-control): Observa al programa como un grafo de flujo de control donde los **nodos** representan **bloques de código** y las **aristas** posibles **transferencias de control** entre ellos.
+			1. [Criterio basado en el flujo de control](#Criterio-basado-en-el-flujo-de-control): Observa al programa como un **grafo de flujo de control** donde los **nodos** representan **bloques de código** y las **aristas** posibles **transferencias de control** entre ellos.
 				Provee una idea **cuantitativa** del conjunto de casos de test. Se utiliza más para evaluar el nivel de testing que para seleccionar los casos de test.
 				**Criterios**:
 				- **Criterio de cobertura de sentencia**: Cada sentencia se ejecuta al menos una vez durante el testing.
 				-  **Criterio de cobertura de ramificaciones**: Cada arista se ejecuta al menos una vez en el testing. Implica cobertura de sentencias.
+					- i.e. cada decisión debe ejercitarse como verdadera y como falsa durante el testing.
 				- **Criterio de cobertura de caminos**: Todos los posibles caminos del estado inicial al final deben ser ejercitados. Implica cobertura de bifurcación.
-			2. [Criterio basado en el flujo de datos](#Criterio-basado-en-el-flujo-de-datos): Observa la cobertura de la relación definición-uso en las variables. Construye un grafo de definición-uso etiquetando apropiadamente el grafo de flujo de control.
+					- i.e. cada decisión según cada condición debe ejercitarse como verdadera y como falsa durante el testing.
+			2. [Criterio basado en el flujo de datos](#Criterio-basado-en-el-flujo-de-datos): Observa la cobertura de la relación definición-uso en las variables. **Construye un grafo de definición-uso etiquetando apropiadamente el grafo de flujo de control**.
 				Un camino de i a j se dice **libre de definiciones** con respecto a una var x si no hay definiciones de x en todos los nodos intermedios.
 				**Criterios de cobertura**:
-				- **Todas las definiciones**: por cada nodo i y cada x en def(i) hay un camino libre de definiciones con respecto a x hasta un uso-c o uso-p de x.
+				- **Todas las definiciones**: por cada nodo i y cada x en def(i) hay un camino libre de definiciones con respecto a x hasta cada uso-c o uso-p de x.
 				- **Todos los usos-p**: todos los usos-p de todas las definiciones deben testearse.
 				- Otros criterios: todos los usos-c, algunos usos-p, algunos usos-c.
-			3. [Criterio basado en mutación](#Criterio-basado-en-mutación): Observa a diversos mutantes del programa original.
-5. [Planeamiento-del-proyecto-de-software](#Planeamiento-del-proyecto-de-software): **Antes de comenzar el proyecto**, esta fase produce el plan que guiara el **Seguimiento y control**.
+			3. [Criterio basado en mutación](#Criterio-basado-en-mutación): Crea múltiples "mutantes" modificando ligeramente el código original. Si las pruebas detectan todas las fallas introducidas en los mutantes, se infiere que el programa original no contiene dichas fallas.
+5) [Planeamiento-del-proyecto-de-software](#Planeamiento-del-proyecto-de-software): **Antes de comenzar el desarrollo**, esta fase produce el plan que guiara el **Seguimiento y control**.
 	Fase principal del [Proceso para la administración del proyecto](#Proceso-para-la-administración-del-proyecto)
 	**Entrada**: requerimientos y la arquitectura básicos.
 	Tareas claves:
@@ -160,13 +168,13 @@
 		-  [COCOMO](#COCOMO): **estima el esfuerzo y el costo** necesarios para desarrollar SW usando el **tamaño del software** (en KLOC) y un conjunto de **15 factores de multiplicación** que representan distintos atributos del software, hardware, personal, y proyecto.
 			**Procedimiento**:
 			1. **Obtener el estimador inicial** usando el **tamaño**;
-				**$esfuerzo = a * tamaño^b$** donde las constantes a y b estan predefinidos segun el tipo de sistema: Orgánico, Semi-rígido y Rígido
+				**$esfuerzo = a * tamaño^b$** donde las constantes a y b estan predefinidos segun el **tipo de sistema: Orgánico, Semi-rígido y Rígido**
 			2. **Determinar un conjunto de 15 factores de multiplicación** representando distintos atributos;
 				Por ejemplo: **DATA** (tamaño de la base de datos (software)), **TIME** (limitaciones en el porcentaje del uso de la CPU (hardware)), y **TOOL** (uso de herramientas de desarrollo de SW (proyecto)).
 			3. **Ajustar el estimador de esfuerzo** escalándolo según el factor de multiplicación final;
 				$esfuerzo = E * \prod_{k=1}^{15} f_{k}$ donde $f_{k}$ es el k-esimo Factor de ajuste.
 			4. **Calcular el estimador de esfuerzo de cada fase principal**.
-	3. [Planificación y recursos humanos](#Planificación-y-recursos-humanos) o Estimación de tiempos y recursos:
+	3. [Planificación y recursos humanos](#Planificación-y-recursos-humanos):
 		- Dos niveles de planificación:
 			1. [Planificación global](#Planificación-global): abarca las metas parciales (milestones) y la fecha final.
 			2. [Planificación detallada](#Planificación-detallada): es la asignación de las tareas de más bajo nivel a los recursos.
@@ -178,7 +186,7 @@
 			3. **Alternativa**: Reconoce tres tareas principales: desarrollo, testing y administración del programa. Cada una tiene su equipo y cada equipo su líder. Todos reportan a un líder general.
 				- Para el desarrollo de grandes productos.
 	4. [Planeamiento de la administración de la configuración del software](#Planeamiento-de-la-administración-de-la-configuración-del-software): Dadas la especificación de los requerimientos y el entorno de operación, Identifica los **ítems** de configuración y especifica los procedimientos a usar para **controlar e implementar** los cambios de estos items.
-	5. [Planeamiento del Control de Calidad](#Planeamiento-del-Control-de-Calidad): Durante el proyecto lleva un seguimiento de la calidad. Define actividades para identificar y eliminar defectos, analiza los datos recolectados de los defectos y establece juicios cuantitativos sobre la calidad: métricas, densidad de defectos.
+	5. [Planeamiento del Control de Calidad](#Planeamiento-del-Control-de-Calidad): Durante el proyecto lleva un seguimiento de la calidad. Define actividades para identificar y eliminar defectos, analiza los datos recolectados de los defectos y establece juicios **cuantitativos** sobre la calidad: métricas, densidad de defectos.
 	6. [Administración de riesgos](#Administración-de-riesgos): Es un intento de minimizar las chances de fallas y su impacto (en los costos, calidad y tiempos) al materializarse.
 		- **Riesgo**: cualquier condición o evento de **ocurrencia incierta** que puede causar la **falla del proyecto**.
 		Se divide en:
@@ -186,7 +194,7 @@
 			- **Identificación de riesgos**: Identificar los posibles riesgos del proyecto.
 			- **Análisis de riesgos**: Establecer la probabilidad de **ocurrencia** de los riesgos identificados y el **impacto** que originarían. En Bajas, Medias, o Altas.
 			- **Definición de prioridades de los riesgos**: Priorizar para enfocar la atención en las áreas de mayor **“valor de exposición al riesgo” (RE)**.
-				- RE = prob. ocurrencia indeseada * impacto ocur. indeseada (i.e: valor esperado de la pérdida debido a un riesgo.)
+				- $RE = \text{ prob. ocurrencia indeseada } * \text{ impacto ocur. indeseada }$ (i.e: valor esperado de la pérdida debido a un riesgo.)
 		- **Control de Riesgos**: (Durante la realización del proyecto)
 			- **Planeamiento de la administración de riesgos**: Define las acciones a seguir en el proyecto de manera que, si el riesgo se materializa, su impacto sea mínimo (conlleva un costo extra).
 			- **Resolución de riesgos**: Depende del riesgo, suele tener una buena parte de re-negociaciones.
@@ -227,7 +235,6 @@ Proceso básico:
 #### Proceso-de-codificación-incremental
 ![400](PNGs/proceso-codificacion-incremental.png)
 #### Desarrollo-dirigido-por-test
-
 
 ![400](PNGs/TDD.png)
 El TDD (Test Driven Development) es una parte independiente de **Extreme programming**.
